@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { LINKS, LOG_IN_ROUTE } from '@/constants';
+import { LINKS, LOG_IN_ROUTE, REGISTRATION_ROUTE } from '@/constants';
+import { useAppDispatch } from '@/store/hooks';
 import { signUpWithGoogle } from '@/api/signUpWithGoogle';
+import { setUser } from '@/store/slices/userSlice';
 import googleIcon from '@/assets/google-icon.webp';
 import twitterBg from '@/assets/back-twitter.png';
 import twitterIcon from '@/assets/twitter-logo.svg';
@@ -9,6 +11,15 @@ import twitterIcon from '@/assets/twitter-logo.svg';
 import styles from './singup.module.scss';
 
 export const SignUp = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const handleSignUp = async () => {
+    const user = await signUpWithGoogle();
+    dispatch(setUser(user));
+    navigate('/');
+  };
+
   return (
     <div className={styles.signupWrapper}>
       <div className={styles.signup}>
@@ -17,11 +28,13 @@ export const SignUp = () => {
           <img src={twitterIcon} alt="twitter logo" />
           <h1>Happening now</h1>
           <h2>Join Twitter today</h2>
-          <button onClick={signUpWithGoogle}>
+          <button onClick={handleSignUp}>
             <img src={googleIcon} alt="google logo" />
             Sign up with Google
           </button>
-          <button> Sign up with email</button>
+          <Link to={REGISTRATION_ROUTE}>
+            <button>Sign up with email</button>
+          </Link>
           <p>
             By singing up you agree to the <Link to="/">Terms of Service</Link>{' '}
             and <Link to="/">Privacy Policy</Link>, including{' '}

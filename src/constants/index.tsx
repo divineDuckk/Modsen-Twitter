@@ -1,5 +1,10 @@
 export const SIGN_UP_ROUTE = '/signup';
 export const LOG_IN_ROUTE = '/login';
+export const REGISTRATION_ROUTE = '/registration';
+
+export const FAILED = 'failed';
+export const PENDING = 'pending';
+export const SUCCESS = 'success';
 
 export const LINKS = [
   { name: 'About', path: '/about' },

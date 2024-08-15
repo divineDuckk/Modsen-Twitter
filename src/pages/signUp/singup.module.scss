@@ -4,28 +4,18 @@ $imgBgMaxWidth: 1121px;
 $imgMaxHeight: 90vh;
 $signUpGap: 41px;
 
-$h1FontWeight: 900;
-$h1FontSize: 84px;
-$h1LineHeight: 98px;
-$h1MarginTop: 57px;
-$h1MarginBot: 46px;
-
-$h2FontWeight: 900;
-$h2FontSize: 42px;
-$h2LineHeight: 49px;
-
-$buttonBorderSize: 1px;
-$buttonBorderColor: #e4eaed;
-$buttonBorderRadius: 30px;
-$buttonMaxWidth: 403px;
-$buttonHeight: 62px;
-$buttonFontWeight: 600;
-$buttonFontSize: 20px;
-$buttonLineHeight: 24px;
-$buttonGap: 10px;
-$buttonMargin: 21px;
-$buttonHoverColor: #eaeafa;
-$buttonTransition: 0.2s;
+$buttonSignUpBorderSize: 1px;
+$buttonSignUpBorderColor: #e4eaed;
+$buttonSignUpBorderRadius: 30px;
+$buttonSignUpMaxWidth: 403px;
+$buttonSignUpHeight: 62px;
+$buttonSignUpFontWeight: 600;
+$buttonSignUpFontSize: 20px;
+$buttonSignUpLineHeight: 24px;
+$buttonSignUpGap: 10px;
+$buttonSignUpMargin: 21px;
+$buttonSignUpHoverColor: #eaeafa;
+$buttonSignUpTransition: 0.2s;
 
 $textColor: #000;
 
@@ -111,26 +101,31 @@ $linkFontWeight: 400;
       line-height: $h2LineHeight;
       margin-top: 0;
     }
+    a {
+      width: 100%;
+      max-width: $buttonSignUpMaxWidth;
+    }
     button {
-      height: $buttonHeight;
-      max-width: $buttonMaxWidth;
+      height: $buttonSignUpHeight;
+      max-width: $buttonSignUpMaxWidth;
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       background-color: transparent;
-      border: $buttonBorderSize solid $buttonBorderColor;
-      border-radius: $buttonBorderRadius;
-      font-weight: $buttonFontWeight;
-      font-size: $buttonFontSize;
-      line-height: $buttonLineHeight;
-      gap: $buttonGap;
+      border: $buttonSignUpBorderSize solid $buttonSignUpBorderColor;
+      border-radius: $buttonSignUpBorderRadius;
+      font-weight: $buttonSignUpFontWeight;
+      font-size: $buttonSignUpFontSize;
+      line-height: $buttonSignUpLineHeight;
+      gap: $buttonSignUpGap;
       cursor: pointer;
-      margin-bottom: $buttonMargin;
-      transition: $buttonTransition;
+      margin-bottom: $buttonSignUpMargin;
+      transition: $buttonSignUpTransition;
       &:hover {
-        background-color: $buttonHoverColor;
+        background-color: $buttonSignUpHoverColor;
       }
+
       img {
         width: $googleIconSize;
         height: $googleIconSize;

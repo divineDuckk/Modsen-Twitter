@@ -1,14 +1,22 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { addDoc, collection } from 'firebase/firestore';
+
+import { auth, fireStore } from '@/firebase';
 
 export const signUpWithGoogle = async () => {
   try {
-    const db = getFirestore();
-    const auth = getAuth();
     const provider = new GoogleAuthProvider();
     const { user } = await signInWithPopup(auth, provider);
-    console.log(user);
+
+    await addDoc(collection(fireStore, 'users'), {
+      uid: user.uid,
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
+    });
+
+    return user;
   } catch (error) {
-    console.log(error);
+    throw new Error(error as unknown as string);
   }
 };
