@@ -1,4 +1,5 @@
-@import 'src/theme';
+@import 'src/theme/index';
+@import 'src/theme/borders';
 
 .loaderWrap {
   width: 100%;
@@ -12,7 +13,7 @@
   width: $loaderWidth;
   aspect-ratio: 1;
   border-radius: 50%;
-  border: $loaderBorderSize solid #514b82;
+  border: $borderSize-2 solid $borderColor-4;
   animation:
     l20-1 0.8s infinite linear alternate,
     l20-2 1.6s infinite linear;

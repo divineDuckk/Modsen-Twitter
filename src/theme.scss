@@ -1,59 +1,4 @@
-$largeBreakPoint: 1350px;
-
-$h1FontWeight: 900;
-$h1FontSize: 84px;
-$h1LineHeight: 98px;
-
-$indent-1: 4px;
-$indent-2: 8px;
-$indent-3: 14px;
-$indent-4: 20px;
-$indent-5: 25px;
-$indent-6: 32px;
-$indent-7: 46px;
-
-$h2FontWeight: 900;
-$h2FontSize: 42px;
-$h2LineHeight: 49px;
-
-$twiiterLogoWidth: 50px;
-$twiiterLogoHeight: 41px;
-
-$loginFormMaxWidth: 450px;
-
-$loaderWidth: 50px;
-$loaderBorderSize: 8px;
-
-$imgSignUpBgMaxWidth: 1121px;
-$imgSignUpMaxHeight: 90vh;
-$signUpGap: 41px;
-
-$buttonSignUpBorderSize: 1px;
-$buttonSignUpBorderColor: #e4eaed;
-$buttonSignUpBorderRadius: 30px;
-$buttonSignUpMaxWidth: 403px;
-$buttonSignUpHeight: 62px;
-$buttonSignUpFontWeight: 600;
-$buttonSignUpFontSize: 20px;
-$buttonSignUpLineHeight: 24px;
-$buttonSignUpHoverColor: #eaeafa;
-$buttonSignUpTransition: 0.2s;
-
-$textColor: #000;
-
-$googleIconSize: 25px;
-
-$pSignUpMaxWidth: 375px;
-$pSignUpFontSize: 14px;
-$pSignUpLineHeight: 20px;
-$textFontWeight: 400px;
-
-$spanFontSize: 16px;
-
-$linkColor: #5656fb;
-$linksTransition: 0.3s;
-$linkFontSize: 13px;
-$linkFontWeight: 400;
+@import './theme/fontWeights';
 
 #root {
   font-family: 'Roboto';
@@ -64,7 +9,8 @@ body {
   padding: 0;
   box-sizing: border-box;
   height: 100vh;
-}
-a {
-  text-decoration: none;
+  font-weight: $fontWeight-1;
+  a {
+    text-decoration: none;
+  }
 }

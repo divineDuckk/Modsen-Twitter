@@ -1,4 +1,12 @@
-@import 'src/theme';
+@import 'src/theme/breakPoints';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+@import 'src/theme/fontSizes';
+@import 'src/theme/fontWeights';
+@import 'src/theme/lineHeights';
+@import 'src/theme/transitions';
+@import 'src/theme/index';
+@import 'src/theme/borders';
 
 .signupWrapper {
   display: flex;
@@ -22,10 +30,9 @@
     }
   }
   a {
-    color: $textColor;
-    font-size: $linkFontSize;
-    font-weight: $linkFontWeight;
-    transition: $linksTransition;
+    color: $blackText;
+    font-size: $fontSize-1;
+    transition: $transition-1;
     &:hover {
       color: $linkColor;
     }
@@ -33,8 +40,8 @@
 }
 .signup {
   display: flex;
-  gap: $signUpGap;
-  color: $textColor;
+  gap: $indent-7;
+  color: $blackText;
   justify-content: center;
 
   .imgBg {
@@ -54,16 +61,16 @@
       align-items: center;
     }
     h1 {
-      font-weight: $h1FontWeight;
-      font-size: $h1FontSize;
-      line-height: $h1LineHeight;
+      font-weight: $fontWeight-5;
+      font-size: $fontSize-8;
+      line-height: $lineHeight-5;
       margin-top: $indent-7;
       margin-bottom: $indent-6;
     }
     h2 {
-      font-weight: $h2FontWeight;
-      font-size: $h2FontSize;
-      line-height: $h2LineHeight;
+      font-weight: $fontWeight-5;
+      font-size: $fontSize-7;
+      line-height: $lineHeight-4;
       margin-top: 0;
     }
     a {
@@ -78,15 +85,15 @@
       align-items: center;
       justify-content: center;
       background-color: transparent;
-      border: $buttonSignUpBorderSize solid $buttonSignUpBorderColor;
-      border-radius: $buttonSignUpBorderRadius;
-      font-weight: $buttonSignUpFontWeight;
-      font-size: $buttonSignUpFontSize;
-      line-height: $buttonSignUpLineHeight;
+      border: $borderSize-1 solid $borderColor-1;
+      border-radius: $borderRadius-3;
+      font-weight: $fontWeight-3;
+      font-size: $fontSize-4;
+      line-height: $lineHeight-2;
       gap: $indent-2;
       cursor: pointer;
       margin-bottom: $indent-4;
-      transition: $buttonSignUpTransition;
+      transition: $transition-1;
       &:hover {
         background-color: $buttonSignUpHoverColor;
       }
@@ -99,24 +106,20 @@
     p {
       max-width: $pSignUpMaxWidth;
       width: 100%;
-      font-size: $pSignUpFontSize;
-      line-height: $pSignUpLineHeight;
+      font-size: $fontSize-1;
+      line-height: $lineHeight-1;
       margin-bottom: $indent-4;
-      font-weight: $textFontWeight;
       a {
-        font-size: $pSignUpFontSize;
-        line-height: $pSignUpLineHeight;
+        font-size: $fontSize-1;
+        line-height: $lineHeight-1;
         margin-bottom: $indent-4;
-        font-weight: $textFontWeight;
         color: $linkColor;
       }
     }
     span {
-      font-weight: $textFontWeight;
-      font-size: $spanFontSize;
+      font-size: $fontSize-2;
       a {
-        font-size: $spanFontSize;
-        font-weight: $textFontWeight;
+        font-size: $fontSize-2;
         color: $linkColor;
       }
     }
