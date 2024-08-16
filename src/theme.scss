@@ -15,6 +15,44 @@ $twiiterLogoHeight: 41px;
 
 $loginFormMaxWidth: 450px;
 
+$loaderWidth: 50px;
+$loaderBorderSize: 8px;
+
+$imgSignUpBgMaxWidth: 1121px;
+$imgSignUpMaxHeight: 90vh;
+$signUpGap: 41px;
+
+$buttonSignUpBorderSize: 1px;
+$buttonSignUpBorderColor: #e4eaed;
+$buttonSignUpBorderRadius: 30px;
+$buttonSignUpMaxWidth: 403px;
+$buttonSignUpHeight: 62px;
+$buttonSignUpFontWeight: 600;
+$buttonSignUpFontSize: 20px;
+$buttonSignUpLineHeight: 24px;
+$buttonSignUpGap: 10px;
+$buttonSignUpMargin: 21px;
+$buttonSignUpHoverColor: #eaeafa;
+$buttonSignUpTransition: 0.2s;
+
+$textColor: #000;
+
+$googleIconSize: 25px;
+
+$pSignUpMaxWidth: 375px;
+$pSignUpFontSize: 14px;
+$pSignUpLineHeight: 20px;
+$pSignUpMarginBot: 21px;
+$textFontWeight: 400px;
+
+$spanFontSize: 16px;
+
+$linkColor: #5656fb;
+$linksTransition: 0.3s;
+$linksGap: 19px;
+$linkFontSize: 13px;
+$linkFontWeight: 400;
+
 #root {
   font-family: 'Roboto';
   height: 100%;

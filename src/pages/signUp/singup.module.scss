@@ -1,40 +1,5 @@
 @import 'src/theme';
 
-$imgBgMaxWidth: 1121px;
-$imgMaxHeight: 90vh;
-$signUpGap: 41px;
-
-$buttonSignUpBorderSize: 1px;
-$buttonSignUpBorderColor: #e4eaed;
-$buttonSignUpBorderRadius: 30px;
-$buttonSignUpMaxWidth: 403px;
-$buttonSignUpHeight: 62px;
-$buttonSignUpFontWeight: 600;
-$buttonSignUpFontSize: 20px;
-$buttonSignUpLineHeight: 24px;
-$buttonSignUpGap: 10px;
-$buttonSignUpMargin: 21px;
-$buttonSignUpHoverColor: #eaeafa;
-$buttonSignUpTransition: 0.2s;
-
-$textColor: #000;
-
-$googleIconSize: 25px;
-
-$pMaxWidth: 375px;
-$pFontSize: 14px;
-$pLineHeight: 20px;
-$pMarginBot: 21px;
-$textFontWeight: 400px;
-
-$spanFontSize: 16px;
-
-$linkColor: #5656fb;
-$linksTransition: 0.3s;
-$linksGap: 19px;
-$linkFontSize: 13px;
-$linkFontWeight: 400;
-
 .signupWrapper {
   display: flex;
   flex-direction: column;
@@ -73,9 +38,9 @@ $linkFontWeight: 400;
   justify-content: center;
 
   .imgBg {
-    max-width: $imgBgMaxWidth;
+    max-width: $imgSignUpBgMaxWidth;
     height: 100%;
-    max-height: $imgMaxHeight;
+    max-height: $imgSignUpMaxHeight;
     @media (max-width: $largeBreakPoint) {
       display: none;
     }
@@ -132,16 +97,16 @@ $linkFontWeight: 400;
       }
     }
     p {
-      max-width: $pMaxWidth;
+      max-width: $pSignUpMaxWidth;
       width: 100%;
-      font-size: $pFontSize;
-      line-height: $pLineHeight;
-      margin-bottom: $pMarginBot;
+      font-size: $pSignUpFontSize;
+      line-height: $pSignUpLineHeight;
+      margin-bottom: $pSignUpMarginBot;
       font-weight: $textFontWeight;
       a {
-        font-size: $pFontSize;
-        line-height: $pLineHeight;
-        margin-bottom: $pMarginBot;
+        font-size: $pSignUpFontSize;
+        line-height: $pSignUpLineHeight;
+        margin-bottom: $pSignUpMarginBot;
         font-weight: $textFontWeight;
         color: $linkColor;
       }
