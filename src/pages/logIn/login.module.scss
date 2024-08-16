@@ -1,0 +1,66 @@
+@import 'src/theme/borders';
+@import 'src/theme/index';
+@import 'src/theme/fontWeights';
+@import 'src/theme/fontSizes';
+@import 'src/theme/lineHeights';
+@import 'src/theme/backgrounds';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+
+.logWrap {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  .login {
+    display: flex;
+    width: 100%;
+    max-width: $loginFormMaxWidth;
+    flex-direction: column;
+    img {
+      width: $twiiterLogoWidth;
+      height: $twiiterLogoHeight;
+    }
+    h2 {
+      font-weight: $fontWeight-5;
+      font-size: $fontSize-7;
+      line-height: $lineHeight-4;
+    }
+    button {
+      font-size: $fontSize-3;
+      font-weight: $fontWeight-3;
+      line-height: $lineHeight-1;
+      background-color: $bgColor-1;
+      color: white;
+      cursor: pointer;
+      height: $loginButtonHeight;
+      border-radius: $borderRadius-4;
+      border: 0;
+      margin-bottom: $indent-7;
+    }
+    input {
+      border: $borderSize-1 solid $borderColor-2;
+      border-radius: $borderRadius-1;
+      height: $loginInputHeight;
+      font-size: $fontSize-3;
+      line-height: $lineHeight-1;
+      padding-left: $indent-3;
+      margin-bottom: $indent-4;
+      &:active,
+      &:focus {
+        outline-color: $bgColor-1;
+      }
+      &::placeholder {
+        color: $placeHolderColor;
+      }
+    }
+    a {
+      display: flex;
+      justify-content: flex-end;
+      font-size: $fontSize-3;
+      font-weight: $fontWeight-3;
+      line-height: $lineHeight-1;
+    }
+  }
+}
