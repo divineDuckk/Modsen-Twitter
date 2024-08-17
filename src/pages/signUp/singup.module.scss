@@ -19,7 +19,7 @@
   .links {
     display: flex;
     justify-content: center;
-    gap: $indent-4;
+    gap: $indentL;
     flex-wrap: wrap;
     width: 100%;
     height: 100%;
@@ -31,8 +31,8 @@
   }
   a {
     color: $blackText;
-    font-size: $fontSize-1;
-    transition: $transition-1;
+    font-size: $fontSizeS;
+    transition: $transitionS;
     &:hover {
       color: $linkColor;
     }
@@ -40,7 +40,7 @@
 }
 .signup {
   display: flex;
-  gap: $indent-7;
+  gap: $indentXXXL;
   color: $blackText;
   justify-content: center;
 
@@ -61,16 +61,16 @@
       align-items: center;
     }
     h1 {
-      font-weight: $fontWeight-5;
-      font-size: $fontSize-8;
-      line-height: $lineHeight-5;
-      margin-top: $indent-7;
-      margin-bottom: $indent-6;
+      font-weight: $fontWeightXL;
+      font-size: $fontSizeXXXXL;
+      line-height: $lineHeightXL;
+      margin-top: $indentXXXL;
+      margin-bottom: $indentXXL;
     }
     h2 {
-      font-weight: $fontWeight-5;
-      font-size: $fontSize-7;
-      line-height: $lineHeight-4;
+      font-weight: $fontWeightXL;
+      font-size: $fontSizeXXXL;
+      line-height: $lineHeightL;
       margin-top: 0;
     }
     a {
@@ -85,15 +85,15 @@
       align-items: center;
       justify-content: center;
       background-color: transparent;
-      border: $borderSize-1 solid $borderColor-1;
-      border-radius: $borderRadius-3;
-      font-weight: $fontWeight-3;
-      font-size: $fontSize-4;
-      line-height: $lineHeight-2;
-      gap: $indent-2;
+      border: $borderSizeS solid $lightBorderColor;
+      border-radius: $borderRadiusM;
+      font-weight: $fontWeightM;
+      font-size: $fontSizeL;
+      line-height: $lineHeightXS;
+      gap: $indentXS;
       cursor: pointer;
-      margin-bottom: $indent-4;
-      transition: $transition-1;
+      margin-bottom: $indentL;
+      transition: $transitionS;
       &:hover {
         background-color: $buttonSignUpHoverColor;
       }
@@ -106,20 +106,20 @@
     p {
       max-width: $pSignUpMaxWidth;
       width: 100%;
-      font-size: $fontSize-1;
-      line-height: $lineHeight-1;
-      margin-bottom: $indent-4;
+      font-size: $fontSizeS;
+      line-height: $lineHeightS;
+      margin-bottom: $indentL;
       a {
-        font-size: $fontSize-1;
-        line-height: $lineHeight-1;
-        margin-bottom: $indent-4;
+        font-size: $fontSizeS;
+        line-height: $lineHeightS;
+        margin-bottom: $indentL;
         color: $linkColor;
       }
     }
     span {
-      font-size: $fontSize-2;
+      font-size: $fontSizeXS;
       a {
-        font-size: $fontSize-2;
+        font-size: $fontSizeXS;
         color: $linkColor;
       }
     }
