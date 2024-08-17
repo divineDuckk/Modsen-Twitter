@@ -3,7 +3,6 @@
 @import 'src/theme/fontWeights';
 @import 'src/theme/fontSizes';
 @import 'src/theme/lineHeights';
-@import 'src/theme/backgrounds';
 @import 'src/theme/indents';
 @import 'src/theme/colors';
 
@@ -23,33 +22,33 @@
       height: $twiiterLogoHeight;
     }
     h2 {
-      font-weight: $fontWeight-5;
-      font-size: $fontSize-7;
-      line-height: $lineHeight-4;
+      font-weight: $fontWeightXL;
+      font-size: $fontSizeXXXL;
+      line-height: $lineHeightL;
     }
     button {
-      font-size: $fontSize-3;
-      font-weight: $fontWeight-3;
-      line-height: $lineHeight-1;
-      background-color: $bgColor-1;
+      font-size: $fontSizeM;
+      font-weight: $fontWeightM;
+      line-height: $lineHeightS;
+      background-color: $lightBlue;
       color: white;
       cursor: pointer;
       height: $loginButtonHeight;
-      border-radius: $borderRadius-4;
+      border-radius: $borderRadiusL;
       border: 0;
-      margin-bottom: $indent-7;
+      margin-bottom: $indentXXXL;
     }
     input {
-      border: $borderSize-1 solid $borderColor-2;
-      border-radius: $borderRadius-1;
+      border: $borderSizeS solid $darkBorderColor;
+      border-radius: $borderRadiusS;
       height: $loginInputHeight;
-      font-size: $fontSize-3;
-      line-height: $lineHeight-1;
-      padding-left: $indent-3;
-      margin-bottom: $indent-4;
+      font-size: $fontSizeM;
+      line-height: $lineHeightS;
+      padding-left: $indentM;
+      margin-bottom: $indentL;
       &:active,
       &:focus {
-        outline-color: $bgColor-1;
+        outline-color: $lightBlue;
       }
       &::placeholder {
         color: $placeHolderColor;
@@ -58,9 +57,9 @@
     a {
       display: flex;
       justify-content: flex-end;
-      font-size: $fontSize-3;
-      font-weight: $fontWeight-3;
-      line-height: $lineHeight-1;
+      font-size: $fontSizeM;
+      font-weight: $fontWeightM;
+      line-height: $lineHeightS;
     }
   }
 }
