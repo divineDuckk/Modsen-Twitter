@@ -1,0 +1,24 @@
+@import 'src/theme/borders';
+@import 'src/theme/colors';
+@import 'src/theme/fontSizes';
+@import 'src/theme/indents';
+@import 'src/theme/lineHeights';
+@import 'src/theme/index';
+
+.input {
+  box-sizing: border-box;
+  border: $borderSizeS solid $darkBorderColor;
+  border-radius: $borderRadiusS;
+  height: $loginInputHeight;
+  font-size: $fontSizeM;
+  line-height: $lineHeightS;
+  padding-left: $indentM;
+  margin-bottom: $indentL;
+  &:active,
+  &:focus {
+    outline-color: $lightBlue;
+  }
+  &::placeholder {
+    color: $placeHolderColor;
+  }
+}

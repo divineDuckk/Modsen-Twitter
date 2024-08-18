@@ -1,5 +1,6 @@
 import { ChangeEvent, FC } from 'react';
 
+import styles from './input.module.scss';
 import { DataInputProps } from './types';
 
 export const DataInput: FC<DataInputProps> = ({
@@ -15,6 +16,7 @@ export const DataInput: FC<DataInputProps> = ({
 
   return (
     <input
+      className={styles.input}
       value={inputValue}
       placeholder={placeholder}
       type={type}
