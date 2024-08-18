@@ -41,7 +41,9 @@ export const LogIn = () => {
           type="password"
           required
         />
-        <button type="submit">Log In</button>
+        <button className={styles.submitButton} type="submit">
+          Log In
+        </button>
         <Link to={SIGN_UP_ROUTE}>Sign up to Twitter</Link>
       </form>
     </div>

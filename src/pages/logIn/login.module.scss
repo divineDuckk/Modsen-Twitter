@@ -5,6 +5,7 @@
 @import 'src/theme/lineHeights';
 @import 'src/theme/indents';
 @import 'src/theme/colors';
+@import 'src/theme/reuseClasses';
 
 .logWrap {
   width: 100%;
@@ -26,19 +27,23 @@
       font-size: $fontSizeXXXL;
       line-height: $lineHeightL;
     }
-    button {
-      font-size: $fontSizeM;
-      font-weight: $fontWeightM;
-      line-height: $lineHeightS;
-      background-color: $lightBlue;
-      color: white;
-      cursor: pointer;
-      height: $loginButtonHeight;
-      border-radius: $borderRadiusL;
-      border: 0;
-      margin-bottom: $indentXXXL;
-    }
 
+    input {
+      border: $borderSizeS solid $darkBorderColor;
+      border-radius: $borderRadiusS;
+      height: $loginInputHeight;
+      font-size: $fontSizeM;
+      line-height: $lineHeightS;
+      padding-left: $indentM;
+      margin-bottom: $indentL;
+      &:active,
+      &:focus {
+        outline-color: $lightBlue;
+      }
+      &::placeholder {
+        color: $placeHolderColor;
+      }
+    }
     a {
       display: flex;
       justify-content: flex-end;

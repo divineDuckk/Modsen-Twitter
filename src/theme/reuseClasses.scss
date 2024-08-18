@@ -1,0 +1,20 @@
+@import 'src/theme/borders';
+@import 'src/theme/index';
+@import 'src/theme/fontWeights';
+@import 'src/theme/fontSizes';
+@import 'src/theme/lineHeights';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+
+.submitButton {
+  font-size: $fontSizeM;
+  font-weight: $fontWeightM;
+  line-height: $lineHeightS;
+  background-color: $lightBlue;
+  color: white;
+  cursor: pointer;
+  height: $loginButtonHeight;
+  border-radius: $borderRadiusL;
+  border: 0;
+  margin-bottom: $indentXXXL;
+}
