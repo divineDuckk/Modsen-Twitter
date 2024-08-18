@@ -5,17 +5,15 @@ import dropDownSvg from '@/assets/dropdown.svg';
 import styles from './dropdown.module.scss';
 import { DropDownProps } from './types';
 
-export const DropDown: FC<DropDownProps> = ({ options, placeholder }) => {
+export const DropDown: FC<DropDownProps> = ({ options, value, setValue }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<number | string>(
-    placeholder,
-  );
+
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => setIsOpen(prev => !prev);
 
-  const handleOptionClick = (option: string | number) => {
-    setSelectedOption(option);
+  const handleOptionClick = (option: string) => {
+    setValue(option);
     setIsOpen(false);
   };
 
@@ -38,7 +36,7 @@ export const DropDown: FC<DropDownProps> = ({ options, placeholder }) => {
   return (
     <div className={styles.dropdown} ref={dropdownRef}>
       <div className={styles.dropdownHeader} onClick={toggleDropdown}>
-        {selectedOption}
+        {value}
         <img
           src={dropDownSvg}
           alt="drop down icon"

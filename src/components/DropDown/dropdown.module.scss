@@ -16,7 +16,6 @@
     border: $borderSizeS solid $darkBorderColor;
     border-radius: $borderRadiusS;
     font-size: $fontSizeM;
-    background-color: transparent;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -40,6 +39,7 @@
     z-index: 1;
     max-height: $dropdownListMaxHeight;
     overflow-y: auto;
+    background-color: white;
     .dropdownListItem {
       padding: $indentM $indentL;
       font-size: $fontSizeM;

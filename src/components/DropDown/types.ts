@@ -1,4 +1,7 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export interface DropDownProps {
-  options: string[] | number[];
-  placeholder: string;
+  options: string[];
+  value: string;
+  setValue: Dispatch<SetStateAction<string>>;
 }

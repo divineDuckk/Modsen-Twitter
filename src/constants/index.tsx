@@ -6,7 +6,9 @@ export const FAILED = 'failed';
 export const PENDING = 'pending';
 export const SUCCESS = 'success';
 
-export const DAYS_ARRAY = Array.from({ length: 31 }, (_, index) => index + 1);
+export const DAYS_ARRAY = Array.from({ length: 31 }, (_, index) =>
+  String(index + 1),
+);
 
 export const MONTHS = [
   'January',

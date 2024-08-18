@@ -4,6 +4,7 @@
 @import 'src/theme/fontSizes';
 @import 'src/theme/fontWeights';
 @import 'src/theme/lineHeights';
+@import 'src/theme/reuseClasses';
 
 .registrationWrap {
   width: 100%;
@@ -48,11 +49,15 @@
       line-height: $lineHeightXS;
       opacity: 0.6;
     }
+    button {
+      width: 100%;
+    }
     .birthInfo {
       display: flex;
       width: 100%;
       flex: 1;
       gap: $indentL;
+      margin-bottom: $indentXXL;
 
       .daysAndYears {
         display: flex;
