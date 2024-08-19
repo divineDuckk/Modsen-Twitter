@@ -1,5 +1,7 @@
-import { useState, useRef, FC, useEffect } from 'react';
+import classNames from 'classnames';
+import { useState, useRef, FC } from 'react';
 
+import { useMountClickEvent } from '@/hooks/useMountClickEvent';
 import dropDownSvg from '@/assets/dropdown.svg';
 
 import styles from './dropdown.module.scss';
@@ -12,7 +14,7 @@ export const DropDown: FC<DropDownProps> = ({ options, value, setValue }) => {
 
   const toggleDropdown = () => setIsOpen(prev => !prev);
 
-  const handleOptionClick = (option: string) => {
+  const handleOptionClick = (option: string) => () => {
     setValue(option);
     setIsOpen(false);
   };
@@ -25,23 +27,15 @@ export const DropDown: FC<DropDownProps> = ({ options, value, setValue }) => {
       setIsOpen(false);
     }
   };
+  useMountClickEvent(handleClickOutside);
 
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
+  const dropDownClass = classNames({ [styles.dropdownArrowOpen]: isOpen });
 
   return (
     <div className={styles.dropdown} ref={dropdownRef}>
       <div className={styles.dropdownHeader} onClick={toggleDropdown}>
         {value}
-        <img
-          src={dropDownSvg}
-          alt="drop down icon"
-          className={isOpen ? styles.dropdownArrowOpen : ''}
-        />
+        <img src={dropDownSvg} alt="drop down icon" className={dropDownClass} />
       </div>
       {isOpen && (
         <ul className={styles.dropdownList}>
@@ -49,7 +43,7 @@ export const DropDown: FC<DropDownProps> = ({ options, value, setValue }) => {
             <li
               key={index}
               className={styles.dropdownListItem}
-              onClick={() => handleOptionClick(option)}
+              onClick={handleOptionClick(option)}
             >
               {option}
             </li>

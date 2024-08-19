@@ -10,6 +10,8 @@ export const DAYS_ARRAY = Array.from({ length: 31 }, (_, index) =>
   String(index + 1),
 );
 
+export const YEARS_INTERVAl = 100;
+
 export const MONTHS = [
   'January',
   'February',
