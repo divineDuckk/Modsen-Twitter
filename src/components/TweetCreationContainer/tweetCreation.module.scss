@@ -1,0 +1,50 @@
+@import 'src/theme/borders';
+@import 'src/theme/index';
+@import 'src/theme/fontWeights';
+@import 'src/theme/fontSizes';
+@import 'src/theme/lineHeights';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+
+$textareaWidth: 85%;
+$textareaMaxHeight: 100px;
+
+.tweetCreationContainer {
+  display: flex;
+  padding: $indentL;
+  gap: $indentL;
+  img {
+    width: calc($profilePhotoSize / 2);
+    height: calc($profilePhotoSize / 2);
+    border-radius: $borderRadiusXL;
+  }
+  .dataBlock {
+    width: 100%;
+
+    textarea {
+      font-weight: $fontWeightM;
+      font-size: $fontSizeL;
+      font-family: 'Roboto';
+      width: $textareaWidth;
+      max-width: $textareaWidth;
+      min-height: 100%;
+      max-height: $textareaMaxHeight;
+      border: 0;
+      resize: none;
+      &:active,
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        font-weight: $fontWeightM;
+        font-size: $fontSizeL;
+      }
+    }
+    .buttons {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

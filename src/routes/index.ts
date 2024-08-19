@@ -22,6 +22,8 @@ export const PUBLIC_ROUTES = [
     Page: Registration,
     path: REGISTRATION_ROUTE,
   },
+];
+export const PRIVATE_ROUTES = [
   {
     Page: Profile,
     path: PROFILE_ROUTE + ':id',

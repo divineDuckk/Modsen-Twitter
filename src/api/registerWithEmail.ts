@@ -3,6 +3,7 @@ import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 
 import { auth, fireStore } from '@/firebase';
 import { UserInfo } from '@/interfaces/user';
+import defaultBg from '@/assets/defaultBg.png';
 
 export const registerWithEmail = async ({
   birthDate,
@@ -28,6 +29,7 @@ export const registerWithEmail = async ({
       tweetsNumber: 0,
       followers: 0,
       followings: 0,
+      backgroundUrl: defaultBg,
     });
     const userDoc = await getDoc(doc(usersRef, user.uid));
     return userDoc.data();

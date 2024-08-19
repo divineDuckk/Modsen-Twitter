@@ -10,6 +10,7 @@ import {
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 import { auth, fireStore } from '@/firebase';
+import defaultBg from '@/assets/defaultBg.png';
 
 export const signUpWithGoogle = async () => {
   try {
@@ -28,6 +29,7 @@ export const signUpWithGoogle = async () => {
         tweetsNumber: 0,
         followers: 0,
         followings: 0,
+        backgroundUrl: defaultBg,
       });
     }
     const userDoc = await getDoc(doc(usersRef, user.uid));

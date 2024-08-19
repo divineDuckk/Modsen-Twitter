@@ -7,16 +7,89 @@
 @import 'src/theme/colors';
 
 .profile {
+  width: 100%;
+  max-width: $profileMaxWidth;
+  border-left: $borderSizeS solid $lightBorderColor;
+  border-right: $borderSizeS solid $lightBorderColor;
   .header {
-    h3 {
+    h4 {
+      margin-left: $indentM;
       font-weight: $fontWeightM;
       font-size: $fontSizeL;
       line-height: $lineHeightXS;
+      margin-bottom: $indentS;
     }
     span {
+      margin-left: $indentM;
       font-size: $fontSizeXS;
       line-height: $lineHeightS;
       opacity: 0.6;
+    }
+    img {
+      margin-top: $indentM;
+
+      width: 100%;
+      max-height: $profileImgMaxHeight;
+    }
+  }
+  .profileInfo {
+    padding: 0 $indentL;
+    border-bottom: $borderSizeS solid $lightBorderColor;
+
+    .followsInfo {
+      display: flex;
+      gap: $indentXL;
+      margin-bottom: $indentXXXL;
+      p {
+        font-size: $fontSizeM;
+        font-family: 'Roboto Sarif';
+        font-weight: $fontWeightM;
+        span {
+          font-family: 'Roboto';
+          opacity: 0.6;
+          font-weight: $fontWeightS;
+        }
+      }
+    }
+    .description {
+      font-family: 'Roboto';
+      font-size: $fontSizeM;
+      margin-bottom: $indentXXXL;
+    }
+    h3 {
+      font-family: 'Roboto Sarif';
+      font-size: $fontSizeXL;
+      font-weight: $fontWeightM;
+      margin: $indentS 0;
+    }
+    .id {
+      margin-top: 0;
+      margin-bottom: $indentM;
+      opacity: 0.6;
+      font-size: $fontSizeXS;
+    }
+    .imgWithEdits {
+      display: flex;
+      justify-content: space-between;
+      height: $profileAvatarBlockHeight;
+      img {
+        border-radius: $borderRadiusXL;
+        width: $profilePhotoSize;
+        height: $profilePhotoSize;
+        transform: translateY(-30%);
+      }
+      button {
+        height: min-content;
+        margin-top: $indentM;
+        border: $borderSizeS solid $lightGray;
+        border-radius: $borderRadiusL;
+        padding: $indentXS $indentM;
+        font-weight: $fontWeightM;
+        background-color: transparent;
+        font-size: $fontSizeM;
+        line-height: $lineHeightXS;
+        cursor: pointer;
+      }
     }
   }
 }

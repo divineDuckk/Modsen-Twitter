@@ -6,5 +6,6 @@ import { rootReducer } from './slices';
 const persistConfig = {
   key: 'root',
   storage,
+  blackList: ['user', 'userSlice'],
 };
 export const persistedReducer = persistReducer(persistConfig, rootReducer);
