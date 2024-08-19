@@ -3,4 +3,6 @@ export interface User {
   email: string;
   uid: string;
   photoUrl?: string;
+  phone?: string;
+  birthDate?: string;
 }

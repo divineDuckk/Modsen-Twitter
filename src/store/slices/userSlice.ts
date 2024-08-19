@@ -15,12 +15,16 @@ const userSlice = createSlice({
       state.uid = payload.uid;
       state.email = payload.email;
       state.photoUrl = payload.photoUrl;
+      state.phone = payload.phone;
+      state.birthDate = payload.birthDate;
     },
     removeUser(state) {
       state.displayName = '';
       state.email = '';
       state.photoUrl = '';
+      state.phone = '';
       state.uid = '';
+      state.birthDate = '';
     },
   },
 });
