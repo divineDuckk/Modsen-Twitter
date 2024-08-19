@@ -1,0 +1,127 @@
+@import 'src/theme/breakPoints';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+@import 'src/theme/fontSizes';
+@import 'src/theme/fontWeights';
+@import 'src/theme/lineHeights';
+@import 'src/theme/transitions';
+@import 'src/theme/index';
+@import 'src/theme/borders';
+
+.signupWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  @media (max-width: $largeBreakPoint) {
+    justify-content: space-evenly;
+  }
+  .links {
+    display: flex;
+    justify-content: center;
+    gap: $indentL;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    @media (max-width: $largeBreakPoint) {
+      align-items: flex-end;
+      height: auto;
+    }
+  }
+  a {
+    color: $blackText;
+    font-size: $fontSizeS;
+    transition: $transitionS;
+    &:hover {
+      color: $linkColor;
+    }
+  }
+}
+.signup {
+  display: flex;
+  gap: $indentXXXL;
+  color: $blackText;
+  justify-content: center;
+
+  .imgBg {
+    max-width: $imgSignUpBgMaxWidth;
+    height: 100%;
+    max-height: $imgSignUpMaxHeight;
+    @media (max-width: $largeBreakPoint) {
+      display: none;
+    }
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    @media (max-width: $largeBreakPoint) {
+      align-items: center;
+    }
+    h1 {
+      font-weight: $fontWeightXL;
+      font-size: $fontSizeXXXXL;
+      line-height: $lineHeightXL;
+      margin-top: $indentXXXL;
+      margin-bottom: $indentXXL;
+    }
+    h2 {
+      font-weight: $fontWeightXL;
+      font-size: $fontSizeXXXL;
+      line-height: $lineHeightL;
+      margin-top: 0;
+    }
+    a {
+      width: 100%;
+      max-width: $buttonSignUpMaxWidth;
+    }
+    button {
+      height: $buttonSignUpHeight;
+      max-width: $buttonSignUpMaxWidth;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: transparent;
+      border: $borderSizeS solid $lightBorderColor;
+      border-radius: $borderRadiusM;
+      font-weight: $fontWeightM;
+      font-size: $fontSizeL;
+      line-height: $lineHeightXS;
+      gap: $indentXS;
+      cursor: pointer;
+      margin-bottom: $indentL;
+      transition: $transitionS;
+      &:hover {
+        background-color: $buttonSignUpHoverColor;
+      }
+
+      img {
+        width: $googleIconSize;
+        height: $googleIconSize;
+      }
+    }
+    p {
+      max-width: $pSignUpMaxWidth;
+      width: 100%;
+      font-size: $fontSizeS;
+      line-height: $lineHeightS;
+      margin-bottom: $indentL;
+      a {
+        font-size: $fontSizeS;
+        line-height: $lineHeightS;
+        margin-bottom: $indentL;
+        color: $linkColor;
+      }
+    }
+    span {
+      font-size: $fontSizeXS;
+      a {
+        font-size: $fontSizeXS;
+        color: $linkColor;
+      }
+    }
+  }
+}
