@@ -1,0 +1,55 @@
+@import 'src/theme/borders';
+@import 'src/theme/index';
+@import 'src/theme/fontWeights';
+@import 'src/theme/fontSizes';
+@import 'src/theme/lineHeights';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+@import 'src/theme/reuseClasses';
+
+.logWrap {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  .login {
+    display: flex;
+    width: 100%;
+    max-width: $loginFormMaxWidth;
+    flex-direction: column;
+    img {
+      width: $twiiterLogoWidth;
+      height: $twiiterLogoHeight;
+    }
+    h2 {
+      font-weight: $fontWeightXL;
+      font-size: $fontSizeXXXL;
+      line-height: $lineHeightL;
+    }
+
+    input {
+      border: $borderSizeS solid $darkBorderColor;
+      border-radius: $borderRadiusS;
+      height: $loginInputHeight;
+      font-size: $fontSizeM;
+      line-height: $lineHeightS;
+      padding-left: $indentM;
+      margin-bottom: $indentL;
+      &:active,
+      &:focus {
+        outline-color: $lightBlue;
+      }
+      &::placeholder {
+        color: $placeHolderColor;
+      }
+    }
+    a {
+      display: flex;
+      justify-content: flex-end;
+      font-size: $fontSizeM;
+      font-weight: $fontWeightM;
+      line-height: $lineHeightS;
+    }
+  }
+}
