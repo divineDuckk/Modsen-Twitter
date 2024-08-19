@@ -1,0 +1,22 @@
+@import 'src/theme/borders';
+@import 'src/theme/index';
+@import 'src/theme/fontWeights';
+@import 'src/theme/fontSizes';
+@import 'src/theme/lineHeights';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+
+.profile {
+  .header {
+    h3 {
+      font-weight: $fontWeightM;
+      font-size: $fontSizeL;
+      line-height: $lineHeightXS;
+    }
+    span {
+      font-size: $fontSizeXS;
+      line-height: $lineHeightS;
+      opacity: 0.6;
+    }
+  }
+}

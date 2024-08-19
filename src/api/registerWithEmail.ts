@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { addDoc, collection } from 'firebase/firestore';
+import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 
 import { auth, fireStore } from '@/firebase';
 import { UserInfo } from '@/interfaces/user';
@@ -17,15 +17,20 @@ export const registerWithEmail = async ({
       email,
       password,
     );
-    await addDoc(collection(fireStore, 'users'), {
+    const usersRef = collection(fireStore, 'users');
+    await setDoc(doc(usersRef, user.uid), {
       uid: user.uid,
       displayName: name,
       email: email,
       photoURL: user.photoURL,
       birthDate: birthDate,
       phoneNumber: phoneNumber,
+      tweetsNumber: 0,
+      followers: 0,
+      followings: 0,
     });
-    return user;
+    const userDoc = await getDoc(doc(usersRef, user.uid));
+    return userDoc.data();
   } catch (error) {
     throw new Error(error as unknown as string);
   }

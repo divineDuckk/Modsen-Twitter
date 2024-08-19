@@ -1,6 +1,7 @@
 export const SIGN_UP_ROUTE = '/signup';
 export const LOG_IN_ROUTE = '/login';
 export const REGISTRATION_ROUTE = '/registration';
+export const PROFILE_ROUTE = '/profile/';
 
 export const FAILED = 'failed';
 export const PENDING = 'pending';

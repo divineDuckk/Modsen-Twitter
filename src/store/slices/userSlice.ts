@@ -5,6 +5,9 @@ const initialState: User = {
   displayName: '',
   email: '',
   uid: '',
+  followers: 0,
+  followings: 0,
+  tweetsNumber: 0,
 };
 const userSlice = createSlice({
   name: 'user',
@@ -17,6 +20,9 @@ const userSlice = createSlice({
       state.photoUrl = payload.photoUrl;
       state.phone = payload.phone;
       state.birthDate = payload.birthDate;
+      state.tweetsNumber = payload.tweetsNumber;
+      state.followers = payload.followers;
+      state.followings = payload.followings;
     },
     removeUser(state) {
       state.displayName = '';
@@ -25,6 +31,9 @@ const userSlice = createSlice({
       state.phone = '';
       state.uid = '';
       state.birthDate = '';
+      state.tweetsNumber = 0;
+      state.followers = 0;
+      state.followings = 0;
     },
   },
 });

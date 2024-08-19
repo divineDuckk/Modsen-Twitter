@@ -1,6 +1,11 @@
+import {
+  LINKS,
+  LOG_IN_ROUTE,
+  PROFILE_ROUTE,
+  REGISTRATION_ROUTE,
+} from '@/constants';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { LINKS, LOG_IN_ROUTE, REGISTRATION_ROUTE } from '@/constants';
 import { useAppDispatch } from '@/store/hooks';
 import { signUpWithGoogle } from '@/api/signUpWithGoogle';
 import { setUser } from '@/store/slices/userSlice';
@@ -17,7 +22,7 @@ export const SignUp = () => {
   const handleSignUp = async () => {
     const user = await signUpWithGoogle();
     dispatch(setUser(user));
-    navigate('/');
+    navigate(PROFILE_ROUTE + user?.uid);
   };
 
   return (

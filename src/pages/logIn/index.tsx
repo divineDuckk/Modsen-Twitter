@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { SIGN_UP_ROUTE } from '@/constants';
+import { PROFILE_ROUTE, SIGN_UP_ROUTE } from '@/constants';
 import { logInWithEmail } from '@/api/logInWithEmail';
 import { useAppDispatch } from '@/store/hooks';
 import { setUser } from '@/store/slices/userSlice';
@@ -14,12 +14,15 @@ import styles from './login.module.scss';
 export const LogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleLogIn = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const user = await logInWithEmail(email, password);
     dispatch(setUser(user));
+    navigate(PROFILE_ROUTE + user?.uid);
   };
 
   return (

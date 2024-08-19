@@ -5,6 +5,9 @@ export interface User {
   photoUrl?: string;
   phone?: string;
   birthDate?: string;
+  tweetsNumber: number;
+  followers: number;
+  followings: number;
 }
 
 export interface UserInfo {

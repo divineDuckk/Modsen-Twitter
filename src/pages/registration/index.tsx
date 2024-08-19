@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { DataInput } from '@/components/DataInput';
-import { DAYS_ARRAY, MONTHS, SIGN_UP_ROUTE } from '@/constants';
+import { DAYS_ARRAY, MONTHS, PROFILE_ROUTE, SIGN_UP_ROUTE } from '@/constants';
 import { DropDown } from '@/components/DropDown';
 import { getYearsArray } from '@/utils/functions/getYearsArray';
 import { registerWithEmail } from '@/api/registerWithEmail';
@@ -67,10 +67,8 @@ export const Registration = () => {
       password,
       phoneNumber,
     });
-
     dispatch(setUser(user));
-
-    navigate('/');
+    navigate(PROFILE_ROUTE + user?.uid);
   };
 
   return (
