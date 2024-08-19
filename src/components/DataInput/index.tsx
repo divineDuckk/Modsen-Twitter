@@ -16,7 +16,7 @@ export const DataInput: FC<DataInputProps> = ({
 
   return (
     <input
-      className={styles.input}
+      className={styles.dataInput}
       value={inputValue}
       placeholder={placeholder}
       type={type}
