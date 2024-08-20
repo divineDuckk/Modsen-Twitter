@@ -10,6 +10,6 @@ export const logInWithEmail = async (email: string, password: string) => {
     const userDoc = await getDoc(doc(usersRef, user.uid));
     return userDoc.data();
   } catch (error) {
-    throw new Error(error as unknown as string);
+    throw new Error(error as string);
   }
 };

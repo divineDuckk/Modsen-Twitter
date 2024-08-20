@@ -6,11 +6,31 @@
 @import 'src/theme/indents';
 @import 'src/theme/colors';
 
+$tweetHeader: 25%;
+
 .profile {
   width: 100%;
   max-width: $profileMaxWidth;
   border-left: $borderSizeS solid $lightBorderColor;
   border-right: $borderSizeS solid $lightBorderColor;
+
+  .tweets {
+    display: flex;
+    flex-direction: column;
+    .tweetHeader {
+      margin: 0;
+      font-family: 'Roboto Serif';
+      font-size: $fontSizeM;
+      font-weight: $fontWeightM;
+      text-align: center;
+      max-width: $tweetHeader;
+      border-bottom: $borderSizeS solid $lightBorderColor;
+      border-right: $borderSizeS solid $lightBorderColor;
+      padding: $indentL 0;
+      margin-bottom: $indentXXXL;
+    }
+  }
+
   .header {
     h4 {
       margin-left: $indentM;
@@ -23,7 +43,7 @@
       margin-left: $indentM;
       font-size: $fontSizeXS;
       line-height: $lineHeightS;
-      opacity: 0.6;
+      opacity: $baseOpacity;
     }
     img {
       margin-top: $indentM;
@@ -42,11 +62,11 @@
       margin-bottom: $indentXXXL;
       p {
         font-size: $fontSizeM;
-        font-family: 'Roboto Sarif';
+        font-family: 'Roboto Serif';
         font-weight: $fontWeightM;
         span {
           font-family: 'Roboto';
-          opacity: 0.6;
+          opacity: $baseOpacity;
           font-weight: $fontWeightS;
         }
       }
@@ -57,7 +77,7 @@
       margin-bottom: $indentXXXL;
     }
     h3 {
-      font-family: 'Roboto Sarif';
+      font-family: 'Roboto Serif';
       font-size: $fontSizeXL;
       font-weight: $fontWeightM;
       margin: $indentS 0;

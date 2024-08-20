@@ -28,22 +28,6 @@
       line-height: $lineHeightL;
     }
 
-    input {
-      border: $borderSizeS solid $darkBorderColor;
-      border-radius: $borderRadiusS;
-      height: $loginInputHeight;
-      font-size: $fontSizeM;
-      line-height: $lineHeightS;
-      padding-left: $indentM;
-      margin-bottom: $indentL;
-      &:active,
-      &:focus {
-        outline-color: $lightBlue;
-      }
-      &::placeholder {
-        color: $placeHolderColor;
-      }
-    }
     a {
       display: flex;
       justify-content: flex-end;

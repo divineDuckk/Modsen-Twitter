@@ -5,14 +5,18 @@
 @import 'src/theme/lineHeights';
 @import 'src/theme/indents';
 @import 'src/theme/colors';
+@import 'src/theme/transitions';
 
 $textareaWidth: 85%;
-$textareaMaxHeight: 100px;
+$textareaMaxHeight: 140px;
+$getImageSizes: 24px;
 
 .tweetCreationContainer {
   display: flex;
-  padding: $indentL;
+  padding: $indentXXL;
   gap: $indentL;
+  border-bottom: $borderSizeS solid $lightBorderColor;
+
   img {
     width: calc($profilePhotoSize / 2);
     height: calc($profilePhotoSize / 2);
@@ -20,14 +24,13 @@ $textareaMaxHeight: 100px;
   }
   .dataBlock {
     width: 100%;
-
     textarea {
       font-weight: $fontWeightM;
       font-size: $fontSizeL;
       font-family: 'Roboto';
       width: $textareaWidth;
       max-width: $textareaWidth;
-      min-height: 100%;
+      min-height: $textareaMaxHeight;
       max-height: $textareaMaxHeight;
       border: 0;
       resize: none;
@@ -45,6 +48,40 @@ $textareaMaxHeight: 100px;
       width: 100%;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      input {
+        display: none;
+      }
+      .tweet {
+        background-color: $lightBlue;
+        color: white;
+        transition: $transitionS;
+        border: 0;
+        cursor: pointer;
+        padding: $indentM $indentXXL;
+        border-radius: $borderRadiusL;
+        font-size: $fontSizeM;
+        font-weight: $fontWeightM;
+        &:hover {
+          opacity: $baseOpacity;
+        }
+        &:disabled {
+          background-color: $red;
+          cursor: not-allowed;
+        }
+      }
+      .getImage {
+        background-color: transparent;
+        cursor: pointer;
+        display: flex;
+        border: 0;
+        align-items: center;
+        img {
+          border-radius: 0;
+          width: $getImageSizes;
+          height: $getImageSizes;
+        }
+      }
     }
   }
 }

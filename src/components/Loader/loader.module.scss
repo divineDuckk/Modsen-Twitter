@@ -1,5 +1,6 @@
 @import 'src/theme/index';
 @import 'src/theme/borders';
+@import 'src/theme/colors';
 
 .loaderWrap {
   width: 100%;
@@ -8,12 +9,19 @@
   justify-content: center;
   align-items: center;
 }
-
+.large {
+  width: $loaderLargeWidth;
+}
+.medium {
+  width: $loaderMediumWidth;
+}
+.small {
+  width: $loaderSmallWidth;
+}
 .loader {
-  width: $loaderWidth;
   aspect-ratio: 1;
   border-radius: 50%;
-  border: $borderSize-2 solid $borderColor-4;
+  border: $borderSizeXS solid $lightBlue;
   animation:
     l20-1 0.8s infinite linear alternate,
     l20-2 1.6s infinite linear;

@@ -11,7 +11,9 @@ $pSignUpMaxWidth: 375px;
 
 $loginFormMaxWidth: 450px;
 
-$loaderWidth: 50px;
+$loaderSmallWidth: 24px;
+$loaderMediumWidth: 50px;
+$loaderLargeWidth: 80px;
 
 $loginInputHeight: 70px;
 $loginButtonHeight: 60px;
@@ -26,3 +28,11 @@ $profileMaxWidth: 910px;
 $profileImgMaxHeight: 300px;
 $profilePhotoSize: 120px;
 $profileAvatarBlockHeight: 80px;
+
+$baseOpacity: 0.6;
+
+$tweetImageMaxHeight: 450px;
+
+$tweetOptionsWidth: 150px;
+$tweetOptionsMaxHeight: 130px;
+$tweetHeader: 25%;

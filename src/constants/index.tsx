@@ -11,6 +11,10 @@ export const DAYS_ARRAY = Array.from({ length: 31 }, (_, index) =>
   String(index + 1),
 );
 
+export const LARGE_SIZE = 'large';
+export const MEDIUM_SIZE = 'medium';
+export const SMALL_SIZE = 'small';
+
 export const YEARS_INTERVAl = 100;
 
 export const MONTHS = [

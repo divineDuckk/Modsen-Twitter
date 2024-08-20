@@ -9,10 +9,10 @@ const initialState: User = {
   uid: '',
   followers: 0,
   followings: 0,
-  tweetsNumber: 0,
   photoURL: defaultAvatar,
   backgroundUrl: defaultBg,
   description: '',
+  tweets: [],
 };
 const userSlice = createSlice({
   name: 'user',
@@ -44,8 +44,31 @@ const userSlice = createSlice({
       state.backgroundUrl = defaultBg;
       state.description = '';
     },
+
+    setTweets(state, { payload }) {
+      state.tweets = payload.reverse();
+    },
+    addTweet(state, { payload }) {
+      state.tweets = [...state.tweets, payload];
+    },
+    updateTweet(state, { payload }) {
+      state.tweets = state.tweets.map(tweet => {
+        if (tweet.id === payload.id) return payload;
+        return tweet;
+      });
+    },
+    deleteTweet(state, { payload }) {
+      state.tweets = state.tweets.filter(({ id }) => id !== payload);
+    },
   },
 });
 
 export default userSlice.reducer;
-export const { removeUser, setUser } = userSlice.actions;
+export const {
+  removeUser,
+  setUser,
+  addTweet,
+  deleteTweet,
+  setTweets,
+  updateTweet,
+} = userSlice.actions;
