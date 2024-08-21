@@ -6,7 +6,6 @@
 @import 'src/theme/indents';
 @import 'src/theme/colors';
 
-
 .profile {
   width: 100%;
   max-width: $profileMaxWidth;
@@ -37,6 +36,7 @@
       font-size: $fontSizeL;
       line-height: $lineHeightXS;
       margin-bottom: $indentS;
+      margin-top: $indentXL;
     }
     span {
       margin-left: $indentM;

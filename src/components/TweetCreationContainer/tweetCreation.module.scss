@@ -9,7 +9,6 @@
 
 $textareaWidth: 85%;
 $textareaMaxHeight: 140px;
-$getImageSizes: 24px;
 
 .tweetCreationContainer {
   display: flex;
@@ -18,8 +17,8 @@ $getImageSizes: 24px;
   border-bottom: $borderSizeS solid $lightBorderColor;
 
   img {
-    width: calc($profilePhotoSize / 2);
-    height: calc($profilePhotoSize / 2);
+    width: calc($profilePhotoSize / 2.5);
+    height: calc($profilePhotoSize / 2.5);
     border-radius: $borderRadiusXL;
   }
   .dataBlock {

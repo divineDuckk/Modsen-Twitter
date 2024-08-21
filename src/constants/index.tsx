@@ -2,6 +2,12 @@ export const SIGN_UP_ROUTE = '/signup';
 export const LOG_IN_ROUTE = '/login';
 export const REGISTRATION_ROUTE = '/registration';
 export const PROFILE_ROUTE = '/profile/';
+export const HOME_ROUTE = '/home';
+export const EXPLORE_ROUTE = '/explore';
+export const BOOKMARS_ROUTE = '/bookmarks';
+export const LISTS_ROUTE = '/lists';
+export const NOTIFICATIONS_ROUTE = '/notifications';
+export const MORE_ROUTE = '/more';
 
 export const LOADED = 'loaded';
 export const LOADING = 'loading';
@@ -21,9 +27,9 @@ export const PHONE_REGEXP =
 export const ERRORS = {
   phoneError: 'uncorrect phone',
   emptyName: 'name cannot be empty',
-  emptyEmail: 'email cannot be empty',
   shortPassword: 'password must includes 6 symbols',
   birthDateError: 'uncorret birth date',
+
   noProblems: 'ok',
 };
 

@@ -21,7 +21,6 @@ export const Profile = () => {
     description,
     followers,
     followings,
-    email,
     birthDate,
     phone,
   } = useSelector(getUser);
@@ -98,12 +97,12 @@ export const Profile = () => {
           <ProfileMenu
             aboutMe={description}
             backgroundUrl={backgroundUrl}
-            email={email}
             name={displayName}
             photoUrl={photoURL}
             birthDate={birthDate!}
             phone={phone!}
             uid={uid}
+            handleClose={handlePopupClose}
           />
         </Portal>
       )}

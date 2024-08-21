@@ -15,6 +15,10 @@
   button {
     border-radius: $borderRadiusS;
     margin-bottom: 0;
+    &:disabled {
+      background-color: $red;
+      cursor: not-allowed;
+    }
   }
   input[type='file'] {
     display: none;
@@ -33,5 +37,9 @@
     font-size: $fontSizeL;
     font-weight: $fontWeightXS;
     margin-bottom: $indentM;
+    img {
+      width: $getImageSizes;
+      height: $getImageSizes;
+    }
   }
 }

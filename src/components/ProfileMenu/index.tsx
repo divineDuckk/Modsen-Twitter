@@ -1,27 +1,19 @@
-import {
-  ERRORS,
-  GOOGLE_DOMAIN_NAME,
-  LOADED,
-  LOADING,
-  SMALL_SIZE,
-} from '@/constants';
 import { ChangeEvent, FC, FormEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
 
-import { auth } from '@/firebase';
+import { ACCEPT_FILES, ERRORS, LOADED, LOADING, SMALL_SIZE } from '@/constants';
 import { DataInput } from '@/components/DataInput';
 import { useImageState } from '@/hooks/useImageState';
 import { addImageToStorage } from '@/api/addImageToStorage';
 import { checkEditsCorrectness } from '@/utils/functions/checkEditsCorrectness';
-import { updateUserPassword } from '@/api/updateUserPassword';
 import { updateUserInfo } from '@/api/updateUserInfo';
 import { convertDateToDotFormat } from '@/utils/functions/converDateToDotFormat';
 import { setUser } from '@/store/slices/userSlice';
-import { updateUserEmail } from '@/api/updateUserEmail';
+import { Loader } from '@/components/Loader';
+import { useAppDispatch } from '@/store/hooks';
 import imgage from '@/assets/getImage.svg';
 import successLoad from '@/assets/success.png';
 
-import { Loader } from '../Loader';
+import { ACCEPT_PROFILE_PHOTO_FILES } from './constants';
 import styles from './menu.module.scss';
 import { ProfileMenuProps } from './types';
 
@@ -29,16 +21,14 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
   aboutMe,
   backgroundUrl,
   birthDate,
-  email,
   name,
   phone,
   photoUrl,
   uid,
+  handleClose,
 }) => {
   const [newName, setName] = useState(name);
   const [phoneNumber, setPhoneNumber] = useState(phone);
-  const [newEmail, setEmail] = useState(email);
-  const [password, setPassword] = useState('');
   const [newBirthDate, setBirthDate] = useState(birthDate);
   const [description, setDescription] = useState(aboutMe);
   const {
@@ -54,7 +44,7 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
     status: backgroundStatus,
   } = useImageState(backgroundUrl);
   const [error, setError] = useState<string | null>(null);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const dataInputs = [
     {
       inputValue: newName,
@@ -80,18 +70,7 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
       setInputValue: setBirthDate,
       type: 'date',
     },
-
-    {
-      inputValue: password,
-      placeholder: 'Password',
-      setInputValue: setPassword,
-      type: 'text',
-    },
   ];
-
-  const isGoogleAuth = auth.currentUser?.providerData.some(
-    profile => profile.providerId === GOOGLE_DOMAIN_NAME,
-  );
 
   const handlePhotoChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -119,8 +98,6 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
     e.preventDefault();
     const isInputsValid = checkEditsCorrectness(
       newName,
-      newEmail,
-      password,
       phoneNumber,
       newBirthDate,
     );
@@ -128,9 +105,8 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
       setError(isInputsValid);
       return;
     }
+
     setError(null);
-    if (password) await updateUserPassword(password);
-    if (newEmail) await updateUserEmail(newEmail);
 
     const newUserInfo = {
       displayName: newName,
@@ -139,10 +115,10 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
       birthDate: convertDateToDotFormat(newBirthDate) ?? birthDate,
       description,
       phone: phoneNumber,
-      email: newEmail ?? email,
     };
     dispatch(setUser(newUserInfo));
     await updateUserInfo(uid, newUserInfo);
+    handleClose();
   };
 
   return (
@@ -156,30 +132,36 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
           key={placeholder}
         />
       ))}
-      {!isGoogleAuth && (
-        <DataInput
-          inputValue={newEmail}
-          placeholder="Email"
-          setInputValue={setEmail}
-          type="email"
-        />
-      )}
       <label htmlFor="new-photo">
         Choose new photo
         <img src={imgage} alt="choose image" />
         {photoStatus === LOADING && <Loader size={SMALL_SIZE} />}
         {photoStatus === LOADED && <img src={successLoad} alt="success" />}
       </label>
-      <input onChange={handlePhotoChange} id="new-photo" type="file" />
+      <input
+        onChange={handlePhotoChange}
+        id="new-photo"
+        type="file"
+        accept={ACCEPT_PROFILE_PHOTO_FILES}
+      />
       <label htmlFor="new-bg">
         Choose new background
         <img src={imgage} alt="choose image" />
         {backgroundStatus === LOADING && <Loader size={SMALL_SIZE} />}
         {backgroundStatus === LOADED && <img src={successLoad} alt="success" />}
       </label>
-      <input onChange={handleBackgroundChange} id="new-bg" type="file" />
+      <input
+        onChange={handleBackgroundChange}
+        id="new-bg"
+        type="file"
+        accept={ACCEPT_FILES}
+      />
       {error && <p className={styles.error}>{error}</p>}
-      <button type="submit" className={styles.submitButton}>
+      <button
+        type="submit"
+        className={styles.submitButton}
+        disabled={photoStatus === LOADING || backgroundStatus === LOADING}
+      >
         Save
       </button>
     </form>
