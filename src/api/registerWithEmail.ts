@@ -1,4 +1,7 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
 
 import { auth, fireStore } from '@/firebase';
@@ -25,6 +28,7 @@ export const registerWithEmail = async ({
       birthDate: birthDate,
       phoneNumber: phoneNumber,
     });
+    await sendEmailVerification(user);
     return user;
   } catch (error) {
     throw new Error(error as unknown as string);
