@@ -15,7 +15,7 @@ export const OptionMenu: FC<OptionMenuProps> = ({ handleDelete }) => {
                 {option}
               </li>
             );
-          default:
+          default:  
             return <Fragment key={option} />;
         }
       })}

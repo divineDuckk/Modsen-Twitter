@@ -1,0 +1,37 @@
+@import 'src/theme/borders';
+@import 'src/theme/index';
+@import 'src/theme/fontWeights';
+@import 'src/theme/fontSizes';
+@import 'src/theme/lineHeights';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+@import 'src/theme/reuseClasses';
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  button {
+    border-radius: $borderRadiusS;
+    margin-bottom: 0;
+  }
+  input[type='file'] {
+    display: none;
+  }
+  .error {
+    font-family: 'Roboto';
+    font-size: $fontSizeM;
+    color: $red;
+  }
+  label {
+    display: flex;
+    align-items: center;
+    gap: $indentM;
+    cursor: pointer;
+    font-family: 'Roboto';
+    font-size: $fontSizeL;
+    font-weight: $fontWeightXS;
+    margin-bottom: $indentM;
+  }
+}

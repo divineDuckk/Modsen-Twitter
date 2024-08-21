@@ -5,6 +5,7 @@ import defaultBg from '@/assets/defaultBg.png';
 
 const initialState: User = {
   displayName: '',
+  birthDate: '',
   email: '',
   uid: '',
   followers: 0,
@@ -13,36 +14,28 @@ const initialState: User = {
   backgroundUrl: defaultBg,
   description: '',
   tweets: [],
+  phone: '',
 };
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
     setUser(state, { payload }) {
-      state.displayName = payload.displayName;
-      state.uid = payload.uid;
-      state.email = payload.email;
-      state.photoURL = payload.photoURL;
-      state.phone = payload.phone;
-      state.birthDate = payload.birthDate;
-      state.tweetsNumber = payload.tweetsNumber;
-      state.followers = payload.followers;
-      state.followings = payload.followings;
-      state.backgroundUrl = payload.backgroundUrl;
-      state.description = payload.description;
+      Object.assign(state, payload);
     },
-    removeUser(state) {
+    deleteUser(state) {
       state.displayName = '';
       state.email = '';
       state.photoURL = defaultAvatar;
       state.phone = '';
       state.uid = '';
       state.birthDate = '';
-      state.tweetsNumber = 0;
       state.followers = 0;
       state.followings = 0;
       state.backgroundUrl = defaultBg;
       state.description = '';
+      state.birthDate = '';
+      state.tweets = [];
     },
 
     setTweets(state, { payload }) {
@@ -65,7 +58,7 @@ const userSlice = createSlice({
 
 export default userSlice.reducer;
 export const {
-  removeUser,
+  deleteUser,
   setUser,
   addTweet,
   deleteTweet,

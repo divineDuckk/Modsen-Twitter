@@ -5,12 +5,12 @@ export interface User {
   email: string;
   uid: string;
   photoURL: string;
-  phone?: string;
-  birthDate?: string;
+  phone: string;
+  birthDate: string;
   followers: number;
   followings: number;
   backgroundUrl: string;
-  description?: string;
+  description: string;
   tweets: TweetInfo[];
 }
 

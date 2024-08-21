@@ -28,17 +28,25 @@
 }
 
 .popupContainer {
-  width: 50%;
-  height: 70%;
-  background-color: white;
-  border-radius: $borderRadiusXS;
+  width: $popupWidth;
+  height: $popupHight;
+  background-color: $darkerWhite;
+  border-radius: $borderRadiusS $borderRadiusXS;
 
   .mainContainer {
+    padding: $indentM;
     margin-top: $indentL;
+    max-height: $popupContentHeight;
     overflow-y: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    &::-webkit-scrollbar {
+      width: $scrollWidth;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $lightBlue;
+      border-radius: $borderRadiusS;
+      border: $borderSizeS solid $darkerWhite;
+    }
   }
 
   h3 {
@@ -50,8 +58,8 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
+    width: $closeButtonSize;
+    height: $closeButtonSize;
     background-color: transparent;
     position: relative;
     border: none;
@@ -61,8 +69,8 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 5px;
-      height: 30px;
+      width: $closeStickWidth;
+      height: $closeButtonSize;
       transform-origin: center center;
       background-color: black;
     }

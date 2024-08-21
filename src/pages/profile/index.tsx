@@ -8,6 +8,7 @@ import { useGetTweets } from '@/hooks/useGetTweets';
 import { Loader } from '@/components/Loader';
 import { MEDIUM_SIZE } from '@/constants';
 import { Portal } from '@/components/Portal';
+import { ProfileMenu } from '@/components/ProfileMenu';
 
 import styles from './profile.module.scss';
 
@@ -20,6 +21,9 @@ export const Profile = () => {
     description,
     followers,
     followings,
+    email,
+    birthDate,
+    phone,
   } = useSelector(getUser);
   const [tweets, isTweetsLoading, setIsTweetsLoading] = useGetTweets(uid);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -91,7 +95,16 @@ export const Profile = () => {
       </div>
       {isPopupOpen && (
         <Portal onClose={handlePopupClose} title="Edit Profile">
-          <></>
+          <ProfileMenu
+            aboutMe={description}
+            backgroundUrl={backgroundUrl}
+            email={email}
+            name={displayName}
+            photoUrl={photoURL}
+            birthDate={birthDate!}
+            phone={phone!}
+            uid={uid}
+          />
         </Portal>
       )}
     </>

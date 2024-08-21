@@ -30,6 +30,9 @@ export const signUpWithGoogle = async () => {
         followers: 0,
         followings: 0,
         backgroundUrl: defaultBg,
+        description: '',
+        birthDate: '',
+        phone: '',
       });
     }
     const userDoc = await getDoc(doc(usersRef, user.uid));

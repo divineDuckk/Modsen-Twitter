@@ -26,7 +26,7 @@ export const registerWithEmail = async ({
       email: email,
       photoURL: defaultAvatar,
       birthDate: birthDate,
-      phoneNumber: phoneNumber,
+      phone: phoneNumber,
       tweetsNumber: 0,
       followers: 0,
       followings: 0,
