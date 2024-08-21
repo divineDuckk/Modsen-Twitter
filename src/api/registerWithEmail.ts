@@ -1,4 +1,7 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from 'firebase/auth';
 import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 
 import { auth, fireStore } from '@/firebase';
@@ -32,6 +35,7 @@ export const registerWithEmail = async ({
       followings: 0,
       backgroundUrl: defaultBg,
     });
+    await sendEmailVerification(user);
     const userDoc = await getDoc(doc(usersRef, user.uid));
     return userDoc.data();
   } catch (error) {
