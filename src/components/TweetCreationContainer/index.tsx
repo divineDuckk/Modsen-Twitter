@@ -13,10 +13,10 @@ import { getTweetsByUserId } from '@/api/getTweetsByUserId';
 import { useAppDispatch } from '@/store/hooks';
 import { setTweets } from '@/store/slices/userSlice';
 import { useImageState } from '@/hooks/useImageState';
+import { Loader } from '@/components/Loader';
 import getImage from '@/assets/getImage.svg';
 import successLoad from '@/assets/success.png';
 
-import { Loader } from '../Loader';
 import { TEXTAREA_PLACEHOLDER } from './constants';
 import styles from './tweetCreation.module.scss';
 import { TweetCreationContainerProps } from './types';
@@ -24,6 +24,7 @@ import { TweetCreationContainerProps } from './types';
 export const TweetCreationContainer: FC<TweetCreationContainerProps> = ({
   photoURL,
   userId,
+  type,
   setIsTweetsLoading,
 }) => {
   const [tweetText, setTweetText] = useState('');
@@ -46,11 +47,11 @@ export const TweetCreationContainer: FC<TweetCreationContainerProps> = ({
   };
   const handleTweet = async () => {
     if (imageUrl || tweetText) {
-      setIsTweetsLoading(true);
+      setIsTweetsLoading?.(true);
       await addTweetToDb(tweetText, imageUrl, userId);
       setTweetText('');
       setImageUrl('');
-      setIsTweetsLoading(false);
+      setIsTweetsLoading?.(false);
       setStatus(NOT_LOADED);
       const tweets = await getTweetsByUserId(userId);
       dispatch(setTweets(tweets));
@@ -68,13 +69,13 @@ export const TweetCreationContainer: FC<TweetCreationContainerProps> = ({
           value={tweetText}
         />
         <div className={styles.buttons}>
-          <label htmlFor="file-upload" className={styles.getImage}>
+          <label htmlFor={type} className={styles.getImage}>
             <img src={getImage} alt="choose file img" />
             {status === LOADING && <Loader size={SMALL_SIZE} />}
             {status === LOADED && <img src={successLoad} alt="success" />}
           </label>
           <input
-            id="file-upload"
+            id={type}
             type="file"
             accept={ACCEPT_FILES}
             onChange={handleFileChange}

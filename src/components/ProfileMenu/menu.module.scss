@@ -29,6 +29,7 @@
     color: $red;
   }
   label {
+    max-width: fit-content;
     display: flex;
     align-items: center;
     gap: $indentM;

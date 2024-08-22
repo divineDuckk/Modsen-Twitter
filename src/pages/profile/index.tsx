@@ -34,7 +34,6 @@ export const Profile = () => {
   const handlePopupClose = () => {
     setIsPopupOpen(false);
   };
-
   return (
     <>
       <div className={styles.profile}>
@@ -45,7 +44,7 @@ export const Profile = () => {
         </div>
         <div className={styles.profileInfo}>
           <div className={styles.imgWithEdits}>
-            <img src={photoURL} alt="avatar" referrerPolicy="no-referrer" />
+            <img src={photoURL} alt="avatar" />
             <button onClick={handlePopupOpen}>Edit profile</button>
           </div>
           <h3>{displayName}</h3>
@@ -63,6 +62,7 @@ export const Profile = () => {
         <TweetCreationContainer
           photoURL={photoURL}
           userId={uid}
+          type="profile"
           setIsTweetsLoading={setIsTweetsLoading}
         />
         <div className={styles.tweets}>

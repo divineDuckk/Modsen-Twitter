@@ -9,6 +9,10 @@ export const LISTS_ROUTE = '/lists';
 export const NOTIFICATIONS_ROUTE = '/notifications';
 export const MORE_ROUTE = '/more';
 
+export const PROFILE = 'profile';
+
+export const DEBOUNCE_TIMEOUT = 5000;
+
 export const LOADED = 'loaded';
 export const LOADING = 'loading';
 export const NOT_LOADED = 'not loaded';

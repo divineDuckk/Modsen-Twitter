@@ -26,7 +26,6 @@ export const Tweet: FC<TweetProps> = ({
 }) => {
   const [isLike, setIsLike] = useState(userLikes.includes(userNameId));
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-
   const dispatch = useAppDispatch();
 
   const handleSettingsClick = () => {
