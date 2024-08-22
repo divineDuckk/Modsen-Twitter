@@ -6,6 +6,27 @@ export const FAILED = 'failed';
 export const PENDING = 'pending';
 export const SUCCESS = 'success';
 
+export const DAYS_ARRAY = Array.from({ length: 31 }, (_, index) =>
+  String(index + 1),
+);
+
+export const YEARS_INTERVAl = 100;
+
+export const MONTHS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
 export const LINKS = [
   { name: 'About', path: '/about' },
   { name: 'Help Center', path: '/help-center' },

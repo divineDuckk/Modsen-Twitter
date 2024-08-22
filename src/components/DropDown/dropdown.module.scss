@@ -1,0 +1,52 @@
+@import 'src/theme/transitions';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+@import 'src/theme/borders';
+@import 'src/theme/fontSizes';
+@import 'src/theme/index';
+
+.dropdown {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  max-width: $dropdownMaxWidth;
+  font-family: 'Roboto';
+  .dropdownHeader {
+    padding: $indentM $indentL;
+    border: $borderSizeS solid $darkBorderColor;
+    border-radius: $borderRadiusS;
+    font-size: $fontSizeM;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+      transition: $transitionS;
+    }
+    .dropdownArrowOpen {
+      transform: rotate(180deg);
+    }
+  }
+  .dropdownList {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: $borderSizeS solid $darkBorderColor;
+    border-top: none;
+    z-index: 1;
+    max-height: $dropdownListMaxHeight;
+    overflow-y: auto;
+    background-color: white;
+    .dropdownListItem {
+      padding: $indentM $indentL;
+      font-size: $fontSizeM;
+      cursor: pointer;
+      &:hover {
+        background-color: $darkerWhite;
+      }
+    }
+  }
+}
