@@ -14,6 +14,7 @@ import { useAppDispatch } from '@/store/hooks';
 import { setTweets } from '@/store/slices/userSlice';
 import { useImageState } from '@/hooks/useImageState';
 import { Loader } from '@/components/Loader';
+import { checkFileFormat } from '@/utils/functions/checkFileFormat';
 import getImage from '@/assets/getImage.svg';
 import successLoad from '@/assets/success.png';
 
@@ -38,8 +39,8 @@ export const TweetCreationContainer: FC<TweetCreationContainerProps> = ({
 
   const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    setStatus(LOADING);
-    if (file) {
+    if (file && checkFileFormat(file.name, ACCEPT_FILES)) {
+      setStatus(LOADING);
       const downloadUrl = await addImageToStorage(file);
       setImageUrl(downloadUrl);
       setStatus(LOADED);

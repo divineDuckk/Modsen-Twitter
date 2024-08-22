@@ -10,6 +10,7 @@ import { convertDateToDotFormat } from '@/utils/functions/converDateToDotFormat'
 import { setUser } from '@/store/slices/userSlice';
 import { Loader } from '@/components/Loader';
 import { useAppDispatch } from '@/store/hooks';
+import { checkFileFormat } from '@/utils/functions/checkFileFormat';
 import imgage from '@/assets/getImage.svg';
 import successLoad from '@/assets/success.png';
 
@@ -74,8 +75,8 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
 
   const handlePhotoChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    setPhotoStatus(LOADING);
-    if (file) {
+    if (file && checkFileFormat(file.name, ACCEPT_PROFILE_PHOTO_FILES)) {
+      setPhotoStatus(LOADING);
       const downloadUrl = await addImageToStorage(file);
       setPhoto(downloadUrl);
       setPhotoStatus(LOADED);
@@ -86,8 +87,8 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
     event: ChangeEvent<HTMLInputElement>,
   ) => {
     const file = event.target.files?.[0];
-    setBackgroundStatus(LOADING);
-    if (file) {
+    if (file && checkFileFormat(file.name, ACCEPT_FILES)) {
+      setBackgroundStatus(LOADING);
       const downloadUrl = await addImageToStorage(file);
       setBackground(downloadUrl);
       setBackgroundStatus(LOADED);

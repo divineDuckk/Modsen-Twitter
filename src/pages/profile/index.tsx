@@ -44,7 +44,7 @@ export const Profile = () => {
         </div>
         <div className={styles.profileInfo}>
           <div className={styles.imgWithEdits}>
-            <img src={photoURL} alt="avatar" />
+            <img src={photoURL} alt="avatar" referrerPolicy="no-referrer" />
             <button onClick={handlePopupOpen}>Edit profile</button>
           </div>
           <h3>{displayName}</h3>
