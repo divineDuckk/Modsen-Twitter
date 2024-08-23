@@ -2,6 +2,7 @@ export const SIGN_UP_ROUTE = '/signup';
 export const LOG_IN_ROUTE = '/login';
 export const REGISTRATION_ROUTE = '/registration';
 export const PROFILE_ROUTE = '/profile/';
+export const TWEET_ROUTE = '/tweets/';
 export const HOME_ROUTE = '/home';
 export const EXPLORE_ROUTE = '/explore';
 export const BOOKMARS_ROUTE = '/bookmarks';

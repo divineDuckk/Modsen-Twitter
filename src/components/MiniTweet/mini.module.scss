@@ -10,6 +10,7 @@
 .miniTweet {
   display: flex;
   flex-direction: column;
+  color: $blackText;
   padding: $indentXS $indentM;
   background-color: $darkerWhite;
   border-radius: $borderRadiusXS;
@@ -20,8 +21,8 @@
     display: -webkit-box;
     max-height: $miniTweetMaxHeight;
     overflow: hidden;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
+    -webkit-line-clamp: $miniTweetLineClamp;
+    line-clamp: $miniTweetLineClamp;
     -webkit-box-orient: vertical;
     margin: 0;
   }

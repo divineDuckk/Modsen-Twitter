@@ -47,6 +47,7 @@ export const DataList: FC<DataListProps> = ({ query }) => {
             text={text}
             userId={userId}
             key={id}
+            id={id}
           />
         ))
       ) : (
