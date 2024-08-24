@@ -1,19 +1,15 @@
-import { ChangeEvent, FC, FormEvent, useState } from 'react';
+import { FC, FormEvent, useState } from 'react';
 
-import { addImageToStorage } from '@/api/addImageToStorage';
 import { updateUserInfo } from '@/api/updateUserInfo';
 import { DataInput } from '@/components/DataInput';
-import { Loader } from '@/components/Loader';
-import { ACCEPT_FILES, ERRORS, LOADED, LOADING, SMALL_SIZE } from '@/constants';
+import { ACCEPT_FILES, ERRORS, LOADING } from '@/constants';
 import { useImageState } from '@/hooks/useImageState';
 import { useAppDispatch } from '@/store/hooks';
 import { setUser } from '@/store/slices/userSlice';
 import { checkEditsCorrectness } from '@/utils/functions/checkEditsCorrectness';
-import { checkFileFormat } from '@/utils/functions/checkFileFormat';
 import { convertDateToDotFormat } from '@/utils/functions/converDateToDotFormat';
-import imgage from '@/assets/getImage.svg';
-import successLoad from '@/assets/success.png';
 
+import { ImageInput } from '../ImageInput';
 import { ACCEPT_PROFILE_PHOTO_FILES } from './constants';
 import styles from './menu.module.scss';
 import { ProfileMenuProps } from './types';
@@ -73,28 +69,6 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
     },
   ];
 
-  const handlePhotoChange = async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file && checkFileFormat(file.name, ACCEPT_PROFILE_PHOTO_FILES)) {
-      setPhotoStatus(LOADING);
-      const downloadUrl = await addImageToStorage(file);
-      setPhoto(downloadUrl);
-      setPhotoStatus(LOADED);
-    }
-  };
-
-  const handleBackgroundChange = async (
-    event: ChangeEvent<HTMLInputElement>,
-  ) => {
-    const file = event.target.files?.[0];
-    if (file && checkFileFormat(file.name, ACCEPT_FILES)) {
-      setBackgroundStatus(LOADING);
-      const downloadUrl = await addImageToStorage(file);
-      setBackground(downloadUrl);
-      setBackgroundStatus(LOADED);
-    }
-  };
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const isInputsValid = checkEditsCorrectness(
@@ -133,29 +107,22 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
           key={placeholder}
         />
       ))}
-      <label htmlFor="new-photo">
-        Choose new photo
-        <img src={imgage} alt="choose image" />
-        {photoStatus === LOADING && <Loader size={SMALL_SIZE} />}
-        {photoStatus === LOADED && <img src={successLoad} alt="success" />}
-      </label>
-      <input
-        onChange={handlePhotoChange}
-        id="new-photo"
-        type="file"
-        accept={ACCEPT_PROFILE_PHOTO_FILES}
+
+      <ImageInput
+        acceptFiles={ACCEPT_PROFILE_PHOTO_FILES}
+        imageStatus={photoStatus}
+        setPhoto={setPhoto}
+        setPhotoStatus={setPhotoStatus}
+        id="profile photo"
+        title="Choose new profile photo"
       />
-      <label htmlFor="new-bg">
-        Choose new background
-        <img src={imgage} alt="choose image" />
-        {backgroundStatus === LOADING && <Loader size={SMALL_SIZE} />}
-        {backgroundStatus === LOADED && <img src={successLoad} alt="success" />}
-      </label>
-      <input
-        onChange={handleBackgroundChange}
-        id="new-bg"
-        type="file"
-        accept={ACCEPT_FILES}
+      <ImageInput
+        acceptFiles={ACCEPT_FILES}
+        imageStatus={backgroundStatus}
+        setPhoto={setBackground}
+        setPhotoStatus={setBackgroundStatus}
+        id="background photo"
+        title="Choose new background photo"
       />
       {error && <p className={styles.error}>{error}</p>}
       <button

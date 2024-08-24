@@ -1,0 +1,30 @@
+@import 'src/theme/index';
+@import 'src/theme/indents';
+@import 'src/theme/fontSizes';
+@import 'src/theme/fontWeights';
+
+.imageInput {
+  input[type='file'] {
+    display: none;
+  }
+
+  label {
+    max-width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: $indentM;
+    cursor: pointer;
+    font-family: 'Roboto';
+    font-size: $fontSizeL;
+    font-weight: $fontWeightXS;
+    margin-bottom: $indentM;
+
+    img:first-child {
+      height: $getImageSizes;
+    }
+    img:last-child {
+      width: $getImageSizes;
+      height: $getImageSizes;
+    }
+  }
+}
