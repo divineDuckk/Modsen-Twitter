@@ -4,6 +4,8 @@
 @import 'src/theme/borders';
 @import 'src/theme/fontSizes';
 @import 'src/theme/index';
+@import 'src/theme/positions';
+@import 'src/theme/zIndexes';
 
 .dropdown {
   position: relative;
@@ -28,15 +30,15 @@
   }
   .dropdownList {
     position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
+    top: $posL;
+    left: $posS;
+    right: $posS;
     margin: 0;
     padding: 0;
     list-style: none;
     border: $borderSizeS solid $darkBorderColor;
     border-top: none;
-    z-index: 1;
+    z-index: $zIndexS;
     max-height: $dropdownListMaxHeight;
     overflow-y: auto;
     background-color: white;
