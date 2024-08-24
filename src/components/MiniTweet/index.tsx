@@ -2,8 +2,8 @@ import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { getUserByUserId } from '@/api/getUserByUserId';
-import { User } from '@/interfaces/user';
 import { TWEET_ROUTE } from '@/constants';
+import { User } from '@/interfaces/user';
 
 import styles from './mini.module.scss';
 import { MiniTweetProps } from './types';

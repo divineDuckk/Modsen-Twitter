@@ -1,3 +1,4 @@
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import {
   collection,
   doc,
@@ -7,10 +8,9 @@ import {
   setDoc,
   where,
 } from 'firebase/firestore';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
-import { auth, fireStore } from '@/firebase';
 import defaultBg from '@/assets/defaultBg.png';
+import { auth, fireStore } from '@/firebase';
 
 export const signUpWithGoogle = async () => {
   try {

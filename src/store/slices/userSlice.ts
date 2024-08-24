@@ -39,13 +39,13 @@ const userSlice = createSlice({
     },
 
     setTweets(state, { payload }) {
-      state.tweets = payload.reverse();
+      state.tweets = payload;
     },
     addTweet(state, { payload }) {
-      state.tweets = [...state.tweets, payload];
+      state.tweets = [payload, ...state.tweets];
     },
     updateTweet(state, { payload }) {
-      state.tweets = state.tweets.map(tweet => {
+      state.tweets = state.tweets.map((tweet) => {
         if (tweet.id === payload.id) return payload;
         return tweet;
       });

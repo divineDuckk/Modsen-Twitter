@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
+import { ProfileLayout } from '@/components/ProfileLayout';
+import { PROFILE_ROUTE, SIGN_UP_ROUTE } from '@/constants';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '@/routes';
 import { getUser } from '@/store/selectors/user';
-import { PROFILE_ROUTE, SIGN_UP_ROUTE } from '@/constants';
-import { ProfileLayout } from '@/components/ProfileLayout';
 
 export const App = () => {
   const { uid } = useSelector(getUser);

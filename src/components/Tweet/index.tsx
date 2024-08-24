@@ -1,10 +1,10 @@
 import { FC, Fragment, useState } from 'react';
 
+import { deleteTweetFromDb } from '@/api/deleteTweetFromDb';
 import { toggleLike } from '@/api/toggleLike';
+import { TweetInfo } from '@/interfaces/tweet';
 import { useAppDispatch } from '@/store/hooks';
 import { deleteTweet, updateTweet } from '@/store/slices/userSlice';
-import { TweetInfo } from '@/interfaces/tweet';
-import { deleteTweetFromDb } from '@/api/deleteTweetFromDb';
 import like from '@/assets/like.svg';
 import redLike from '@/assets/redLike.svg';
 import settings from '@/assets/settings.svg';
@@ -29,28 +29,28 @@ export const Tweet: FC<TweetProps> = ({
   const dispatch = useAppDispatch();
 
   const handleSettingsClick = () => {
-    setIsSettingsOpen(prev => !prev);
+    setIsSettingsOpen((prev) => !prev);
   };
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
     dispatch(deleteTweet(id));
-    await deleteTweetFromDb(id);
+    deleteTweetFromDb(id);
   };
 
-  const handleLike = async () => {
-    setIsLike(prev => !prev);
+  const handleLike = () => {
+    setIsLike((prev) => !prev);
 
     const tweet: TweetInfo = {
-      id: id,
-      createdAt: createdAt,
-      imageUrl: imageUrl,
+      id,
+      createdAt,
+      imageUrl,
       likes: !isLike ? likes + 1 : likes - 1,
       text: content,
       userId: userNameId,
-      userLikes: userLikes,
+      userLikes,
     };
     dispatch(updateTweet(tweet));
-    await toggleLike(id, isLike, userNameId);
+    toggleLike(id, isLike, userNameId);
   };
 
   return (
@@ -77,7 +77,9 @@ export const Tweet: FC<TweetProps> = ({
           ))}
         </p>
         <div className={styles.imgWrapper}>
-          <img className={styles.image} src={imageUrl} alt="your image" />
+          {imageUrl && (
+            <img className={styles.image} src={imageUrl} alt="your image" />
+          )}
         </div>
         <div className={styles.likesInfo}>
           <button onClick={handleLike}>

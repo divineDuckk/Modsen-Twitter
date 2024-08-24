@@ -1,22 +1,23 @@
+import { FormEvent, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+
 import {
   INITIAL_STATE_DAY,
   INITIAL_STATE_MONTH,
   INITIAL_STATE_YEAR,
 } from './constants';
-import { FormEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import styles from './registration.module.scss';
 
-import { DataInput } from '@/components/DataInput';
-import { DAYS_ARRAY, MONTHS, PROFILE_ROUTE, SIGN_UP_ROUTE } from '@/constants';
-import { DropDown } from '@/components/DropDown';
 import { registerWithEmail } from '@/api/registerWithEmail';
+import twiiterLogo from '@/assets/twitter-logo.svg';
+import { DataInput } from '@/components/DataInput';
+import { DropDown } from '@/components/DropDown';
+import { DAYS_ARRAY, MONTHS, PROFILE_ROUTE, SIGN_UP_ROUTE } from '@/constants';
 import { setUser } from '@/store/slices/userSlice';
 import { getFullBirthDate } from '@/utils/functions/getFullBirthDate';
 import { getYearsArray } from '@/utils/functions/getYearsArray';
-import twiiterLogo from '@/assets/twitter-logo.svg';
 
-import styles from './registration.module.scss';
 
 export const Registration = () => {
   const [name, setName] = useState('');

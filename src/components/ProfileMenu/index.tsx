@@ -1,16 +1,16 @@
 import { ChangeEvent, FC, FormEvent, useState } from 'react';
 
-import { ACCEPT_FILES, ERRORS, LOADED, LOADING, SMALL_SIZE } from '@/constants';
-import { DataInput } from '@/components/DataInput';
-import { useImageState } from '@/hooks/useImageState';
 import { addImageToStorage } from '@/api/addImageToStorage';
-import { checkEditsCorrectness } from '@/utils/functions/checkEditsCorrectness';
 import { updateUserInfo } from '@/api/updateUserInfo';
-import { convertDateToDotFormat } from '@/utils/functions/converDateToDotFormat';
-import { setUser } from '@/store/slices/userSlice';
+import { DataInput } from '@/components/DataInput';
 import { Loader } from '@/components/Loader';
+import { ACCEPT_FILES, ERRORS, LOADED, LOADING, SMALL_SIZE } from '@/constants';
+import { useImageState } from '@/hooks/useImageState';
 import { useAppDispatch } from '@/store/hooks';
+import { setUser } from '@/store/slices/userSlice';
+import { checkEditsCorrectness } from '@/utils/functions/checkEditsCorrectness';
 import { checkFileFormat } from '@/utils/functions/checkFileFormat';
+import { convertDateToDotFormat } from '@/utils/functions/converDateToDotFormat';
 import imgage from '@/assets/getImage.svg';
 import successLoad from '@/assets/success.png';
 
@@ -95,7 +95,7 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
     }
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const isInputsValid = checkEditsCorrectness(
       newName,
@@ -118,7 +118,7 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
       phone: phoneNumber,
     };
     dispatch(setUser(newUserInfo));
-    await updateUserInfo(uid, newUserInfo);
+    updateUserInfo(uid, newUserInfo);
     handleClose();
   };
 

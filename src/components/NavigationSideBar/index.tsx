@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { getUser } from '@/store/selectors/user';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { deleteUser } from '@/store/slices/userSlice';
-import { TweetCreationContainer } from '@/components/TweetCreationContainer';
 import { Portal } from '@/components/Portal';
+import { TweetCreationContainer } from '@/components/TweetCreationContainer';
 import { PROFILE } from '@/constants';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { getUser } from '@/store/selectors/user';
+import { deleteUser } from '@/store/slices/userSlice';
 import logo from '@/assets/twitter-logo.svg';
 
 import { LINKS } from './constants';

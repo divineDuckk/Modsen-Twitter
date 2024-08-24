@@ -4,10 +4,10 @@ import {
 } from 'firebase/auth';
 import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 
-import { auth, fireStore } from '@/firebase';
-import { UserInfo } from '@/interfaces/user';
 import defaultAvatar from '@/assets/avatar.png';
 import defaultBg from '@/assets/defaultBg.png';
+import { auth, fireStore } from '@/firebase';
+import { UserInfo } from '@/interfaces/user';
 
 export const registerWithEmail = async ({
   birthDate,

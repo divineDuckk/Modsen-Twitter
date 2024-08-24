@@ -7,7 +7,7 @@ import { OptionMenuProps } from './types';
 export const OptionMenu: FC<OptionMenuProps> = ({ handleDelete }) => {
   return (
     <ul className={styles.optionMenu}>
-      {Object.keys(OPTIONS).map(option => {
+      {Object.keys(OPTIONS).map((option) => {
         switch (option) {
           case OPTIONS.delete:
             return (
@@ -15,7 +15,7 @@ export const OptionMenu: FC<OptionMenuProps> = ({ handleDelete }) => {
                 {option}
               </li>
             );
-          default:  
+          default:
             return <Fragment key={option} />;
         }
       })}

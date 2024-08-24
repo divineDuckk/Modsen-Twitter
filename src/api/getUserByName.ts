@@ -1,6 +1,7 @@
+import { getAllUsers } from './getAllUsers';
+
 import { User } from '@/interfaces/user';
 
-import { getAllUsers } from './getAllUsers';
 
 export const getUsersByName = async (
   name: string,

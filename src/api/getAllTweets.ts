@@ -1,7 +1,7 @@
 import { collection, getDocs } from 'firebase/firestore';
 
-import { TweetInfo } from '@/interfaces/tweet';
 import { fireStore } from '@/firebase';
+import { TweetInfo } from '@/interfaces/tweet';
 import { formatDate } from '@/utils/functions/formatDate';
 
 export const getAllTweets = async (): Promise<TweetInfo[]> => {

@@ -2,9 +2,9 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { getTweetsByUserId } from '@/api/getTweetsByUserId';
 import { TweetInfo } from '@/interfaces/tweet';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { getTweets } from '@/store/selectors/user';
 import { setTweets } from '@/store/slices/userSlice';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 export const useGetTweets = (
   uid: string,
@@ -21,6 +21,6 @@ export const useGetTweets = (
     };
 
     getTweets();
-  }, []);
+  }, [dispatch, uid]);
   return [tweets, isTweetsLoading, setIsTweetsLoading];
 };

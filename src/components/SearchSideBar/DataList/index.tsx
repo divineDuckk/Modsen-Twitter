@@ -2,21 +2,21 @@ import { FC, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { getTweetsByContent } from '@/api/getTweetsByContent';
-import { useAppSelector } from '@/store/hooks';
-import { getUser } from '@/store/selectors/user';
+import { getUsersByName } from '@/api/getUserByName';
+import { MiniTweet } from '@/components/MiniTweet';
+import { PROFILE } from '@/constants';
 import { TweetInfo } from '@/interfaces/tweet';
 import { User } from '@/interfaces/user';
-import { PROFILE } from '@/constants';
-import { MiniTweet } from '@/components/MiniTweet';
-import { getUsersByName } from '@/api/getUserByName';
+import { useAppSelector } from '@/store/hooks';
+import { getUser } from '@/store/selectors/user';
 
 import { DataListProps } from './types';
 
 export const DataList: FC<DataListProps> = ({ query }) => {
   const isProfile = useLocation().pathname.includes(PROFILE);
   const isTweetInfoArray = (
-    data: TweetInfo[] | User[],
-  ): data is TweetInfo[] => {
+    whichData: TweetInfo[] | User[],
+  ): whichData is TweetInfo[] => {
     return isProfile;
   };
   const [data, setData] = useState<TweetInfo[] | User[]>([]);

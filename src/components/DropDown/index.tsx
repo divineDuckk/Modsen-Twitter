@@ -1,11 +1,12 @@
 import classNames from 'classnames';
 import { useState, useRef, FC } from 'react';
 
-import { useMountClickEvent } from '@/hooks/useMountClickEvent';
-import dropDownSvg from '@/assets/dropdown.svg';
 
 import styles from './dropdown.module.scss';
 import { DropDownProps } from './types';
+
+import dropDownSvg from '@/assets/dropdown.svg';
+import { useMountClickEvent } from '@/hooks/useMountClickEvent';
 
 export const DropDown: FC<DropDownProps> = ({ options, value, setValue }) => {
   const [isOpen, setIsOpen] = useState(false);

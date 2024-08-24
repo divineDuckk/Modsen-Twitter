@@ -10,10 +10,10 @@ import { ChangeEvent, FC, useState } from 'react';
 import { addImageToStorage } from '@/api/addImageToStorage';
 import { addTweetToDb } from '@/api/addTweetToDb';
 import { getTweetsByUserId } from '@/api/getTweetsByUserId';
+import { Loader } from '@/components/Loader';
+import { useImageState } from '@/hooks/useImageState';
 import { useAppDispatch } from '@/store/hooks';
 import { setTweets } from '@/store/slices/userSlice';
-import { useImageState } from '@/hooks/useImageState';
-import { Loader } from '@/components/Loader';
 import { checkFileFormat } from '@/utils/functions/checkFileFormat';
 import getImage from '@/assets/getImage.svg';
 import successLoad from '@/assets/success.png';
@@ -55,6 +55,7 @@ export const TweetCreationContainer: FC<TweetCreationContainerProps> = ({
       setIsTweetsLoading?.(false);
       setStatus(NOT_LOADED);
       const tweets = await getTweetsByUserId(userId);
+      console.log(tweets);
       dispatch(setTweets(tweets));
     }
   };

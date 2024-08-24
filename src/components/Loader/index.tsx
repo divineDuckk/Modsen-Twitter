@@ -1,10 +1,11 @@
 import classNames from 'classnames';
 import { FC } from 'react';
 
-import { LARGE_SIZE, MEDIUM_SIZE, SMALL_SIZE } from '@/constants';
 
 import styles from './loader.module.scss';
 import { LoaderProps } from './types';
+
+import { LARGE_SIZE, MEDIUM_SIZE, SMALL_SIZE } from '@/constants';
 
 export const Loader: FC<LoaderProps> = ({ size }) => {
   const loaderClass = classNames(styles.loader, {

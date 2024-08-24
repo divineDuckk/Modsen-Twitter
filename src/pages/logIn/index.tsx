@@ -1,15 +1,16 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { PROFILE_ROUTE, SIGN_UP_ROUTE } from '@/constants';
-import { logInWithEmail } from '@/api/logInWithEmail';
-import { useAppDispatch } from '@/store/hooks';
-import { setUser } from '@/store/slices/userSlice';
-import { DataInput } from '@/components/DataInput';
-import twitterIcon from '@/assets/twitter-logo.svg';
-
 import { LOGIN_PLACEHOLDER, PASSWORD_PLACEHOLDER } from './constants';
 import styles from './login.module.scss';
+
+import { logInWithEmail } from '@/api/logInWithEmail';
+import twitterIcon from '@/assets/twitter-logo.svg';
+import { DataInput } from '@/components/DataInput';
+import { PROFILE_ROUTE, SIGN_UP_ROUTE } from '@/constants';
+import { useAppDispatch } from '@/store/hooks';
+import { setUser } from '@/store/slices/userSlice';
+
 
 export const LogIn = () => {
   const [email, setEmail] = useState('');

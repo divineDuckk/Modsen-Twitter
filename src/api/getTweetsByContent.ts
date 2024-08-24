@@ -1,6 +1,7 @@
+import { getAllTweets } from './getAllTweets';
+
 import { TweetInfo } from '@/interfaces/tweet';
 
-import { getAllTweets } from './getAllTweets';
 
 export const getTweetsByContent = async (userId: string, content: string) => {
   try {

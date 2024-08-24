@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getUser } from '@/store/selectors/user';
-import { TweetCreationContainer } from '@/components/TweetCreationContainer';
-import { Tweet } from '@/components/Tweet';
-import { useGetTweets } from '@/hooks/useGetTweets';
 import { Loader } from '@/components/Loader';
-import { MEDIUM_SIZE } from '@/constants';
 import { Portal } from '@/components/Portal';
 import { ProfileMenu } from '@/components/ProfileMenu';
+import { Tweet } from '@/components/Tweet';
+import { TweetCreationContainer } from '@/components/TweetCreationContainer';
+import { MEDIUM_SIZE } from '@/constants';
+import { useGetTweets } from '@/hooks/useGetTweets';
+import { getUser } from '@/store/selectors/user';
+import { sortByCreatedAt } from '@/utils/functions/sortArrayByDate';
 
 import styles from './profile.module.scss';
 
@@ -26,6 +27,8 @@ export const Profile = () => {
   } = useSelector(getUser);
   const [tweets, isTweetsLoading, setIsTweetsLoading] = useGetTweets(uid);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const sortedTweets = sortByCreatedAt(tweets);
 
   const handlePopupOpen = () => {
     setIsPopupOpen(true);
@@ -71,23 +74,22 @@ export const Profile = () => {
             <Loader size={MEDIUM_SIZE} />
           ) : (
             <>
-              {tweets &&
-                tweets.map(
-                  ({ createdAt, imageUrl, likes, text, id, userLikes }) => (
-                    <Tweet
-                      content={text}
-                      createdAt={createdAt}
-                      imageUrl={imageUrl}
-                      likes={likes}
-                      userName={displayName}
-                      userNameId={uid}
-                      userPhotoUrl={photoURL}
-                      id={id}
-                      userLikes={userLikes}
-                      key={id}
-                    />
-                  ),
-                )}
+              {sortedTweets.map(
+                ({ createdAt, imageUrl, likes, text, id, userLikes }) => (
+                  <Tweet
+                    content={text}
+                    createdAt={createdAt}
+                    imageUrl={imageUrl}
+                    likes={likes}
+                    userName={displayName}
+                    userNameId={uid}
+                    userPhotoUrl={photoURL}
+                    id={id}
+                    userLikes={userLikes}
+                    key={id}
+                  />
+                ),
+              )}
             </>
           )}
         </div>
