@@ -38,7 +38,7 @@
   .mainContainer {
     padding: $indentM;
     margin-top: $indentL;
-    max-height: $popupContentHeight;
+    height: 100%;
     overflow-y: auto;
     &::-webkit-scrollbar {
       width: $scrollWidth;

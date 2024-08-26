@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Loader } from '@/components/Loader';
@@ -10,6 +10,7 @@ import { MEDIUM_SIZE } from '@/constants';
 import { useGetTweets } from '@/hooks/useGetTweets';
 import { getUser } from '@/store/selectors/user';
 import { sortByCreatedAt } from '@/utils/functions/sortArrayByDate';
+import { useInfiniteScroll } from '@/hooks/useInfiniteSrcoll';
 
 import styles from './profile.module.scss';
 
@@ -26,14 +27,9 @@ export const Profile = () => {
     phone,
     password,
   } = useSelector(getUser);
-  const [
-    tweets,
-    isTweetsLoading,
-    setIsTweetsLoading,
-    fetchTweets,
-    setPage,
-    hasMore,
-  ] = useGetTweets(uid);
+  const [tweets, isTweetsLoading, setIsTweetsLoading, fetchTweets, page] =
+    useGetTweets(uid);
+  useInfiniteScroll(fetchTweets);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const sortedTweets = sortByCreatedAt(tweets);
@@ -45,21 +41,6 @@ export const Profile = () => {
   const handlePopupClose = () => {
     setIsPopupOpen(false);
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const { scrollTop, clientHeight, scrollHeight } =
-        document.documentElement;
-      if (scrollTop + clientHeight >= scrollHeight - 20) {
-        fetchTweets();
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [fetchTweets]);
 
   return (
     <>
@@ -91,31 +72,27 @@ export const Profile = () => {
           userId={uid}
           type="profile"
           setIsTweetsLoading={setIsTweetsLoading}
+          page={page}
         />
         <div className={styles.tweets}>
           <p className={styles.tweetHeader}>Tweets</p>
-          {isTweetsLoading ? (
-            <Loader size={MEDIUM_SIZE} />
-          ) : (
-            <>
-              {sortedTweets.map(
-                ({ createdAt, imageUrl, likes, text, id, userLikes }) => (
-                  <Tweet
-                    content={text}
-                    createdAt={createdAt}
-                    imageUrl={imageUrl}
-                    likes={likes}
-                    userName={displayName}
-                    userNameId={uid}
-                    userPhotoUrl={photoURL}
-                    id={id}
-                    userLikes={userLikes}
-                    key={id}
-                  />
-                ),
-              )}
-            </>
+          {sortedTweets.map(
+            ({ createdAt, imageUrl, likes, text, id, userLikes }) => (
+              <Tweet
+                content={text}
+                createdAt={createdAt}
+                imageUrl={imageUrl}
+                likes={likes}
+                userName={displayName}
+                userNameId={uid}
+                userPhotoUrl={photoURL}
+                id={id}
+                userLikes={userLikes}
+                key={id}
+              />
+            ),
           )}
+          {isTweetsLoading && <Loader size={MEDIUM_SIZE} />}
         </div>
       </div>
       {isPopupOpen && (

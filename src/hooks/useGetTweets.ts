@@ -10,6 +10,7 @@ import { TweetInfo } from '@/interfaces/tweet';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { getTweets } from '@/store/selectors/user';
 import { setTweets } from '@/store/slices/userSlice';
+import { PAGE_SIZE } from '@/constants';
 
 export const useGetTweets = (
   uid: string,
@@ -18,12 +19,11 @@ export const useGetTweets = (
   boolean,
   Dispatch<SetStateAction<boolean>>,
   () => Promise<void>,
-  Dispatch<SetStateAction<number>>,
-  boolean,
+  number,
 ] => {
   const tweets = useAppSelector(getTweets);
   const [isTweetsLoading, setIsTweetsLoading] = useState(false);
-  const [page, setPage] = useState(3);
+  const [page, setPage] = useState(PAGE_SIZE);
   const [hasMore, setHasMore] = useState(true);
   const dispatch = useAppDispatch();
 
@@ -36,7 +36,7 @@ export const useGetTweets = (
     );
     dispatch(setTweets(newTweets));
     setHasMore(moreTweets);
-    setPage((prev) => prev + 3);
+    setPage((prev) => prev + PAGE_SIZE);
     setIsTweetsLoading(false);
   }, [page]);
 
@@ -44,12 +44,5 @@ export const useGetTweets = (
     fetchTweets();
   }, []);
 
-  return [
-    tweets,
-    isTweetsLoading,
-    setIsTweetsLoading,
-    fetchTweets,
-    setPage,
-    hasMore,
-  ];
+  return [tweets, isTweetsLoading, setIsTweetsLoading, fetchTweets, page];
 };

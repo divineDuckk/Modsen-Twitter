@@ -17,6 +17,7 @@ export const TweetCreationContainer: FC<TweetCreationContainerProps> = ({
   userId,
   type,
   setIsTweetsLoading,
+  page,
 }) => {
   const [tweetText, setTweetText] = useState('');
   const { imageUrl, setImageUrl, status, setStatus } = useImageState();
@@ -35,8 +36,7 @@ export const TweetCreationContainer: FC<TweetCreationContainerProps> = ({
       setImageUrl('');
       setIsTweetsLoading?.(false);
       setStatus(NOT_LOADED);
-      const { tweets } = await getTweetsByUserId(userId, 3);
-      console.log(tweets);
+      const { tweets } = await getTweetsByUserId(userId, page);
       dispatch(setTweets(tweets));
     }
   };

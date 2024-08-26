@@ -5,4 +5,5 @@ export interface TweetCreationContainerProps {
   userId: string;
   type: string;
   setIsTweetsLoading?: Dispatch<SetStateAction<boolean>>;
+  page: number;
 }

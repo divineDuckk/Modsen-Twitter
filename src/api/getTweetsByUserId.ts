@@ -1,5 +1,11 @@
-import { collection, getDocs, query, where, limit } from 'firebase/firestore';
-
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  limit,
+  orderBy,
+} from 'firebase/firestore';
 import { fireStore } from '@/firebase';
 import { TweetInfo } from '@/interfaces/tweet';
 import { formatDate } from '@/utils/functions/formatDate';
@@ -17,6 +23,7 @@ export const getTweetsByUserId = async (
     const tweetsQuery = query(
       tweetsRef,
       where('userId', '==', uid),
+      orderBy('createdAt', 'desc'),
       limit(pageSize),
     );
     const maxTweetsQuery = query(tweetsRef, where('userId', '==', uid));
@@ -41,7 +48,6 @@ export const getTweetsByUserId = async (
     });
 
     const hasMore = maxTweets >= pageSize;
-    console.log(tweets, querySnapshot.docs.length, pageSize);
     return { tweets, hasMore };
   } catch (error) {
     throw new Error(error as string);
