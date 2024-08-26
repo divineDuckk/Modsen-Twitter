@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Loader } from '@/components/Loader';
@@ -8,9 +8,10 @@ import { Tweet } from '@/components/Tweet';
 import { TweetCreationContainer } from '@/components/TweetCreationContainer';
 import { MEDIUM_SIZE } from '@/constants';
 import { useGetTweets } from '@/hooks/useGetTweets';
-import { getUser } from '@/store/selectors/user';
+import { getCurrentTweetsSize, getUser } from '@/store/selectors/user';
 import { sortByCreatedAt } from '@/utils/functions/sortArrayByDate';
 import { useInfiniteScroll } from '@/hooks/useInfiniteSrcoll';
+import { useAppSelector } from '@/store/hooks';
 
 import styles from './profile.module.scss';
 
@@ -27,12 +28,13 @@ export const Profile = () => {
     phone,
     password,
   } = useSelector(getUser);
-  const [tweets, isTweetsLoading, setIsTweetsLoading, fetchTweets, page] =
+  const [tweets, isTweetsLoading, setIsTweetsLoading, fetchTweets] =
     useGetTweets(uid);
   useInfiniteScroll(fetchTweets);
+  const pageSize = useAppSelector(getCurrentTweetsSize);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const sortedTweets = sortByCreatedAt(tweets);
+  const sortedTweets = useMemo(() => sortByCreatedAt(tweets), [tweets]);
 
   const handlePopupOpen = () => {
     setIsPopupOpen(true);
@@ -72,7 +74,7 @@ export const Profile = () => {
           userId={uid}
           type="profile"
           setIsTweetsLoading={setIsTweetsLoading}
-          page={page}
+          page={pageSize}
         />
         <div className={styles.tweets}>
           <p className={styles.tweetHeader}>Tweets</p>

@@ -7,3 +7,6 @@ export interface TweetInfo {
   id: string;
   userLikes: string[];
 }
+export interface TweetPageSizeState {
+  page: number;
+}

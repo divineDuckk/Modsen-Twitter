@@ -8,9 +8,9 @@ import {
 import { getTweetsByUserId } from '@/api/getTweetsByUserId';
 import { TweetInfo } from '@/interfaces/tweet';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { getTweets } from '@/store/selectors/user';
+import { getCurrentTweetsSize, getTweets } from '@/store/selectors/user';
 import { setTweets } from '@/store/slices/userSlice';
-import { PAGE_SIZE } from '@/constants';
+import { nextTweets } from '@/store/slices/tweetPageSlice';
 
 export const useGetTweets = (
   uid: string,
@@ -23,12 +23,12 @@ export const useGetTweets = (
 ] => {
   const tweets = useAppSelector(getTweets);
   const [isTweetsLoading, setIsTweetsLoading] = useState(false);
-  const [page, setPage] = useState(PAGE_SIZE);
+  const page = useAppSelector(getCurrentTweetsSize);
   const [hasMore, setHasMore] = useState(true);
   const dispatch = useAppDispatch();
-
   const fetchTweets = useCallback(async () => {
     if (isTweetsLoading || !hasMore) return;
+
     setIsTweetsLoading(true);
     const { tweets: newTweets, hasMore: moreTweets } = await getTweetsByUserId(
       uid,
@@ -36,9 +36,9 @@ export const useGetTweets = (
     );
     dispatch(setTweets(newTweets));
     setHasMore(moreTweets);
-    setPage((prev) => prev + PAGE_SIZE);
+    dispatch(nextTweets());
     setIsTweetsLoading(false);
-  }, [page]);
+  }, [page, dispatch, hasMore, isTweetsLoading]);
 
   useEffect(() => {
     fetchTweets();

@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { Portal } from '@/components/Portal';
 import { TweetCreationContainer } from '@/components/TweetCreationContainer';
 import { PROFILE } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { getUser } from '@/store/selectors/user';
+import { getCurrentTweetsSize, getUser } from '@/store/selectors/user';
 import { deleteUser } from '@/store/slices/userSlice';
 import logo from '@/assets/twitter-logo.svg';
 
@@ -17,8 +17,29 @@ export const NavigationSideBar = () => {
   const dispatch = useAppDispatch();
   const { photoURL, displayName, uid } = useAppSelector(getUser);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const page = useAppSelector(getCurrentTweetsSize);
 
-  let address = pathname.split('/').pop();
+  const address = useMemo(() => {
+    let path = pathname.split('/').pop();
+    return path === uid ? PROFILE : path;
+  }, [pathname, uid]);
+
+  const navLinks = useMemo(
+    () =>
+      LINKS.map(({ activeIcon, icon, title }) => {
+        const lowTitle = title.toLowerCase();
+        return (
+          <li key={title}>
+            <img
+              src={address === lowTitle ? activeIcon : icon}
+              alt={`${title} icon`}
+            />
+            <Link to={`/${title}`}>{title}</Link>
+          </li>
+        );
+      }),
+    [address],
+  );
 
   const handleLogOut = () => {
     dispatch(deleteUser());
@@ -36,23 +57,7 @@ export const NavigationSideBar = () => {
     <>
       <div className={styles.sidebar}>
         <img className={styles.logo} src={logo} alt="logo" />
-        <ul className={styles.nav}>
-          {LINKS.map(({ activeIcon, icon, title }) => {
-            const lowTitle = title.toLowerCase();
-            if (address === uid) {
-              address = PROFILE;
-            }
-            return (
-              <li key={title}>
-                <img
-                  src={address === lowTitle ? activeIcon : icon}
-                  alt={`${title} icon`}
-                />
-                <Link to={`/${title}`}>{title}</Link>
-              </li>
-            );
-          })}
-        </ul>
+        <ul className={styles.nav}>{navLinks}</ul>
         <button onClick={handlePopupOpen} className={styles.submitButton}>
           Tweet
         </button>
@@ -70,6 +75,7 @@ export const NavigationSideBar = () => {
             photoURL={photoURL}
             userId={uid}
             type="modal"
+            page={page}
           />
         </Portal>
       )}

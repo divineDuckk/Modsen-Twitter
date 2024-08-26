@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { getTweetsByContent } from '@/api/getTweetsByContent';
@@ -13,30 +13,39 @@ import { getUser } from '@/store/selectors/user';
 import { DataListProps } from './types';
 
 export const DataList: FC<DataListProps> = ({ query }) => {
-  const isProfile = useLocation().pathname.includes(PROFILE);
+  const location = useLocation();
+  const isProfile = useMemo(
+    () => location.pathname.includes(PROFILE),
+    [location.pathname],
+  );
+
   const isTweetInfoArray = (
     whichData: TweetInfo[] | User[],
   ): whichData is TweetInfo[] => {
     return isProfile;
   };
+
   const [data, setData] = useState<TweetInfo[] | User[]>([]);
   const { uid } = useAppSelector(getUser);
+
   useEffect(() => {
     if (query === '') {
       setData([]);
       return;
     }
+
     const getData = async () => {
       if (isProfile) {
         const tweets = await getTweetsByContent(uid, query);
         setData(tweets);
-        return;
+      } else {
+        const users = await getUsersByName(query, uid);
+        setData(users);
       }
-      const users = await getUsersByName(query, uid);
-      setData(users);
     };
+
     getData();
-  }, [query]);
+  }, [query, uid, isProfile]);
 
   return (
     <div>
