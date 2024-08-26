@@ -25,15 +25,23 @@ export const DAYS_ARRAY = Array.from({ length: 31 }, (_, index) =>
 );
 
 export const PASSWORD_MIN_LENGTH = 6;
+export const PHONE_MIN_LENGTH = 7;
+
+export const EMAIL_REGEXP = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
 export const PHONE_REGEXP =
   /^(\+?\d{1,3}[-\s]?)?(\(?\d{1,4}\)?[-\s]?)?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,9}$/;
 
 export const ERRORS = {
-  phoneError: 'uncorrect phone',
-  emptyName: 'name cannot be empty',
-  shortPassword: 'password must includes 6 symbols',
-  birthDateError: 'uncorret birth date',
+  phoneError: 'Invalid phone number',
+  emptyName: 'Name cannot be empty',
+  shortPassword: 'Password must be at least 6 characters',
+  shortPhone: 'Phone number must be at least 6 characters',
+  birthDateError: 'Invalid birth date',
+  emailError: 'Invalid email address',
+  nameRequired: 'Name is required',
+  emailRequired: 'Email is required',
+  passwordRequired: 'Password is required',
 
   noProblems: 'ok',
 };

@@ -1,16 +1,29 @@
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where, limit } from 'firebase/firestore';
 
 import { fireStore } from '@/firebase';
 import { TweetInfo } from '@/interfaces/tweet';
 import { formatDate } from '@/utils/functions/formatDate';
 
-export const getTweetsByUserId = async (uid: string): Promise<TweetInfo[]> => {
+export const getTweetsByUserId = async (
+  uid: string,
+  pageSize: number,
+): Promise<{
+  tweets: TweetInfo[];
+  hasMore: boolean;
+}> => {
   try {
     const tweetsRef = collection(fireStore, 'tweets');
-    const q = query(tweetsRef, where('userId', '==', uid));
-    const querySnapshot = await getDocs(q);
 
-    const tweets: TweetInfo[] = querySnapshot.docs.map(doc => {
+    const tweetsQuery = query(
+      tweetsRef,
+      where('userId', '==', uid),
+      limit(pageSize),
+    );
+    const maxTweetsQuery = query(tweetsRef, where('userId', '==', uid));
+    const maxTweets = (await getDocs(maxTweetsQuery)).docs.length;
+
+    const querySnapshot = await getDocs(tweetsQuery);
+    const tweets: TweetInfo[] = querySnapshot.docs.map((doc) => {
       const data = doc.data();
       const createdAtTimestamp = data.createdAt;
       const createdAtDate = createdAtTimestamp.toDate();
@@ -27,7 +40,9 @@ export const getTweetsByUserId = async (uid: string): Promise<TweetInfo[]> => {
       };
     });
 
-    return tweets;
+    const hasMore = maxTweets >= pageSize;
+    console.log(tweets, querySnapshot.docs.length, pageSize);
+    return { tweets, hasMore };
   } catch (error) {
     throw new Error(error as string);
   }

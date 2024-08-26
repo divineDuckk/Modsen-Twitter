@@ -1,50 +1,75 @@
-import { FormEvent, useState } from 'react';
+import {
+  EMAIL_REGEXP,
+  ERRORS,
+  PASSWORD_MIN_LENGTH,
+  PROFILE_ROUTE,
+  SIGN_UP_ROUTE,
+} from '@/constants';
+import { useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+
+import { logInWithEmail } from '@/api/logInWithEmail';
+import { DataInput } from '@/components/DataInput';
+import { useAppDispatch } from '@/store/hooks';
+import { setUser } from '@/store/slices/userSlice';
+import twitterIcon from '@/assets/twitter-logo.svg';
 
 import { LOGIN_PLACEHOLDER, PASSWORD_PLACEHOLDER } from './constants';
 import styles from './login.module.scss';
-
-import { logInWithEmail } from '@/api/logInWithEmail';
-import twitterIcon from '@/assets/twitter-logo.svg';
-import { DataInput } from '@/components/DataInput';
-import { PROFILE_ROUTE, SIGN_UP_ROUTE } from '@/constants';
-import { useAppDispatch } from '@/store/hooks';
-import { setUser } from '@/store/slices/userSlice';
-
+import { FormValues } from './types';
 
 export const LogIn = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [error, setError] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
 
-  const handleLogIn = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    setError(false);
+    const { email, password } = data;
     const user = await logInWithEmail(email, password);
+    if (!user) {
+      setError(true);
+      return;
+    }
     dispatch(setUser(user));
     navigate(PROFILE_ROUTE + user?.uid);
   };
-
   return (
     <div className={styles.logWrap}>
-      <form onSubmit={handleLogIn} className={styles.login}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.login}>
         <img src={twitterIcon} alt="twitter logo" />
         <h2>Log in to Twitter</h2>
         <DataInput
-          inputValue={email}
           placeholder={LOGIN_PLACEHOLDER}
-          setInputValue={setEmail}
           type="email"
-          required
+          {...register('email', {
+            required: ERRORS.emailRequired,
+            pattern: {
+              value: EMAIL_REGEXP,
+              message: ERRORS.emailError,
+            },
+          })}
+          error={errors.email?.message}
         />
         <DataInput
-          inputValue={password}
           placeholder={PASSWORD_PLACEHOLDER}
-          setInputValue={setPassword}
           type="password"
-          required
+          {...register('password', {
+            required: ERRORS.passwordRequired,
+            minLength: {
+              value: PASSWORD_MIN_LENGTH,
+              message: ERRORS.shortPassword,
+            },
+          })}
+          error={errors.password?.message}
         />
+        {error && <p className={styles.error}>User not found</p>}
         <button className={styles.submitButton} type="submit">
           Log In
         </button>

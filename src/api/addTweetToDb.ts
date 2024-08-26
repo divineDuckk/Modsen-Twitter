@@ -1,4 +1,4 @@
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
 
 import { fireStore } from '@/firebase';
 
@@ -8,7 +8,7 @@ export const addTweetToDb = async (
   userId: string,
 ) => {
   try {
-    await addDoc(collection(fireStore, 'tweets'), {
+    const tweetRef = await addDoc(collection(fireStore, 'tweets'), {
       text: tweetText,
       imageUrl: imageUrl,
       createdAt: new Date(),
@@ -16,6 +16,8 @@ export const addTweetToDb = async (
       likes: 0,
       userLikes: [],
     });
+    const tweetDoc = await getDoc(doc(fireStore, 'tweets', tweetRef.id));
+    return tweetDoc;
   } catch (error) {
     throw new Error(error as string);
   }

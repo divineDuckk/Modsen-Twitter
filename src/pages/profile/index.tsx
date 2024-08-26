@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Loader } from '@/components/Loader';
@@ -24,10 +24,18 @@ export const Profile = () => {
     followings,
     birthDate,
     phone,
+    password,
   } = useSelector(getUser);
-  const [tweets, isTweetsLoading, setIsTweetsLoading] = useGetTweets(uid);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [
+    tweets,
+    isTweetsLoading,
+    setIsTweetsLoading,
+    fetchTweets,
+    setPage,
+    hasMore,
+  ] = useGetTweets(uid);
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const sortedTweets = sortByCreatedAt(tweets);
 
   const handlePopupOpen = () => {
@@ -37,6 +45,22 @@ export const Profile = () => {
   const handlePopupClose = () => {
     setIsPopupOpen(false);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollTop, clientHeight, scrollHeight } =
+        document.documentElement;
+      if (scrollTop + clientHeight >= scrollHeight - 20) {
+        fetchTweets();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [fetchTweets]);
+
   return (
     <>
       <div className={styles.profile}>
@@ -104,6 +128,7 @@ export const Profile = () => {
             birthDate={birthDate!}
             phone={phone!}
             uid={uid}
+            password={password}
             handleClose={handlePopupClose}
           />
         </Portal>

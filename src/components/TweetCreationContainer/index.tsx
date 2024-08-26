@@ -1,6 +1,6 @@
-import { ACCEPT_FILES, LOADING, NOT_LOADED } from '@/constants';
 import { ChangeEvent, FC, useState } from 'react';
 
+import { ACCEPT_FILES, LOADING, NOT_LOADED } from '@/constants';
 import { addTweetToDb } from '@/api/addTweetToDb';
 import { getTweetsByUserId } from '@/api/getTweetsByUserId';
 import { useImageState } from '@/hooks/useImageState';
@@ -35,7 +35,8 @@ export const TweetCreationContainer: FC<TweetCreationContainerProps> = ({
       setImageUrl('');
       setIsTweetsLoading?.(false);
       setStatus(NOT_LOADED);
-      const tweets = await getTweetsByUserId(userId);
+      const { tweets } = await getTweetsByUserId(userId, 3);
+      console.log(tweets);
       dispatch(setTweets(tweets));
     }
   };

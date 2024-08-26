@@ -1,9 +1,13 @@
-import { Dispatch, SetStateAction } from 'react';
+import {
+  FieldError,
+  FieldErrorsImpl,
+  Merge,
+  UseFormRegisterReturn,
+} from 'react-hook-form';
 
 export interface DataInputProps {
-  inputValue: string;
-  setInputValue: Dispatch<SetStateAction<string>>;
   type: string;
   placeholder: string;
-  required?: boolean;
+  register?: UseFormRegisterReturn;
+  error?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
 }
