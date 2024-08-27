@@ -45,7 +45,6 @@ export const ERRORS = {
 
   noProblems: 'ok',
 };
-
 export const SCROLL_OFFSET = 10;
 export const PAGE_SIZE = 3;
 
