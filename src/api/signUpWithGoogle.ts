@@ -26,13 +26,15 @@ export const signUpWithGoogle = async () => {
         displayName: user.displayName,
         email: user.email,
         photoURL: user.photoURL,
-        followers: 0,
-        followings: 0,
+        followers: [],
+        followings: [],
         backgroundUrl: defaultBg,
         description: '',
         birthDate: '',
         phone: '',
         numberOfTweets: 0,
+        numberOfFollowers: 0,
+        numberOfFollowings: 0,
       });
     }
     const userDoc = await getDoc(doc(usersRef, user.uid));

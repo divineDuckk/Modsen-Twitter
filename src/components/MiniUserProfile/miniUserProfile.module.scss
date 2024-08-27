@@ -4,6 +4,7 @@
 @import 'src/theme/indents';
 @import 'src/theme/colors';
 @import 'src/theme/borders';
+@import 'src/theme/reuseClasses';
 
 .miniProfole {
   display: flex;
@@ -13,15 +14,7 @@
   background-color: $darkerWhite;
   border-radius: $borderRadiusXS;
   box-shadow: $indentS $indentM $lightBlur $dark;
-  button {
-    background-color: $black;
-    color: $white;
-    padding: $indentXS $indentL;
-    font-weight: $fontWeightM;
-    font-size: $fontSizeM;
-    border-radius: $borderRadiusL;
-    cursor: pointer;
-  }
+
   a {
     color: $black;
     display: flex;

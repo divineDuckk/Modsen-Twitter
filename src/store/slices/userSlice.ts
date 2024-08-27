@@ -8,8 +8,8 @@ const initialState: User = {
   birthDate: '',
   email: '',
   uid: '',
-  followers: 0,
-  followings: 0,
+  followers: [],
+  followings: [],
   photoURL: defaultAvatar,
   backgroundUrl: defaultBg,
   description: '',
@@ -17,6 +17,8 @@ const initialState: User = {
   phone: '',
   password: '',
   numberOfTweets: 0,
+  numberOfFollowers: 0,
+  numberOfFollowings: 0,
 };
 const userSlice = createSlice({
   name: 'user',
@@ -32,13 +34,15 @@ const userSlice = createSlice({
       state.phone = '';
       state.uid = '';
       state.birthDate = '';
-      state.followers = 0;
-      state.followings = 0;
+      state.followers = [];
+      state.followings = [];
       state.backgroundUrl = defaultBg;
       state.description = '';
       state.birthDate = '';
       state.tweets = [];
       state.password = '';
+      state.numberOfFollowers = 0;
+      state.numberOfFollowings = 0;
     },
 
     setTweets(state, { payload }) {
