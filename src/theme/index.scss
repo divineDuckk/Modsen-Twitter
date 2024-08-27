@@ -11,7 +11,9 @@ $pSignUpMaxWidth: 375px;
 
 $loginFormMaxWidth: 450px;
 
-$loaderWidth: 50px;
+$loaderSmallWidth: 15px;
+$loaderMediumWidth: 50px;
+$loaderLargeWidth: 80px;
 
 $loginInputHeight: 70px;
 $loginButtonHeight: 60px;
@@ -21,3 +23,38 @@ $twiiterLogoHeight: 41px;
 
 $dropdownListMaxHeight: 120px;
 $dropdownMaxWidth: 310px;
+
+$profileMaxWidth: 910px;
+$profileImgMaxHeight: 300px;
+$profilePhotoSize: 120px;
+$profileAvatarBlockHeight: 80px;
+
+$baseOpacity: 0.6;
+
+$tweetImageMaxHeight: 450px;
+
+$tweetOptionsWidth: 150px;
+$tweetOptionsMaxHeight: 130px;
+$tweetHeader: 25%;
+
+$scrollWidth: 10px;
+
+$popupWidth: 50%;
+$popupHight: 70%;
+$popupContentHeight: 82%;
+
+$closeButtonSize: 30px;
+$closeStickWidth: 5px;
+
+$getImageSizes: 24px;
+
+$navSideBarMaxWidth: 230px;
+$navSideBarMaxHeight: 900px;
+
+$searchMaxWidth: 370px;
+
+$miniTweetMaxHeight: 150px;
+
+$lightBlur: 15px;
+
+$miniTweetLineClamp: 3;

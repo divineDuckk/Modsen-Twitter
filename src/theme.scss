@@ -2,14 +2,14 @@
 
 #root {
   font-family: 'Roboto';
-  height: 100%;
+  height: 100vh;
 }
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  height: 100vh;
-  font-weight: $fontWeightS;
+  margin: 0px auto;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
   a {
     text-decoration: none;
   }

@@ -12,7 +12,7 @@ export const DropDown: FC<DropDownProps> = ({ options, value, setValue }) => {
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const toggleDropdown = () => setIsOpen(prev => !prev);
+  const toggleDropdown = () => setIsOpen((prev) => !prev);
 
   const handleOptionClick = (option: string) => () => {
     setValue(option);

@@ -1,5 +1,11 @@
-import { LOG_IN_ROUTE, REGISTRATION_ROUTE, SIGN_UP_ROUTE } from '@/constants';
+import {
+  LOG_IN_ROUTE,
+  PROFILE_ROUTE,
+  REGISTRATION_ROUTE,
+  SIGN_UP_ROUTE,
+} from '@/constants';
 import { LogIn } from '@/pages/logIn';
+import { Profile } from '@/pages/profile';
 import { Registration } from '@/pages/registration';
 import { SignUp } from '@/pages/signUp';
 
@@ -15,5 +21,11 @@ export const PUBLIC_ROUTES = [
   {
     Page: Registration,
     path: REGISTRATION_ROUTE,
+  },
+];
+export const PRIVATE_ROUTES = [
+  {
+    Page: Profile,
+    path: PROFILE_ROUTE + ':id',
   },
 ];

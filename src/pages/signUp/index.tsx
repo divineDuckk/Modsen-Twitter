@@ -1,14 +1,20 @@
 import { Link, useNavigate } from 'react-router-dom';
 
-import { LINKS, LOG_IN_ROUTE, REGISTRATION_ROUTE } from '@/constants';
-import { useAppDispatch } from '@/store/hooks';
-import { signUpWithGoogle } from '@/api/signUpWithGoogle';
-import { setUser } from '@/store/slices/userSlice';
-import googleIcon from '@/assets/google-icon.webp';
-import twitterBg from '@/assets/back-twitter.png';
-import twitterIcon from '@/assets/twitter-logo.svg';
-
 import styles from './singup.module.scss';
+
+import { signUpWithGoogle } from '@/api/signUpWithGoogle';
+import twitterBg from '@/assets/back-twitter.png';
+import googleIcon from '@/assets/google-icon.webp';
+import twitterIcon from '@/assets/twitter-logo.svg';
+import {
+  LINKS,
+  LOG_IN_ROUTE,
+  PROFILE_ROUTE,
+  REGISTRATION_ROUTE,
+} from '@/constants';
+import { useAppDispatch } from '@/store/hooks';
+import { setUser } from '@/store/slices/userSlice';
+
 
 export const SignUp = () => {
   const navigate = useNavigate();
@@ -17,7 +23,7 @@ export const SignUp = () => {
   const handleSignUp = async () => {
     const user = await signUpWithGoogle();
     dispatch(setUser(user));
-    navigate('/');
+    navigate(PROFILE_ROUTE + user?.uid);
   };
 
   return (

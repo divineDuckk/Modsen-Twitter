@@ -1,0 +1,117 @@
+import { useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import { Loader } from '@/components/Loader';
+import { Portal } from '@/components/Portal';
+import { ProfileMenu } from '@/components/ProfileMenu';
+import { Tweet } from '@/components/Tweet';
+import { TweetCreationContainer } from '@/components/TweetCreationContainer';
+import { MEDIUM_SIZE } from '@/constants';
+import { useGetTweets } from '@/hooks/useGetTweets';
+import { getCurrentTweetsSize, getUser } from '@/store/selectors/user';
+import { sortByCreatedAt } from '@/utils/functions/sortArrayByDate';
+import { useInfiniteScroll } from '@/hooks/useInfiniteSrcoll';
+import { useAppSelector } from '@/store/hooks';
+
+import styles from './profile.module.scss';
+
+export const Profile = () => {
+  const {
+    displayName,
+    backgroundUrl,
+    photoURL,
+    uid,
+    description,
+    followers,
+    followings,
+    birthDate,
+    phone,
+    password,
+  } = useSelector(getUser);
+  const [tweets, isTweetsLoading, setIsTweetsLoading, fetchTweets] =
+    useGetTweets(uid);
+  useInfiniteScroll(fetchTweets);
+  const pageSize = useAppSelector(getCurrentTweetsSize);
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const sortedTweets = useMemo(() => sortByCreatedAt(tweets), [tweets]);
+
+  const handlePopupOpen = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handlePopupClose = () => {
+    setIsPopupOpen(false);
+  };
+
+  return (
+    <>
+      <div className={styles.profile}>
+        <div className={styles.header}>
+          <h4>{displayName}</h4>
+          <span>{tweets.length} Tweets</span>
+          <img src={backgroundUrl} alt="background" />
+        </div>
+        <div className={styles.profileInfo}>
+          <div className={styles.imgWithEdits}>
+            <img src={photoURL} alt="avatar" referrerPolicy="no-referrer" />
+            <button onClick={handlePopupOpen}>Edit profile</button>
+          </div>
+          <h3>{displayName}</h3>
+          <p className={styles.id}>@{displayName + '_' + uid}</p>
+          <p className={styles.description}>{description}</p>
+          <div className={styles.followsInfo}>
+            <p>
+              {followings} <span>Following</span>
+            </p>
+            <p>
+              {followers} <span>Followers</span>
+            </p>
+          </div>
+        </div>
+        <TweetCreationContainer
+          photoURL={photoURL}
+          userId={uid}
+          type="profile"
+          setIsTweetsLoading={setIsTweetsLoading}
+          page={pageSize}
+        />
+        <div className={styles.tweets}>
+          <p className={styles.tweetHeader}>Tweets</p>
+          {sortedTweets.map(
+            ({ createdAt, imageUrl, likes, text, id, userLikes }) => (
+              <Tweet
+                content={text}
+                createdAt={createdAt}
+                imageUrl={imageUrl}
+                likes={likes}
+                userName={displayName}
+                userNameId={uid}
+                userPhotoUrl={photoURL}
+                id={id}
+                userLikes={userLikes}
+                key={id}
+              />
+            ),
+          )}
+          {isTweetsLoading && <Loader size={MEDIUM_SIZE} />}
+        </div>
+      </div>
+      {isPopupOpen && (
+        <Portal onClose={handlePopupClose} title="Edit Profile">
+          <ProfileMenu
+            aboutMe={description}
+            backgroundUrl={backgroundUrl}
+            name={displayName}
+            photoUrl={photoURL}
+            birthDate={birthDate!}
+            phone={phone!}
+            uid={uid}
+            password={password}
+            handleClose={handlePopupClose}
+          />
+        </Portal>
+      )}
+    </>
+  );
+};

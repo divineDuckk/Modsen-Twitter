@@ -1,0 +1,68 @@
+@import 'src/theme/borders';
+@import 'src/theme/index';
+@import 'src/theme/fontWeights';
+@import 'src/theme/fontSizes';
+@import 'src/theme/lineHeights';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+@import 'src/theme/reuseClasses';
+@import 'src/theme/transitions';
+
+$buttonsHeight: 55px;
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  max-width: $navSideBarMaxWidth;
+  max-height: $navSideBarMaxHeight;
+  height: 100%;
+  width: 100%;
+  justify-content: space-between;
+  button {
+    max-height: $buttonsHeight;
+    transition: $transitionS;
+    &:hover {
+      background-color: $lightGray;
+    }
+  }
+  .userContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: $indentXXL;
+
+    img {
+      width: calc($profilePhotoSize / 2.5);
+      height: calc($profilePhotoSize / 2.5);
+      border-radius: $borderRadiusXL;
+      margin-right: $indentXXL;
+    }
+    p {
+      margin: 0;
+      font-family: 'Roboto';
+      font-size: $fontSizeXS;
+      font-weight: $fontWeightM;
+    }
+  }
+  .logo {
+    margin-top: $indentXXL;
+    margin-bottom: $indentXXXL;
+    width: $twiiterLogoWidth;
+    height: $twiiterLogoHeight;
+  }
+  .nav {
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto';
+    margin-bottom: $indentXXL;
+    gap: $indentXXL;
+    li {
+      display: flex;
+      align-items: center;
+      gap: $indentL;
+      a {
+        color: $blackText;
+      }
+    }
+  }
+}

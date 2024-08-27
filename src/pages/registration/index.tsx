@@ -3,91 +3,131 @@ import {
   INITIAL_STATE_MONTH,
   INITIAL_STATE_YEAR,
 } from './constants';
-import { FormEvent, useState } from 'react';
+import {
+  DAYS_ARRAY,
+  EMAIL_REGEXP,
+  ERRORS,
+  MONTHS,
+  PASSWORD_MIN_LENGTH,
+  PHONE_MIN_LENGTH,
+  PHONE_REGEXP,
+  PROFILE_ROUTE,
+  SIGN_UP_ROUTE,
+} from '@/constants';
+import React, { useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { DataInput } from '@/components/DataInput';
-import { DAYS_ARRAY, MONTHS, SIGN_UP_ROUTE } from '@/constants';
-import { DropDown } from '@/components/DropDown';
 import { registerWithEmail } from '@/api/registerWithEmail';
 import { setUser } from '@/store/slices/userSlice';
 import { getFullBirthDate } from '@/utils/functions/getFullBirthDate';
 import { getYearsArray } from '@/utils/functions/getYearsArray';
+import { DataInput } from '@/components/DataInput';
+import { DropDown } from '@/components/DropDown';
 import twiiterLogo from '@/assets/twitter-logo.svg';
 
 import styles from './registration.module.scss';
+import { FormValues } from './types';
 
-export const Registration = () => {
-  const [name, setName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+export const Registration: React.FC = () => {
   const [selectedMonth, setSelectedMonth] = useState(INITIAL_STATE_MONTH);
   const [selectedDay, setSelectedDay] = useState(INITIAL_STATE_DAY);
   const [selectedYear, setSelectedYear] = useState(INITIAL_STATE_YEAR);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
 
   const dateInputs = [
     {
-      inputValue: name,
+      name: 'name' as keyof FormValues,
       placeholder: 'Name',
-      setInputValue: setName,
       type: 'text',
+      validation: { required: ERRORS.nameRequired },
     },
     {
-      inputValue: phoneNumber,
+      name: 'phoneNumber' as keyof FormValues,
       placeholder: 'Phone number',
-      setInputValue: setPhoneNumber,
       type: 'tel',
+      validation: {
+        pattern: {
+          value: PHONE_REGEXP,
+          message: ERRORS.phoneError,
+        },
+        minLength: {
+          value: PHONE_MIN_LENGTH,
+          message: ERRORS.shortPhone,
+        },
+      },
     },
     {
-      inputValue: email,
+      name: 'email' as keyof FormValues,
       placeholder: 'Email',
-      setInputValue: setEmail,
       type: 'email',
+      validation: {
+        required: ERRORS.emailRequired,
+        pattern: {
+          value: EMAIL_REGEXP,
+          message: ERRORS.emailError,
+        },
+      },
     },
     {
-      inputValue: password,
+      name: 'password' as keyof FormValues,
       placeholder: 'Password',
-      setInputValue: setPassword,
       type: 'password',
+      validation: {
+        required: ERRORS.passwordRequired,
+        minLength: {
+          value: PASSWORD_MIN_LENGTH,
+          message: ERRORS.shortPassword,
+        },
+      },
     },
   ];
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const user = await registerWithEmail({
-      birthDate: getFullBirthDate(selectedDay, selectedMonth, selectedYear),
-      email,
-      name,
-      password,
-      phoneNumber,
-    });
-
-    dispatch(setUser(user));
-
-    navigate('/');
+  const onSubmit: SubmitHandler<FormValues> = async ({
+    email,
+    name,
+    password,
+    phoneNumber,
+  }) => {
+    if (
+      selectedDay !== INITIAL_STATE_DAY &&
+      selectedMonth !== INITIAL_STATE_MONTH &&
+      selectedYear !== INITIAL_STATE_YEAR
+    ) {
+      const user = await registerWithEmail({
+        birthDate: getFullBirthDate(selectedDay, selectedMonth, selectedYear),
+        email,
+        name,
+        password,
+        phoneNumber,
+      });
+      dispatch(setUser(user));
+      navigate(PROFILE_ROUTE + user?.uid);
+    }
   };
 
   return (
     <div className={styles.registrationWrap}>
-      <form onSubmit={handleSubmit} className={styles.registration}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.registration}>
         <div className={styles.twitterLogoWrap}>
           <img src={twiiterLogo} alt="twiiter logo" />
         </div>
         <h2>Create an account</h2>
-        {dateInputs.map(({ inputValue, placeholder, setInputValue, type }) => (
+        {dateInputs.map(({ name, placeholder, type, validation }) => (
           <DataInput
-            key={placeholder}
-            inputValue={inputValue}
+            key={name}
             placeholder={placeholder}
-            setInputValue={setInputValue}
             type={type}
-            required
+            {...register(name, validation)}
+            error={errors[name]?.message}
           />
         ))}
         <Link to={SIGN_UP_ROUTE}>Use email</Link>

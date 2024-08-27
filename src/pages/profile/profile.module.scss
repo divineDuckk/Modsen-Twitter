@@ -1,0 +1,114 @@
+@import 'src/theme/borders';
+@import 'src/theme/index';
+@import 'src/theme/fontWeights';
+@import 'src/theme/fontSizes';
+@import 'src/theme/lineHeights';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+
+.profile {
+  width: 100%;
+  max-width: $profileMaxWidth;
+  border-left: $borderSizeS solid $lightBorderColor;
+  border-right: $borderSizeS solid $lightBorderColor;
+
+  .tweets {
+    display: flex;
+    flex-direction: column;
+    .tweetHeader {
+      margin: 0;
+      font-family: 'Roboto Serif';
+      font-size: $fontSizeM;
+      font-weight: $fontWeightM;
+      text-align: center;
+      max-width: $tweetHeader;
+      border-bottom: $borderSizeS solid $lightBorderColor;
+      border-right: $borderSizeS solid $lightBorderColor;
+      padding: $indentL 0;
+      margin-bottom: $indentXXXL;
+    }
+  }
+
+  .header {
+    h4 {
+      margin-left: $indentM;
+      font-weight: $fontWeightM;
+      font-size: $fontSizeL;
+      line-height: $lineHeightXS;
+      margin-bottom: $indentS;
+      margin-top: $indentXL;
+    }
+    span {
+      margin-left: $indentM;
+      font-size: $fontSizeXS;
+      line-height: $lineHeightS;
+      opacity: $baseOpacity;
+    }
+    img {
+      margin-top: $indentM;
+
+      width: 100%;
+      max-height: $profileImgMaxHeight;
+    }
+  }
+  .profileInfo {
+    padding: 0 $indentL;
+    border-bottom: $borderSizeS solid $lightBorderColor;
+
+    .followsInfo {
+      display: flex;
+      gap: $indentXL;
+      margin-bottom: $indentXXXL;
+      p {
+        font-size: $fontSizeM;
+        font-family: 'Roboto Serif';
+        font-weight: $fontWeightM;
+        span {
+          font-family: 'Roboto';
+          opacity: $baseOpacity;
+          font-weight: $fontWeightS;
+        }
+      }
+    }
+    .description {
+      font-family: 'Roboto';
+      font-size: $fontSizeM;
+      margin-bottom: $indentXXXL;
+    }
+    h3 {
+      font-family: 'Roboto Serif';
+      font-size: $fontSizeXL;
+      font-weight: $fontWeightM;
+      margin: $indentS 0;
+    }
+    .id {
+      margin-top: 0;
+      margin-bottom: $indentM;
+      opacity: 0.6;
+      font-size: $fontSizeXS;
+    }
+    .imgWithEdits {
+      display: flex;
+      justify-content: space-between;
+      height: $profileAvatarBlockHeight;
+      img {
+        border-radius: $borderRadiusXL;
+        width: $profilePhotoSize;
+        height: $profilePhotoSize;
+        transform: translateY(-30%);
+      }
+      button {
+        height: min-content;
+        margin-top: $indentM;
+        border: $borderSizeS solid $lightGray;
+        border-radius: $borderRadiusL;
+        padding: $indentXS $indentM;
+        font-weight: $fontWeightM;
+        background-color: transparent;
+        font-size: $fontSizeM;
+        line-height: $lineHeightXS;
+        cursor: pointer;
+      }
+    }
+  }
+}
