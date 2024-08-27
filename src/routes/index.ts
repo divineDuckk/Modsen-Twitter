@@ -30,10 +30,7 @@ export const PRIVATE_ROUTES = [
     Page: Profile,
     path: PROFILE_ROUTE + ':id',
   },
-  {
-    Page: Home,
-    path: HOME_ROUTE,
-  },
+
   {
     Page: SeparateTweet,
     path: TWEET_ROUTE + ':id',
