@@ -10,6 +10,9 @@ export const LISTS_ROUTE = '/lists';
 export const NOTIFICATIONS_ROUTE = '/notifications';
 export const MORE_ROUTE = '/more';
 
+export const DARK = 'dark';
+export const LIGHT = 'light';
+
 export const PROFILE = 'profile';
 
 export const DEBOUNCE_TIMEOUT = 5000;
@@ -48,6 +51,7 @@ export const ERRORS = {
 
 export const SCROLL_OFFSET = 10;
 export const PAGE_SIZE = 3;
+export const BIG_PAGE_SIZE = 10;
 
 export const GOOGLE_DOMAIN_NAME = 'google.com';
 

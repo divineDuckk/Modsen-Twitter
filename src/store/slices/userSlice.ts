@@ -16,6 +16,7 @@ const initialState: User = {
   tweets: [],
   phone: '',
   password: '',
+  numberOfTweets: 0,
 };
 const userSlice = createSlice({
   name: 'user',
@@ -43,8 +44,8 @@ const userSlice = createSlice({
     setTweets(state, { payload }) {
       state.tweets = payload;
     },
-    addTweet(state, { payload }) {
-      state.tweets = [payload, ...state.tweets];
+    addTweet(state) {
+      state.numberOfTweets += 1;
     },
     updateTweet(state, { payload }) {
       state.tweets = state.tweets.map((tweet) => {
@@ -57,6 +58,7 @@ const userSlice = createSlice({
     },
     deleteTweet(state, { payload }) {
       state.tweets = state.tweets.filter(({ id }) => id !== payload);
+      state.numberOfTweets -= 1;
     },
   },
 });

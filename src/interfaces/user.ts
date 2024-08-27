@@ -12,6 +12,7 @@ export interface User {
   backgroundUrl: string;
   description: string;
   tweets: TweetInfo[];
+  numberOfTweets: number;
   password: string;
 }
 

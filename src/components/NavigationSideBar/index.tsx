@@ -5,8 +5,9 @@ import { Portal } from '@/components/Portal';
 import { TweetCreationContainer } from '@/components/TweetCreationContainer';
 import { PROFILE } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { getCurrentTweetsSize, getUser } from '@/store/selectors/user';
+import { getUser } from '@/store/selectors/user';
 import { deleteUser } from '@/store/slices/userSlice';
+import { getCurrentTweetsSize } from '@/store/selectors/page';
 import logo from '@/assets/twitter-logo.svg';
 
 import { LINKS } from './constants';
@@ -34,7 +35,7 @@ export const NavigationSideBar = () => {
               src={address === lowTitle ? activeIcon : icon}
               alt={`${title} icon`}
             />
-            <Link to={`/${title}`}>{title}</Link>
+            <Link to={`/${lowTitle}`}>{title}</Link>
           </li>
         );
       }),
@@ -76,6 +77,7 @@ export const NavigationSideBar = () => {
             userId={uid}
             type="modal"
             page={page}
+            userName={displayName}
           />
         </Portal>
       )}

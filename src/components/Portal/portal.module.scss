@@ -26,7 +26,7 @@
   justify-content: space-between;
   padding: 0 $indentL;
   align-items: center;
-  border-bottom: $borderSizeS solid black;
+  border-bottom: $borderSizeS solid $black;
 }
 
 .popupContainer {
@@ -73,7 +73,7 @@
       width: $closeStickWidth;
       height: $closeButtonSize;
       transform-origin: center center;
-      background-color: black;
+      background-color: $black;
     }
     &::before {
       transform: translate(-50%, -50%) rotate(45deg);

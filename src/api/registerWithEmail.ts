@@ -30,10 +30,10 @@ export const registerWithEmail = async ({
       photoURL: defaultAvatar,
       birthDate: birthDate,
       phone: phoneNumber,
-      tweetsNumber: 0,
       followers: 0,
       followings: 0,
       backgroundUrl: defaultBg,
+      numberOfTweets: 0,
     });
     await sendEmailVerification(user);
     const userDoc = await getDoc(doc(usersRef, user.uid));
