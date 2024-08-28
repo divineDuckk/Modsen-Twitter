@@ -8,14 +8,17 @@ const initialState: User = {
   birthDate: '',
   email: '',
   uid: '',
-  followers: 0,
-  followings: 0,
+  followers: [],
+  followings: [],
   photoURL: defaultAvatar,
   backgroundUrl: defaultBg,
   description: '',
   tweets: [],
   phone: '',
   password: '',
+  numberOfTweets: 0,
+  numberOfFollowers: 0,
+  numberOfFollowings: 0,
 };
 const userSlice = createSlice({
   name: 'user',
@@ -31,20 +34,22 @@ const userSlice = createSlice({
       state.phone = '';
       state.uid = '';
       state.birthDate = '';
-      state.followers = 0;
-      state.followings = 0;
+      state.followers = [];
+      state.followings = [];
       state.backgroundUrl = defaultBg;
       state.description = '';
       state.birthDate = '';
       state.tweets = [];
       state.password = '';
+      state.numberOfFollowers = 0;
+      state.numberOfFollowings = 0;
     },
 
     setTweets(state, { payload }) {
       state.tweets = payload;
     },
-    addTweet(state, { payload }) {
-      state.tweets = [payload, ...state.tweets];
+    addTweet(state) {
+      state.numberOfTweets += 1;
     },
     updateTweet(state, { payload }) {
       state.tweets = state.tweets.map((tweet) => {
@@ -57,6 +62,7 @@ const userSlice = createSlice({
     },
     deleteTweet(state, { payload }) {
       state.tweets = state.tweets.filter(({ id }) => id !== payload);
+      state.numberOfTweets -= 1;
     },
   },
 });

@@ -1,9 +1,11 @@
 import {
+  HOME_ROUTE,
   LOG_IN_ROUTE,
   PROFILE_ROUTE,
   REGISTRATION_ROUTE,
   SIGN_UP_ROUTE,
 } from '@/constants';
+import { Home } from '@/pages/home';
 import { LogIn } from '@/pages/logIn';
 import { Profile } from '@/pages/profile';
 import { Registration } from '@/pages/registration';
@@ -27,5 +29,9 @@ export const PRIVATE_ROUTES = [
   {
     Page: Profile,
     path: PROFILE_ROUTE + ':id',
+  },
+  {
+    Page: Home,
+    path: HOME_ROUTE,
   },
 ];

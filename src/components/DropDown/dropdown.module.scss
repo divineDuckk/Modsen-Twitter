@@ -41,7 +41,7 @@
     z-index: $zIndexM;
     max-height: $dropdownListMaxHeight;
     overflow-y: auto;
-    background-color: white;
+    background-color: $white;
     .dropdownListItem {
       padding: $indentM $indentL;
       font-size: $fontSizeM;

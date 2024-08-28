@@ -56,9 +56,16 @@
     }
     .userInfo {
       display: flex;
-      justify-content: space-between;
       margin-bottom: $indentXS;
+      .meta {
+        display: flex;
+        justify-content: space-between;
 
+        width: 100%;
+        a {
+          display: flex;
+        }
+      }
       button {
         background-color: transparent;
         border: 0;

@@ -5,44 +5,37 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { getTweetsByUserId } from '@/api/getTweetsByUserId';
+import { getCurrentTweetsSizeInHome } from '@/store/selectors/page';
 import { TweetInfo } from '@/interfaces/tweet';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { getTweets } from '@/store/selectors/user';
-import { setTweets } from '@/store/slices/userSlice';
-import { nextTweets } from '@/store/slices/tweetPageSlice';
-import { getCurrentTweetsSize } from '@/store/selectors/page';
+import { nextTweetsInHome } from '@/store/slices/tweetPageSlice';
+import { getAllTweets } from '@/api/getAllTweets';
 
-export const useGetTweets = (
-  uid: string,
-): [
+export const useGetAllTweets = (): [
   TweetInfo[],
   boolean,
   Dispatch<SetStateAction<boolean>>,
   () => Promise<void>,
+  Dispatch<SetStateAction<TweetInfo[]>>,
 ] => {
-  const tweets = useAppSelector(getTweets);
+  const [tweets, setTweets] = useState<TweetInfo[]>([]);
   const [isTweetsLoading, setIsTweetsLoading] = useState(false);
-  const page = useAppSelector(getCurrentTweetsSize);
+  const page = useAppSelector(getCurrentTweetsSizeInHome);
   const [hasMore, setHasMore] = useState(true);
   const dispatch = useAppDispatch();
   const fetchTweets = useCallback(async () => {
     if (isTweetsLoading || !hasMore) return;
 
     setIsTweetsLoading(true);
-    const { tweets: newTweets, hasMore: moreTweets } = await getTweetsByUserId(
-      uid,
-      page,
-    );
-    dispatch(setTweets(newTweets));
+    const { tweets: newTweets, hasMore: moreTweets } = await getAllTweets(page);
+    setTweets(newTweets);
     setHasMore(moreTweets);
-    dispatch(nextTweets());
+    dispatch(nextTweetsInHome());
     setIsTweetsLoading(false);
   }, [page, dispatch, hasMore, isTweetsLoading]);
-
   useEffect(() => {
     fetchTweets();
   }, []);
 
-  return [tweets, isTweetsLoading, setIsTweetsLoading, fetchTweets];
+  return [tweets, isTweetsLoading, setIsTweetsLoading, fetchTweets, setTweets];
 };
