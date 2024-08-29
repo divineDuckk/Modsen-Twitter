@@ -84,7 +84,7 @@
     .id {
       margin-top: 0;
       margin-bottom: $indentM;
-      opacity: 0.6;
+      opacity: $baseOpacity;
       font-size: $fontSizeXS;
     }
     .imgWithEdits {
@@ -95,7 +95,7 @@
         border-radius: $borderRadiusXL;
         width: $profilePhotoSize;
         height: $profilePhotoSize;
-        transform: translateY(-30%);
+        transform: translateY($profileImgTransform);
       }
       button {
         height: min-content;
