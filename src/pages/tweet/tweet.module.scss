@@ -1,0 +1,8 @@
+@import 'src/theme/index';
+@import 'src/theme/indents';
+
+.tweetContainer {
+  width: 100%;
+  max-width: $profileMaxWidth;
+  padding: $indentL;
+}
