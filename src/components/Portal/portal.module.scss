@@ -7,6 +7,7 @@
 @import 'src/theme/colors';
 @import 'src/theme/positions';
 @import 'src/theme/zIndexes';
+@import 'src/theme/breakPoints';
 
 .popupWrapper {
   position: fixed;
@@ -31,6 +32,9 @@
 
 .popupContainer {
   width: $popupWidth;
+  @media (max-width: $mediumBreakPoint) {
+    width: 100%;
+  }
   background-color: $darkerWhite;
   border-radius: $borderRadiusS $borderRadiusXS;
 
@@ -39,6 +43,9 @@
     margin-top: $indentL;
     height: 100%;
     overflow-y: auto;
+    @media (max-width: $mediumBreakPoint) {
+      padding: 0;
+    }
     &::-webkit-scrollbar {
       width: $scrollWidth;
     }

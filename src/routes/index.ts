@@ -4,12 +4,14 @@ import {
   PROFILE_ROUTE,
   REGISTRATION_ROUTE,
   SIGN_UP_ROUTE,
+  TWEET_ROUTE,
 } from '@/constants';
 import { Home } from '@/pages/home';
 import { LogIn } from '@/pages/logIn';
 import { Profile } from '@/pages/profile';
 import { Registration } from '@/pages/registration';
 import { SignUp } from '@/pages/signUp';
+import { SeparateTweet } from '@/pages/tweet';
 
 export const PUBLIC_ROUTES = [
   {
@@ -33,5 +35,9 @@ export const PRIVATE_ROUTES = [
   {
     Page: Home,
     path: HOME_ROUTE,
+  },
+  {
+    Page: SeparateTweet,
+    path: TWEET_ROUTE + ':id',
   },
 ];

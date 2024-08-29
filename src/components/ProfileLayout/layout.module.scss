@@ -1,8 +1,12 @@
 @import 'src/theme/indents';
+@import 'src/theme/breakPoints';
 
 .profileLayout {
   width: 100%;
   display: flex;
   justify-content: center;
   gap: $indentXXXL;
+  @media (max-width: $largeBreakPoint) {
+    gap: 0;
+  }
 }

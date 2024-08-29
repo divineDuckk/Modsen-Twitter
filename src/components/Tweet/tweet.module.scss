@@ -6,6 +6,7 @@
 @import 'src/theme/indents';
 @import 'src/theme/colors';
 @import 'src/theme/transitions';
+@import 'src/theme/breakPoints';
 
 .tweet {
   display: flex;
@@ -60,10 +61,29 @@
       .meta {
         display: flex;
         justify-content: space-between;
-
         width: 100%;
+
+        @media (max-width: $largeBreakPoint) {
+          flex-wrap: wrap;
+        }
+
         a {
           display: flex;
+        }
+        h3 {
+          margin: 0;
+          font-size: $fontSizeL;
+          line-height: $lineHeightXS;
+          font-weight: $fontSizeM;
+          margin-right: $indentXS;
+        }
+        span {
+          @media (max-width: $mediumBreakPoint) {
+            display: none;
+          }
+          font-size: $fontSizeM;
+          opacity: $baseOpacity;
+          margin-right: $indentXS;
         }
       }
       button {
@@ -74,21 +94,6 @@
         align-items: center;
         cursor: pointer;
         position: relative;
-      }
-      div {
-        display: flex;
-        h3 {
-          margin: 0;
-          font-size: $fontSizeL;
-          line-height: $lineHeightXS;
-          font-weight: $fontSizeM;
-          margin-right: $indentXS;
-        }
-        span {
-          font-size: $fontSizeM;
-          opacity: $baseOpacity;
-          margin-right: $indentXS;
-        }
       }
     }
   }

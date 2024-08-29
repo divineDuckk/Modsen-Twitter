@@ -6,6 +6,7 @@
 @import 'src/theme/indents';
 @import 'src/theme/colors';
 @import 'src/theme/reuseClasses';
+@import 'src/theme/breakPoints';
 
 .profile {
   width: 100%;
@@ -85,7 +86,7 @@
     .id {
       margin-top: 0;
       margin-bottom: $indentM;
-      opacity: 0.6;
+      opacity: $baseOpacity;
       font-size: $fontSizeXS;
     }
     .imgWithEdits {
@@ -93,10 +94,18 @@
       justify-content: space-between;
       height: $profileAvatarBlockHeight;
       img {
+        @media (max-width: $smallBreakPoint) {
+          max-width: $profilePhotoSize;
+          max-height: $profilePhotoSize;
+          width: auto;
+          height: auto;
+          transform: translateY(0);
+        }
         border-radius: $borderRadiusXL;
         width: $profilePhotoSize;
         height: $profilePhotoSize;
-        transform: translateY(-30%);
+
+        transform: translateY($profileImgTransform);
       }
       button {
         height: min-content;
