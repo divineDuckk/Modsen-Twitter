@@ -5,6 +5,7 @@
 @import 'src/theme/lineHeights';
 @import 'src/theme/indents';
 @import 'src/theme/colors';
+@import 'src/theme/reuseClasses';
 
 .profile {
   width: 100%;
@@ -104,7 +105,6 @@
         border-radius: $borderRadiusL;
         padding: $indentXS $indentM;
         font-weight: $fontWeightM;
-        background-color: transparent;
         font-size: $fontSizeM;
         line-height: $lineHeightXS;
         cursor: pointer;

@@ -9,6 +9,7 @@ import { TweetInfo } from '@/interfaces/tweet';
 import { User } from '@/interfaces/user';
 import { useAppSelector } from '@/store/hooks';
 import { getUser } from '@/store/selectors/user';
+import { MiniUserProfile } from '@/components/MiniUserProfile';
 
 import { DataListProps } from './types';
 
@@ -50,17 +51,32 @@ export const DataList: FC<DataListProps> = ({ query }) => {
   return (
     <div>
       {isTweetInfoArray(data) ? (
-        data.map(({ createdAt, id, text, userId }) => (
-          <MiniTweet
-            createdAt={createdAt}
-            text={text}
-            userId={userId}
-            key={id}
-            id={id}
-          />
-        ))
+        data.map(({ createdAt, id, text, userId }) => {
+          if (!id) return null;
+          return (
+            <MiniTweet
+              createdAt={createdAt}
+              text={text}
+              userId={userId}
+              key={id}
+              id={id}
+            />
+          );
+        })
       ) : (
-        <></>
+        <>
+          {data.map(({ displayName, uid, photoURL }) => {
+            if (!uid) return null;
+            return (
+              <MiniUserProfile
+                name={displayName}
+                uid={uid}
+                photo={photoURL}
+                key={uid}
+              />
+            );
+          })}
+        </>
       )}
     </div>
   );

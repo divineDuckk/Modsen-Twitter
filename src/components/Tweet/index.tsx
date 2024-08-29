@@ -1,10 +1,13 @@
 import { FC, Fragment, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import { deleteTweetFromDb } from '@/api/deleteTweetFromDb';
 import { toggleLike } from '@/api/toggleLike';
 import { TweetInfo } from '@/interfaces/tweet';
-import { useAppDispatch } from '@/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { deleteTweet, updateTweet } from '@/store/slices/userSlice';
+import { getUser } from '@/store/selectors/user';
+import { PROFILE_ROUTE } from '@/constants';
 import like from '@/assets/like.svg';
 import redLike from '@/assets/redLike.svg';
 import settings from '@/assets/settings.svg';
@@ -23,34 +26,41 @@ export const Tweet: FC<TweetProps> = ({
   userPhotoUrl,
   id,
   userLikes,
+  updateTweetInHome,
 }) => {
-  const [isLike, setIsLike] = useState(userLikes.includes(userNameId));
+  const { uid: currUserId } = useAppSelector(getUser);
+  const [isLike, setIsLike] = useState(userLikes.includes(currUserId));
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const dispatch = useAppDispatch();
-
+  const isOwner = userNameId === currUserId;
+  const isInHome = useLocation().pathname.includes('home');
   const handleSettingsClick = () => {
     setIsSettingsOpen((prev) => !prev);
   };
-
   const handleDelete = () => {
     dispatch(deleteTweet(id));
-    deleteTweetFromDb(id);
+    deleteTweetFromDb(id, userNameId);
   };
 
-  const handleLike = () => {
+  const handleLike = async () => {
     setIsLike((prev) => !prev);
-
+    const updatedLikes = !isLike ? likes + 1 : likes - 1;
     const tweet: TweetInfo = {
       id,
       createdAt,
       imageUrl,
-      likes: !isLike ? likes + 1 : likes - 1,
+      likes: updatedLikes,
       text: content,
       userId: userNameId,
-      userLikes,
+      userLikes: !isLike
+        ? [...userLikes, currUserId]
+        : userLikes.filter((id) => id !== currUserId),
+      authorName: userName,
+      authorPhoto: userPhotoUrl,
     };
     dispatch(updateTweet(tweet));
-    toggleLike(id, isLike, userNameId);
+    updateTweetInHome?.(tweet);
+    await toggleLike(id, isLike, currUserId!);
   };
 
   return (
@@ -58,15 +68,19 @@ export const Tweet: FC<TweetProps> = ({
       <img className={styles.userPhoto} src={userPhotoUrl} alt="mini avatar" />
       <div className={styles.tweetInfo}>
         <div className={styles.userInfo}>
-          <div>
-            <h3>{userName}</h3>
-            <span>{`@${userName}_${userNameId}`}</span>
+          <div className={styles.meta}>
+            <Link to={PROFILE_ROUTE + userNameId}>
+              <h3>{userName}</h3>
+              <span>{`@${userName}_${userNameId}`}</span>
+            </Link>
             <span>{createdAt}</span>
           </div>
-          <button onClick={handleSettingsClick}>
-            <img src={settings} alt="settings" />
-            {isSettingsOpen && <OptionMenu handleDelete={handleDelete} />}
-          </button>
+          {isOwner && !isInHome && (
+            <button onClick={handleSettingsClick}>
+              <img src={settings} alt="settings" />
+              {isSettingsOpen && <OptionMenu handleDelete={handleDelete} />}
+            </button>
+          )}
         </div>
         <p>
           {content.split('\n').map((line, index) => (

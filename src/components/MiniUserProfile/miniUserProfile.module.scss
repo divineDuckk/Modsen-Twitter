@@ -1,0 +1,41 @@
+@import 'src/theme/index';
+@import 'src/theme/fontWeights';
+@import 'src/theme/fontSizes';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+@import 'src/theme/borders';
+@import 'src/theme/reuseClasses';
+
+.miniProfole {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $indentXS $indentM;
+  background-color: $darkerWhite;
+  border-radius: $borderRadiusXS;
+  box-shadow: $indentS $indentM $lightBlur $dark;
+
+  a {
+    color: $black;
+    display: flex;
+    align-items: center;
+    gap: $indentL;
+    img {
+      width: calc($profilePhotoSize/2);
+      height: calc($profilePhotoSize/2);
+      border-radius: $borderRadiusXL;
+    }
+    div {
+      max-width: $miniProfileTextMaxWidth;
+      h2 {
+        margin: 0;
+      }
+      p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0;
+      }
+    }
+  }
+}

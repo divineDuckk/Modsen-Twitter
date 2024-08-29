@@ -1,4 +1,3 @@
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import {
   collection,
   doc,
@@ -8,9 +7,10 @@ import {
   setDoc,
   where,
 } from 'firebase/firestore';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
-import defaultBg from '@/assets/defaultBg.png';
 import { auth, fireStore } from '@/firebase';
+import defaultBg from '@/assets/defaultBg.png';
 
 export const signUpWithGoogle = async () => {
   try {
@@ -26,13 +26,15 @@ export const signUpWithGoogle = async () => {
         displayName: user.displayName,
         email: user.email,
         photoURL: user.photoURL,
-        tweetsNumber: 0,
-        followers: 0,
-        followings: 0,
+        followers: [],
+        followings: [],
         backgroundUrl: defaultBg,
         description: '',
         birthDate: '',
         phone: '',
+        numberOfTweets: 0,
+        numberOfFollowers: 0,
+        numberOfFollowings: 0,
       });
     }
     const userDoc = await getDoc(doc(usersRef, user.uid));

@@ -30,7 +30,7 @@
     }
   }
   a {
-    color: $blackText;
+    color: $black;
     font-size: $fontSizeS;
     transition: $transitionS;
     &:hover {
@@ -41,7 +41,7 @@
 .signup {
   display: flex;
   gap: $indentXXXL;
-  color: $blackText;
+  color: $black;
   justify-content: center;
 
   .imgBg {
