@@ -7,6 +7,7 @@
 @import 'src/theme/colors';
 @import 'src/theme/reuseClasses';
 @import 'src/theme/transitions';
+@import 'src/theme/breakPoints';
 
 $buttonsHeight: 55px;
 
@@ -18,6 +19,14 @@ $buttonsHeight: 55px;
   height: 100%;
   width: 100%;
   justify-content: space-between;
+  @media (max-width: $ultraSmallBreakPoint) {
+    margin-left: $indentXXXL;
+  }
+  @media (max-width: $largeBreakPoint) {
+    width: max-content;
+    justify-content: center;
+    align-items: center;
+  }
   button {
     max-height: $buttonsHeight;
     transition: $transitionS;
@@ -29,20 +38,27 @@ $buttonsHeight: 55px;
     display: flex;
     align-items: center;
     margin-bottom: $indentXXL;
+    width: calc($profilePhotoSize / 2.5);
+    height: calc($profilePhotoSize / 2.5);
+    border-radius: $borderRadiusXL;
+    margin-right: $indentXXL;
+
+    @media (max-width: $largeBreakPoint) {
+      width: min-content;
+      margin-right: 0;
+    }
 
     img {
       width: calc($profilePhotoSize / 2.5);
       height: calc($profilePhotoSize / 2.5);
       border-radius: $borderRadiusXL;
-      margin-right: $indentXXL;
-    }
-    p {
-      margin: 0;
-      font-family: 'Roboto';
-      font-size: $fontSizeXS;
-      font-weight: $fontWeightM;
+
+      @media (max-width: $largeBreakPoint) {
+        margin-right: 0;
+      }
     }
   }
+
   .logo {
     margin-top: $indentXXL;
     margin-bottom: $indentXXXL;
@@ -56,14 +72,21 @@ $buttonsHeight: 55px;
     font-family: 'Roboto';
     margin-bottom: $indentXXL;
     gap: $indentXXL;
-    color: inherit;
-
+    @media (max-width: $largeBreakPoint) {
+      width: min-content;
+    }
     li {
+      list-style: none;
       a {
         display: flex;
         align-items: center;
         gap: $indentL;
         color: inherit;
+        span {
+          @media (max-width: $largeBreakPoint) {
+            display: none;
+          }
+        }
         svg {
           path {
             stroke: currentColor;

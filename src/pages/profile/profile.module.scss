@@ -6,6 +6,7 @@
 @import 'src/theme/indents';
 @import 'src/theme/colors';
 @import 'src/theme/reuseClasses';
+@import 'src/theme/breakPoints';
 
 .profile {
   width: 100%;
@@ -93,9 +94,17 @@
       justify-content: space-between;
       height: $profileAvatarBlockHeight;
       img {
+        @media (max-width: $smallBreakPoint) {
+          max-width: $profilePhotoSize;
+          max-height: $profilePhotoSize;
+          width: auto;
+          height: auto;
+          transform: translateY(0);
+        }
         border-radius: $borderRadiusXL;
         width: $profilePhotoSize;
         height: $profilePhotoSize;
+
         transform: translateY($profileImgTransform);
       }
       button {
