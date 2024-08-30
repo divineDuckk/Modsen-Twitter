@@ -5,4 +5,11 @@
   display: flex;
   justify-content: center;
   gap: $indentXXXL;
+  @media (max-width: $largeBreakPoint) {
+    gap: $indentXS;
+  }
+  @media (max-width: $smallBreakPoint) {
+    gap: $indentS;
+    padding: 0 $indentXXXL;
+  }
 }

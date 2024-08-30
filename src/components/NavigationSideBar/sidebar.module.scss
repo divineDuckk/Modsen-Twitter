@@ -18,6 +18,12 @@ $buttonsHeight: 55px;
   height: 100%;
   width: 100%;
   justify-content: space-between;
+
+  @media (max-width: $largeBreakPoint) {
+    width: max-content;
+    justify-content: center;
+    align-items: center;
+  }
   button {
     max-height: $buttonsHeight;
     transition: $transitionS;
@@ -29,7 +35,20 @@ $buttonsHeight: 55px;
     display: flex;
     align-items: center;
     margin-bottom: $indentXXL;
+    width: calc($profilePhotoSize / 2.5);
+    height: calc($profilePhotoSize / 2.5);
+    border-radius: $borderRadiusXL;
+    margin-right: $indentXXL;
 
+    @media (max-width: $largeBreakPoint) {
+      width: min-content;
+      margin-right: 0;
+    }
+    p {
+      @media (max-width: $largeBreakPoint) {
+        display: none;
+      }
+    }
     img {
       width: calc($profilePhotoSize / 2.5);
       height: calc($profilePhotoSize / 2.5);
