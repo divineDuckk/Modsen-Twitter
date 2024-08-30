@@ -5,8 +5,12 @@ import { SCROLL_OFFSET } from '@/constants';
 export const useInfiniteScroll = (fetchCallback: () => Promise<void>) => {
   useEffect(() => {
     const handleScroll = () => {
-      const { scrollTop, clientHeight, scrollHeight } =
-        document.documentElement;
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const clientHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+      const scrollHeight =
+        document.documentElement.scrollHeight || document.body.scrollHeight;
       if (scrollTop + clientHeight >= scrollHeight - SCROLL_OFFSET) {
         fetchCallback();
       }

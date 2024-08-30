@@ -19,9 +19,7 @@ $buttonsHeight: 55px;
   height: 100%;
   width: 100%;
   justify-content: space-between;
-  @media (max-width: $ultraSmallBreakPoint) {
-    margin-left: $indentXXXL;
-  }
+
   @media (max-width: $largeBreakPoint) {
     width: max-content;
     justify-content: center;
@@ -47,7 +45,11 @@ $buttonsHeight: 55px;
       width: min-content;
       margin-right: 0;
     }
-
+    p {
+      @media (max-width: $largeBreakPoint) {
+        display: none;
+      }
+    }
     img {
       width: calc($profilePhotoSize / 2.5);
       height: calc($profilePhotoSize / 2.5);
