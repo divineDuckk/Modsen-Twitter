@@ -56,13 +56,27 @@ $buttonsHeight: 55px;
     font-family: 'Roboto';
     margin-bottom: $indentXXL;
     gap: $indentXXL;
+    color: inherit;
+
     li {
-      display: flex;
-      align-items: center;
-      gap: $indentL;
       a {
+        display: flex;
+        align-items: center;
+        gap: $indentL;
         color: inherit;
+        svg {
+          path {
+            stroke: currentColor;
+          }
+        }
       }
+    }
+  }
+}
+.active {
+  svg {
+    path {
+      stroke-width: $activeLinkStroke;
     }
   }
 }
