@@ -1,7 +1,8 @@
 import { addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 
 import { fireStore } from '@/firebase';
-import { TweetCreationInfo } from '@/interfaces/tweet';
+import { TweetCreationInfo, TweetInfo } from '@/interfaces/tweet';
+import { formatDate } from '@/utils/functions/formatDate';
 
 export const addTweetToDb = async ({
   imageUrl,
@@ -27,7 +28,12 @@ export const addTweetToDb = async ({
       authorPhoto: photoURL,
     });
     const tweetDoc = await getDoc(doc(fireStore, 'tweets', tweetRef.id));
-    return tweetDoc;
+    const createdAtInfo = tweetDoc.data()?.createdAt.toDate();
+    return {
+      ...tweetDoc.data(),
+      createdAt: formatDate(createdAtInfo),
+      id: tweetDoc.id,
+    } as TweetInfo;
   } catch (error) {
     throw new Error(error as string);
   }

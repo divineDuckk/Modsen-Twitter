@@ -13,7 +13,6 @@ const initialState: User = {
   photoURL: defaultAvatar,
   backgroundUrl: defaultBg,
   description: '',
-  tweets: [],
   phone: '',
   password: '',
   numberOfTweets: 0,
@@ -27,6 +26,9 @@ const userSlice = createSlice({
     setUser(state, { payload }) {
       Object.assign(state, payload);
     },
+    incrementNumberOfTweets(state) {
+      state.numberOfTweets += 1;
+    },
     deleteUser(state) {
       state.displayName = '';
       state.email = '';
@@ -39,29 +41,15 @@ const userSlice = createSlice({
       state.backgroundUrl = defaultBg;
       state.description = '';
       state.birthDate = '';
-      state.tweets = [];
       state.password = '';
       state.numberOfFollowers = 0;
       state.numberOfFollowings = 0;
     },
 
-    setTweets(state, { payload }) {
-      state.tweets = payload;
-    },
-    addTweet(state) {
-      state.numberOfTweets += 1;
-    },
-    updateTweet(state, { payload }) {
-      state.tweets = state.tweets.map((tweet) => {
-        if (tweet.id === payload.id) return payload;
-        return tweet;
-      });
-    },
     updatePassword(state, { payload }) {
       state.password = payload;
     },
-    deleteTweet(state, { payload }) {
-      state.tweets = state.tweets.filter(({ id }) => id !== payload);
+    decrementNumberOfTweets(state) {
       state.numberOfTweets -= 1;
     },
   },
@@ -69,11 +57,9 @@ const userSlice = createSlice({
 
 export default userSlice.reducer;
 export const {
+  incrementNumberOfTweets,
   deleteUser,
   setUser,
-  addTweet,
-  deleteTweet,
-  setTweets,
-  updateTweet,
   updatePassword,
+  decrementNumberOfTweets,
 } = userSlice.actions;

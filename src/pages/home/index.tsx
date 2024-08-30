@@ -1,4 +1,3 @@
-import { getCurrentTweetsSizeInHome } from '@/store/selectors/page';
 import { TweetCreationContainer } from '@/components/TweetCreationContainer';
 import { useAppSelector } from '@/store/hooks';
 import { getUser } from '@/store/selectors/user';
@@ -8,16 +7,18 @@ import { Tweet } from '@/components/Tweet';
 import { Loader } from '@/components/Loader';
 import { MEDIUM_SIZE } from '@/constants';
 import { TweetInfo } from '@/interfaces/tweet';
+import { sortByCreatedAt } from '@/utils/functions/sortArrayByDate';
 
 import { Header } from './Header';
 import styles from './home.module.scss';
 
 export const Home = () => {
   const { photoURL, uid, displayName } = useAppSelector(getUser);
-  const page = useAppSelector(getCurrentTweetsSizeInHome);
 
   const [tweets, isTweetsLoading, setIsTweetsLoading, fetchTweets, setTweets] =
     useGetAllTweets();
+
+  const sortedTweets = sortByCreatedAt(tweets);
   const updateTweets = (updateTweet: TweetInfo) => {
     setTweets((prev) =>
       prev.map((tweet) => {
@@ -33,7 +34,6 @@ export const Home = () => {
     <div className={styles.home}>
       <Header />
       <TweetCreationContainer
-        page={page}
         photoURL={photoURL}
         userId={uid}
         type="home"
@@ -42,7 +42,7 @@ export const Home = () => {
         setAllTweets={setTweets}
       />
       <div>
-        {tweets.map(
+        {sortedTweets.map(
           ({
             createdAt,
             imageUrl,
