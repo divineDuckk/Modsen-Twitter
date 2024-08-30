@@ -2,12 +2,11 @@ import { ChangeEvent, FC, useState } from 'react';
 
 import { ACCEPT_FILES, LOADING, NOT_LOADED } from '@/constants';
 import { addTweetToDb } from '@/api/addTweetToDb';
-import { getTweetsByUserId } from '@/api/getTweetsByUserId';
 import { useImageState } from '@/hooks/useImageState';
 import { useAppDispatch } from '@/store/hooks';
-import { addTweet, setTweets } from '@/store/slices/userSlice';
 import { TweetCreationInfo } from '@/interfaces/tweet';
-import { getAllTweets } from '@/api/getAllTweets';
+import { addTweet } from '@/store/slices/tweetSlice';
+import { incrementNumberOfTweets } from '@/store/slices/userSlice';
 
 import { ImageInput } from '../ImageInput';
 import { TEXTAREA_PLACEHOLDER } from './constants';
@@ -19,7 +18,6 @@ export const TweetCreationContainer: FC<TweetCreationContainerProps> = ({
   userId,
   type,
   setIsTweetsLoading,
-  page,
   userName,
   setAllTweets,
 }) => {
@@ -42,20 +40,16 @@ export const TweetCreationContainer: FC<TweetCreationContainerProps> = ({
         photoURL,
         userName,
       };
-      dispatch(addTweet());
-      await addTweetToDb(tweetInfo);
+      const tweet = await addTweetToDb(tweetInfo);
       setTweetText('');
       setImageUrl('');
+
+      dispatch(incrementNumberOfTweets());
+      dispatch(addTweet(tweet));
+      setAllTweets?.((prev) => [...prev, tweet]);
+
       setIsTweetsLoading?.(false);
       setStatus(NOT_LOADED);
-
-      if (setAllTweets) {
-        const { tweets } = await getAllTweets(page);
-        setAllTweets(tweets);
-      } else {
-        const { tweets } = await getTweetsByUserId(userId, page);
-        dispatch(setTweets(tweets));
-      }
     }
   };
 
