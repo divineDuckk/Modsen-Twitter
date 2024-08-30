@@ -10,6 +10,7 @@ import { TweetInfo } from '@/interfaces/tweet';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { getTweets } from '@/store/selectors/tweets';
 import { resetTweets, setTweets } from '@/store/slices/tweetSlice';
+import { PAGE_SIZE } from '@/constants';
 
 export const useGetTweets = (
   uid: string,
@@ -33,7 +34,7 @@ export const useGetTweets = (
       tweets: newTweets,
       lastVisible: newLastVisible,
       hasMore: moreTweets,
-    } = await getTweetsByUserId(uid, 3, lastVisible);
+    } = await getTweetsByUserId(uid, PAGE_SIZE, lastVisible);
 
     dispatch(
       setTweets(

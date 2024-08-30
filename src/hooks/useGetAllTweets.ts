@@ -8,6 +8,7 @@ import {
 import { TweetInfo } from '@/interfaces/tweet';
 import { useAppDispatch } from '@/store/hooks';
 import { getAllTweets } from '@/api/getAllTweets';
+import { BIG_PAGE_SIZE } from '@/constants';
 
 export const useGetAllTweets = (): [
   TweetInfo[],
@@ -29,7 +30,7 @@ export const useGetAllTweets = (): [
       tweets: newTweets,
       lastVisible: lastTweet,
       hasMore: moreTweets,
-    } = await getAllTweets(3, lastVisible);
+    } = await getAllTweets(BIG_PAGE_SIZE, lastVisible);
 
     if (newTweets.length === 0) setHasMore(false);
 
