@@ -36,13 +36,16 @@ $buttonsHeight: 55px;
   }
   .userContainer {
     display: flex;
+    width: 100%;
     align-items: center;
     margin-bottom: $indentXXL;
-    width: calc($profilePhotoSize / 2.5);
-    height: calc($profilePhotoSize / 2.5);
-    border-radius: $borderRadiusXL;
-    margin-right: $indentXXL;
 
+    img {
+      margin-right: $indentXXL;
+      border-radius: $borderRadiusXL;
+      width: calc($profilePhotoSize / 2.5);
+      height: calc($profilePhotoSize / 2.5);
+    }
     @media (max-width: $largeBreakPoint) {
       width: min-content;
       margin-right: 0;

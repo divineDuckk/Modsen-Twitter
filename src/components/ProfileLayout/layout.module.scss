@@ -1,5 +1,6 @@
 @import 'src/theme/indents';
 @import 'src/theme/breakPoints';
+@import 'src/theme/index';
 
 .profileLayout {
   width: 100%;
@@ -13,4 +14,14 @@
     gap: $indentS;
     padding: 0 $indentXXXL;
   }
+  .searchWrapper {
+    max-width: $searchMaxWidth;
+
+    @media (max-width: $mediumBreakPoint) {
+      display: none;
+    }
+  }
+}
+.unvisible {
+  display: none;
 }

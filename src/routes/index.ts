@@ -1,4 +1,5 @@
 import {
+  EXPLORE_ROUTE,
   HOME_ROUTE,
   LOG_IN_ROUTE,
   PROFILE_ROUTE,
@@ -6,6 +7,7 @@ import {
   SIGN_UP_ROUTE,
   TWEET_ROUTE,
 } from '@/constants';
+import { Explore } from '@/pages/explore';
 import { Home } from '@/pages/home';
 import { LogIn } from '@/pages/logIn';
 import { Profile } from '@/pages/profile';
@@ -39,5 +41,9 @@ export const PRIVATE_ROUTES = [
   {
     Page: Home,
     path: HOME_ROUTE,
+  },
+  {
+    Page: Explore,
+    path: EXPLORE_ROUTE,
   },
 ];
