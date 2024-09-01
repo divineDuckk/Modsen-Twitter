@@ -11,10 +11,7 @@
 .searchBar {
   margin-top: $indentXL;
   width: 100%;
-  max-width: $searchMaxWidth;
-  @media (max-width: $mediumBreakPoint) {
-    display: none;
-  }
+
   .inputWrapper {
     display: flex;
     position: relative;
