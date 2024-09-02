@@ -44,6 +44,8 @@ export const getTweetsByUserId = async (
         text: data.text,
         userId: data.userId,
         userLikes: data.userLikes,
+        authorName: data.authorName,
+        authorPhoto: data.authorPhoto,
       };
     });
 

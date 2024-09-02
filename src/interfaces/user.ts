@@ -7,12 +7,15 @@ export interface User {
   photoURL: string;
   phone: string;
   birthDate: string;
-  followers: number;
-  followings: number;
+  followers: string[];
+  followings: string[];
   backgroundUrl: string;
   description: string;
   tweets: TweetInfo[];
+  numberOfTweets: number;
   password: string;
+  numberOfFollowers: number;
+  numberOfFollowings: number;
 }
 
 export interface UserInfo {

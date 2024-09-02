@@ -7,10 +7,14 @@
 @import 'src/theme/colors';
 @import 'src/theme/reuseClasses';
 @import 'src/theme/transitions';
+@import 'src/theme/breakPoints';
 
 $buttonsHeight: 55px;
 
 .sidebar {
+  @media (max-width: $ultraSmallBreakPoint) {
+    margin-left: $indentXXXL;
+  }
   display: flex;
   flex-direction: column;
   max-width: $navSideBarMaxWidth;
@@ -18,7 +22,6 @@ $buttonsHeight: 55px;
   height: 100%;
   width: 100%;
   justify-content: space-between;
-
   @media (max-width: $largeBreakPoint) {
     width: max-content;
     justify-content: center;
@@ -50,12 +53,18 @@ $buttonsHeight: 55px;
       }
     }
     img {
+      @media (max-width: $largeBreakPoint) {
+        margin-right: 0;
+      }
       width: calc($profilePhotoSize / 2.5);
       height: calc($profilePhotoSize / 2.5);
       border-radius: $borderRadiusXL;
       margin-right: $indentXXL;
     }
     p {
+      @media (max-width: $largeBreakPoint) {
+        display: none;
+      }
       margin: 0;
       font-family: 'Roboto';
       font-size: $fontSizeXS;
@@ -75,12 +84,21 @@ $buttonsHeight: 55px;
     font-family: 'Roboto';
     margin-bottom: $indentXXL;
     gap: $indentXXL;
+    @media (max-width: $largeBreakPoint) {
+      width: min-content;
+    }
     li {
-      display: flex;
-      align-items: center;
-      gap: $indentL;
+      list-style: none;
       a {
-        color: $blackText;
+        display: flex;
+        align-items: center;
+        gap: $indentL;
+        color: $black;
+        span {
+          @media (max-width: $largeBreakPoint) {
+            display: none;
+          }
+        }
       }
     }
   }
