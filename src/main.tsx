@@ -18,7 +18,6 @@ const Root = () => {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
-    console.log(theme);
   }, [theme]);
 
   return <App />;
