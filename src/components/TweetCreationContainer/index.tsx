@@ -79,6 +79,7 @@ export const TweetCreationContainer: FC<TweetCreationContainerProps> = ({
             title=""
           />
           <button
+            data-testid="createTweet"
             onClick={handleTweet}
             className={styles.tweet}
             disabled={status === LOADING}

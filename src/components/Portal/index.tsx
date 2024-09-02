@@ -16,7 +16,11 @@ export const Portal: FC<PortalProps> = ({ children, onClose, title }) => {
     };
   }, []);
   return createPortal(
-    <div className={styles.popupWrapper} onClick={onClose}>
+    <div
+      data-testid="popupWrap"
+      className={styles.popupWrapper}
+      onClick={onClose}
+    >
       <div className={styles.popupContainer} onClick={handleContainerClick}>
         <div className={styles.topPanel}>
           <h3>{title}</h3>

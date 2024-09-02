@@ -1,6 +1,7 @@
 import { FC, Fragment, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+import { deleteTweet, updateTweet } from '@/store/slices/tweetSlice';
 import { deleteTweetFromDb } from '@/api/deleteTweetFromDb';
 import { toggleLike } from '@/api/toggleLike';
 import { TweetInfo } from '@/interfaces/tweet';
@@ -69,7 +70,7 @@ export const Tweet: FC<TweetProps> = ({
       <div className={styles.tweetInfo}>
         <div className={styles.userInfo}>
           <div className={styles.meta}>
-            <Link to={PROFILE_ROUTE + userNameId}>
+            <Link data-testid="profileLink" to={PROFILE_ROUTE + userNameId}>
               <h3>{userName}</h3>
               <span>{`@${userName}_${userNameId}`}</span>
             </Link>
@@ -99,7 +100,7 @@ export const Tweet: FC<TweetProps> = ({
           <button onClick={handleLike}>
             <img src={isLike ? redLike : like} alt="like" />
           </button>
-          <span>{likes}</span>
+          <span data-testid="likesSpan">{likes}</span>
         </div>
       </div>
     </div>

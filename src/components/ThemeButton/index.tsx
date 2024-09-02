@@ -16,7 +16,7 @@ export const ThemeButton = () => {
     setChecked((prev) => !prev);
   };
   return (
-    <label className={styles.themeButton}>
+    <label data-testid="theme" className={styles.themeButton}>
       <input type="checkbox" checked={checked} onChange={handleChange} />
       <span />
     </label>

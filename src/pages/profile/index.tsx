@@ -93,7 +93,11 @@ export const Profile = () => {
                   <button onClick={handlePopupOpen}>Edit profile</button>
                 )}
                 {!isOwner && (
-                  <button onClick={handleFollow} className={styles.follow}>
+                  <button
+                    data-testid="follow"
+                    onClick={handleFollow}
+                    className={styles.follow}
+                  >
                     {isFollowed ? 'Unfollow' : 'Follow'}
                   </button>
                 )}
