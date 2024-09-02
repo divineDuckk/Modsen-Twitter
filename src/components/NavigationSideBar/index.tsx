@@ -31,11 +31,13 @@ export const NavigationSideBar = () => {
         const lowTitle = title.toLowerCase();
         return (
           <li key={title}>
-            <img
-              src={address === lowTitle ? activeIcon : icon}
-              alt={`${title} icon`}
-            />
-            <Link to={`/${lowTitle}`}>{title}</Link>
+            <Link to={`/${lowTitle}`}>
+              <img
+                src={address === lowTitle ? activeIcon : icon}
+                alt={`${title} icon`}
+              />
+              <span>{title}</span>
+            </Link>
           </li>
         );
       }),
