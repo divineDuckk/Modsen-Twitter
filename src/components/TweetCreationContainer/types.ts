@@ -7,7 +7,6 @@ export interface TweetCreationContainerProps {
   userId: string;
   type: string;
   setIsTweetsLoading?: Dispatch<SetStateAction<boolean>>;
-  page: number;
   userName: string;
   setAllTweets?: Dispatch<SetStateAction<TweetInfo[]>>;
 }

@@ -20,3 +20,7 @@ export interface TweetCreationInfo {
   photoURL: string;
   userName: string;
 }
+
+export interface TweetState {
+  tweets: TweetInfo[];
+}

@@ -1,3 +1,4 @@
+import { deleteTweet, updateTweet } from '@/store/slices/tweetSlice';
 import { FC, Fragment, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -5,9 +6,9 @@ import { deleteTweetFromDb } from '@/api/deleteTweetFromDb';
 import { toggleLike } from '@/api/toggleLike';
 import { TweetInfo } from '@/interfaces/tweet';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { deleteTweet, updateTweet } from '@/store/slices/userSlice';
 import { getUser } from '@/store/selectors/user';
 import { PROFILE_ROUTE } from '@/constants';
+import { decrementNumberOfTweets } from '@/store/slices/userSlice';
 import like from '@/assets/like.svg';
 import redLike from '@/assets/redLike.svg';
 import settings from '@/assets/settings.svg';
@@ -38,6 +39,7 @@ export const Tweet: FC<TweetProps> = ({
     setIsSettingsOpen((prev) => !prev);
   };
   const handleDelete = () => {
+    dispatch(decrementNumberOfTweets());
     dispatch(deleteTweet(id));
     deleteTweetFromDb(id, userNameId);
   };

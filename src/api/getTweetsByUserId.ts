@@ -5,6 +5,7 @@ import {
   where,
   limit,
   orderBy,
+  startAfter,
 } from 'firebase/firestore';
 import { fireStore } from '@/firebase';
 import { TweetInfo } from '@/interfaces/tweet';
@@ -13,23 +14,33 @@ import { formatDate } from '@/utils/functions/formatDate';
 export const getTweetsByUserId = async (
   uid: string,
   pageSize: number,
+  lastVisible: any = null,
 ): Promise<{
   tweets: TweetInfo[];
+  lastVisible: any;
   hasMore: boolean;
 }> => {
   try {
     const tweetsRef = collection(fireStore, 'tweets');
 
-    const tweetsQuery = query(
-      tweetsRef,
-      where('userId', '==', uid),
-      orderBy('createdAt', 'desc'),
-      limit(pageSize),
-    );
-    const maxTweetsQuery = query(tweetsRef, where('userId', '==', uid));
-    const maxTweets = (await getDocs(maxTweetsQuery)).docs.length;
-
+    const tweetsQuery = lastVisible
+      ? query(
+          tweetsRef,
+          where('userId', '==', uid),
+          orderBy('createdAt', 'desc'),
+          startAfter(lastVisible),
+          limit(pageSize),
+        )
+      : query(
+          tweetsRef,
+          where('userId', '==', uid),
+          orderBy('createdAt', 'desc'),
+          limit(pageSize),
+        );
     const querySnapshot = await getDocs(tweetsQuery);
+
+    const lastTweet = querySnapshot.docs[querySnapshot.docs.length - 1];
+
     const tweets: TweetInfo[] = querySnapshot.docs.map((doc) => {
       const data = doc.data();
       const createdAtTimestamp = data.createdAt;
@@ -48,9 +59,9 @@ export const getTweetsByUserId = async (
         authorPhoto: data.authorPhoto,
       };
     });
+    const hasMore = querySnapshot.docs.length === pageSize;
 
-    const hasMore = maxTweets >= pageSize;
-    return { tweets, hasMore };
+    return { tweets, lastVisible: lastTweet, hasMore };
   } catch (error) {
     throw new Error(error as string);
   }
