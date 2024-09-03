@@ -51,7 +51,7 @@ export const ERRORS = {
 };
 export const SCROLL_OFFSET = 10;
 export const PAGE_SIZE = 3;
-export const BIG_PAGE_SIZE = 10;
+export const BIG_PAGE_SIZE = 5;
 
 export const GOOGLE_DOMAIN_NAME = 'google.com';
 

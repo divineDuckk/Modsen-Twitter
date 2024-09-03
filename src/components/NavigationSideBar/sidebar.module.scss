@@ -73,15 +73,20 @@ $buttonsHeight: 55px;
     font-family: 'Roboto';
     margin-bottom: $indentXXL;
     gap: $indentXXL;
+    color: inherit;
+
     @media (max-width: $largeBreakPoint) {
       width: min-content;
-    }
     li {
       list-style: none;
       a {
         display: flex;
         align-items: center;
         gap: $indentL;
+        color: inherit;
+        svg {
+          path {
+            stroke: currentColor;
         color: $black;
         span {
           @media (max-width: $largeBreakPoint) {
@@ -89,6 +94,13 @@ $buttonsHeight: 55px;
           }
         }
       }
+    }
+  }
+}
+.active {
+  svg {
+    path {
+      stroke-width: $activeLinkStroke;
     }
   }
 }

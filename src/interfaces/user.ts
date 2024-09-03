@@ -1,5 +1,3 @@
-import { TweetInfo } from './tweet';
-
 export interface User {
   displayName: string;
   email: string;
@@ -11,7 +9,6 @@ export interface User {
   followings: string[];
   backgroundUrl: string;
   description: string;
-  tweets: TweetInfo[];
   numberOfTweets: number;
   password: string;
   numberOfFollowers: number;

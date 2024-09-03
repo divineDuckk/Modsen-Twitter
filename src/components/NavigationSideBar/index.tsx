@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -7,7 +8,6 @@ import { PROFILE } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { getUser } from '@/store/selectors/user';
 import { deleteUser } from '@/store/slices/userSlice';
-import { getCurrentTweetsSize } from '@/store/selectors/page';
 import logo from '@/assets/twitter-logo.svg';
 
 import { LINKS } from './constants';
@@ -18,7 +18,6 @@ export const NavigationSideBar = () => {
   const dispatch = useAppDispatch();
   const { photoURL, displayName, uid } = useAppSelector(getUser);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const page = useAppSelector(getCurrentTweetsSize);
 
   const address = useMemo(() => {
     let path = pathname.split('/').pop();
@@ -27,15 +26,15 @@ export const NavigationSideBar = () => {
 
   const navLinks = useMemo(
     () =>
-      LINKS.map(({ activeIcon, icon, title }) => {
+      LINKS.map(({ title, svg }) => {
         const lowTitle = title.toLowerCase();
+        const linkClassname = classNames({
+          [styles.active]: lowTitle === address,
+        });
         return (
           <li key={title}>
-            <Link to={`/${lowTitle}`}>
-              <img
-                src={address === lowTitle ? activeIcon : icon}
-                alt={`${title} icon`}
-              />
+            <Link to={`/${lowTitle}`} className={linkClassname}>
+              {svg}
               <span>{title}</span>
             </Link>
           </li>
@@ -78,7 +77,6 @@ export const NavigationSideBar = () => {
             photoURL={photoURL}
             userId={uid}
             type="modal"
-            page={page}
             userName={displayName}
           />
         </Portal>
