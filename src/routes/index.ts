@@ -1,12 +1,18 @@
 import {
+  BOOKMARS_ROUTE,
   HOME_ROUTE,
+  LISTS_ROUTE,
   LOG_IN_ROUTE,
+  MESSAGE_ROUTE,
+  MORE_ROUTE,
+  NOTIFICATIONS_ROUTE,
   PROFILE_ROUTE,
   REGISTRATION_ROUTE,
   SIGN_UP_ROUTE,
   TWEET_ROUTE,
 } from '@/constants';
 import { Home } from '@/pages/home';
+import { InProgress } from '@/pages/inProgress';
 import { LogIn } from '@/pages/logIn';
 import { Profile } from '@/pages/profile';
 import { Registration } from '@/pages/registration';
@@ -39,5 +45,25 @@ export const PRIVATE_ROUTES = [
   {
     Page: Home,
     path: HOME_ROUTE,
+  },
+  {
+    Page: InProgress,
+    path: BOOKMARS_ROUTE,
+  },
+  {
+    Page: InProgress,
+    path: LISTS_ROUTE,
+  },
+  {
+    Page: InProgress,
+    path: NOTIFICATIONS_ROUTE,
+  },
+  {
+    Page: InProgress,
+    path: MORE_ROUTE,
+  },
+  {
+    Page: InProgress,
+    path: MESSAGE_ROUTE,
   },
 ];

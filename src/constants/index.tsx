@@ -9,6 +9,7 @@ export const BOOKMARS_ROUTE = '/bookmarks';
 export const LISTS_ROUTE = '/lists';
 export const NOTIFICATIONS_ROUTE = '/notifications';
 export const MORE_ROUTE = '/more';
+export const MESSAGE_ROUTE = '/messages';
 
 export const DARK = 'dark';
 export const LIGHT = 'light';
