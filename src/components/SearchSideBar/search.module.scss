@@ -6,12 +6,15 @@
 @import 'src/theme/indents';
 @import 'src/theme/colors';
 @import 'src/theme/reuseClasses';
-@import 'src/theme/transitions';
+@import 'src/theme/breakPoints';
 
 .searchBar {
   margin-top: $indentXL;
   width: 100%;
   max-width: $searchMaxWidth;
+  @media (max-width: $mediumBreakPoint) {
+    display: none;
+  }
   .inputWrapper {
     display: flex;
     position: relative;
