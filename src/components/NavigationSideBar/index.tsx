@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -25,15 +26,17 @@ export const NavigationSideBar = () => {
 
   const navLinks = useMemo(
     () =>
-      LINKS.map(({ activeIcon, icon, title }) => {
+      LINKS.map(({ title, svg }) => {
         const lowTitle = title.toLowerCase();
+        const linkClassname = classNames({
+          [styles.active]: lowTitle === address,
+        });
         return (
           <li key={title}>
-            <img
-              src={address === lowTitle ? activeIcon : icon}
-              alt={`${title} icon`}
-            />
-            <Link to={`/${lowTitle}`}>{title}</Link>
+            <Link to={`/${lowTitle}`} className={linkClassname}>
+              {svg}
+              <span>{title}</span>
+            </Link>
           </li>
         );
       }),
