@@ -9,13 +9,14 @@ import {
 import { fireStore } from '@/firebase';
 import { TweetInfo } from '@/interfaces/tweet';
 import { formatDate } from '@/utils/functions/formatDate';
+import { lastVisibleTweetType } from '@/types';
 
 export const getAllTweets = async (
   pageSize: number,
-  lastVisible: any = null,
+  lastVisible: lastVisibleTweetType = null,
 ): Promise<{
   tweets: TweetInfo[];
-  lastVisible: any;
+  lastVisible: lastVisibleTweetType;
   hasMore: boolean;
 }> => {
   try {
@@ -25,20 +26,18 @@ export const getAllTweets = async (
     if (maxTweets === 0)
       return { tweets: [], lastVisible: null, hasMore: false };
 
-    let tweetsQuery = query(
-      tweetsCollectionRef,
-      orderBy('createdAt', 'desc'),
-      limit(pageSize),
-    );
-
-    if (lastVisible) {
-      tweetsQuery = query(
-        tweetsCollectionRef,
-        orderBy('createdAt', 'desc'),
-        startAfter(lastVisible),
-        limit(pageSize),
-      );
-    }
+    const tweetsQuery = lastVisible
+      ? query(
+          tweetsCollectionRef,
+          orderBy('createdAt', 'desc'),
+          startAfter(lastVisible),
+          limit(pageSize),
+        )
+      : query(
+          tweetsCollectionRef,
+          orderBy('createdAt', 'desc'),
+          limit(pageSize),
+        );
 
     const tweetsSnapshot = await getDocs(tweetsQuery);
     const tweets: TweetInfo[] = tweetsSnapshot.docs.map((doc) => {
