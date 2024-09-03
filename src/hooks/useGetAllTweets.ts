@@ -9,6 +9,7 @@ import { TweetInfo } from '@/interfaces/tweet';
 import { useAppDispatch } from '@/store/hooks';
 import { getAllTweets } from '@/api/getAllTweets';
 import { BIG_PAGE_SIZE } from '@/constants';
+import { lastVisibleTweetType } from '@/types';
 
 export const useGetAllTweets = (): [
   TweetInfo[],
@@ -19,7 +20,7 @@ export const useGetAllTweets = (): [
 ] => {
   const [tweets, setTweets] = useState<TweetInfo[]>([]);
   const [isTweetsLoading, setIsTweetsLoading] = useState(false);
-  const [lastVisible, setLastVisible] = useState(null);
+  const [lastVisible, setLastVisible] = useState<lastVisibleTweetType>(null);
   const [hasMore, setHasMore] = useState(true);
   const dispatch = useAppDispatch();
   const fetchTweets = useCallback(async () => {

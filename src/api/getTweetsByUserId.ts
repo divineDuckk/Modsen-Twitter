@@ -23,23 +23,20 @@ export const getTweetsByUserId = async (
   try {
     const tweetsRef = collection(fireStore, 'tweets');
 
-    let tweetsQuery = query(
-      tweetsRef,
-      where('userId', '==', uid),
-      orderBy('createdAt', 'desc'),
-      limit(pageSize),
-    );
-
-    if (lastVisible) {
-      tweetsQuery = query(
-        tweetsRef,
-        where('userId', '==', uid),
-        orderBy('createdAt', 'desc'),
-        startAfter(lastVisible),
-        limit(pageSize),
-      );
-    }
-
+    const tweetsQuery = lastVisible
+      ? query(
+          tweetsRef,
+          where('userId', '==', uid),
+          orderBy('createdAt', 'desc'),
+          startAfter(lastVisible),
+          limit(pageSize),
+        )
+      : query(
+          tweetsRef,
+          where('userId', '==', uid),
+          orderBy('createdAt', 'desc'),
+          limit(pageSize),
+        );
     const querySnapshot = await getDocs(tweetsQuery);
 
     const lastTweet = querySnapshot.docs[querySnapshot.docs.length - 1];

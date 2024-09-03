@@ -77,6 +77,8 @@ $buttonsHeight: 55px;
     font-family: 'Roboto';
     margin-bottom: $indentXXL;
     gap: $indentXXL;
+    color: inherit;
+
     @media (max-width: $largeBreakPoint) {
       width: min-content;
     }
