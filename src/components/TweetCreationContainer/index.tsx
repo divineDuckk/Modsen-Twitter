@@ -23,6 +23,7 @@ export const TweetCreationContainer: FC<TweetCreationContainerProps> = ({
 }) => {
   const [tweetText, setTweetText] = useState('');
   const { imageUrl, setImageUrl, status, setStatus } = useImageState();
+  const [isValidFile, setIsValidFile] = useState(true);
 
   const dispatch = useAppDispatch();
 
@@ -71,11 +72,13 @@ export const TweetCreationContainer: FC<TweetCreationContainerProps> = ({
             setPhoto={setImageUrl}
             setPhotoStatus={setStatus}
             title=""
+            isValidFile={isValidFile}
+            setIsValidFile={setIsValidFile}
           />
           <button
             onClick={handleTweet}
             className={styles.tweet}
-            disabled={status === LOADING}
+            disabled={status === LOADING || !isValidFile}
           >
             Tweet
           </button>

@@ -46,6 +46,7 @@ export const ERRORS = {
   nameRequired: 'Name is required',
   emailRequired: 'Email is required',
   passwordRequired: 'Password is required',
+  unCorrectFileFormat: 'Invalid file format',
 
   noProblems: 'ok',
 };

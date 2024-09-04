@@ -7,6 +7,8 @@ export interface ImageInputProps {
   imageStatus: statusType;
   setPhoto: Dispatch<SetStateAction<string>>;
   setPhotoStatus: Dispatch<SetStateAction<statusType>>;
+  setIsValidFile: Dispatch<SetStateAction<boolean>>;
+  isValidFile: boolean;
   id: string;
   title: string;
 }
