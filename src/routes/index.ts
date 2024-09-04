@@ -1,4 +1,5 @@
 import {
+  EXPLORE_ROUTE,
   BOOKMARS_ROUTE,
   HOME_ROUTE,
   LISTS_ROUTE,
@@ -11,6 +12,7 @@ import {
   SIGN_UP_ROUTE,
   TWEET_ROUTE,
 } from '@/constants';
+import { Explore } from '@/pages/explore';
 import { Home } from '@/pages/home';
 import { InProgress } from '@/pages/inProgress';
 import { LogIn } from '@/pages/logIn';
@@ -45,6 +47,10 @@ export const PRIVATE_ROUTES = [
   {
     Page: Home,
     path: HOME_ROUTE,
+  },
+  {
+    Page: Explore,
+    path: EXPLORE_ROUTE,
   },
   {
     Page: InProgress,
