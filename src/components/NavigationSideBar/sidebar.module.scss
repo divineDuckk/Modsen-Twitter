@@ -77,26 +77,30 @@ $buttonsHeight: 55px;
 
     @media (max-width: $largeBreakPoint) {
       width: min-content;
-    li {
-      list-style: none;
-      a {
-        display: flex;
-        align-items: center;
-        gap: $indentL;
-        color: inherit;
-        svg {
-          path {
-            stroke: currentColor;
-        color: $black;
-        span {
-          @media (max-width: $largeBreakPoint) {
-            display: none;
+      li {
+        list-style: none;
+        a {
+          display: flex;
+          align-items: center;
+          gap: $indentL;
+          color: inherit;
+          svg {
+            path {
+              stroke: currentColor;
+              color: $black;
+              span {
+                @media (max-width: $largeBreakPoint) {
+                  display: none;
+                }
+              }
+            }
           }
         }
       }
     }
   }
 }
+
 .active {
   svg {
     path {
