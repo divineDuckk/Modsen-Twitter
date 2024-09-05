@@ -6,6 +6,7 @@
 @import 'src/theme/indents';
 @import 'src/theme/colors';
 @import 'src/theme/transitions';
+@import 'src/theme/breakPoints';
 
 $textareaWidth: 85%;
 $textareaMaxHeight: 140px;
@@ -24,6 +25,7 @@ $textareaMaxHeight: 140px;
   }
   .dataBlock {
     width: 100%;
+
     textarea {
       font-weight: $fontWeightM;
       font-size: $fontSizeL;
@@ -49,6 +51,11 @@ $textareaMaxHeight: 140px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      @media (max-width: $smallBreakPoint) {
+        flex-direction: column;
+        gap: $indentM;
+      }
       input {
         display: none;
       }

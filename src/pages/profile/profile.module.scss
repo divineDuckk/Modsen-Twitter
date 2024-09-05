@@ -97,9 +97,7 @@
         @media (max-width: $smallBreakPoint) {
           max-width: $profilePhotoSize;
           max-height: $profilePhotoSize;
-          width: auto;
-          height: auto;
-          transform: translateY(0);
+          width: 100%;
         }
         border-radius: $borderRadiusXL;
         width: $profilePhotoSize;
