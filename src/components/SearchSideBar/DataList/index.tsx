@@ -13,7 +13,7 @@ import { MiniUserProfile } from '@/components/MiniUserProfile';
 
 import { DataListProps } from './types';
 
-export const DataList: FC<DataListProps> = ({ query }) => {
+export const DataList: FC<DataListProps> = ({ query, clearInput }) => {
   const location = useLocation();
   const isProfile = useMemo(
     () => location.pathname.includes(PROFILE),
@@ -60,6 +60,7 @@ export const DataList: FC<DataListProps> = ({ query }) => {
               userId={userId}
               key={id}
               id={id}
+              onMiniTweetClick={clearInput}
             />
           );
         })

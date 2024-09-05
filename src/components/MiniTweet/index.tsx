@@ -13,6 +13,7 @@ export const MiniTweet: FC<MiniTweetProps> = ({
   text,
   userId,
   id,
+  onMiniTweetClick,
 }) => {
   const [user, setUser] = useState<User>();
 
@@ -24,7 +25,11 @@ export const MiniTweet: FC<MiniTweetProps> = ({
     getUserInfo();
   }, []);
   return (
-    <Link to={TWEET_ROUTE + id} className={styles.miniTweet}>
+    <Link
+      to={TWEET_ROUTE + id}
+      className={styles.miniTweet}
+      onClick={onMiniTweetClick}
+    >
       <div>
         <h3>{user?.displayName}</h3>
         <span>{createdAt}</span>

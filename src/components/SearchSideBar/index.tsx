@@ -21,13 +21,17 @@ export const SearchSideBar = () => {
     setText(value);
   };
 
+  const handleClear = () => {
+    setText('');
+  };
+
   return (
     <div className={styles.searchBar}>
       <div className={styles.inputWrapper}>
         <img src={search} alt="search" />
         <input onChange={handleChange} value={text} placeholder={placeholder} />
       </div>
-      <DataList query={text} />
+      <DataList query={text} clearInput={handleClear} />
     </div>
   );
 };
