@@ -1,0 +1,16 @@
+{
+  "displayName": "Максим",
+  "birthDate": "02.01.1924",
+  "email": "waqdawW@gmail.com",
+  "uid": "8djfaeMjrEVeHFC3wIy5rRCTO622",
+  "followers": ["KdnssQ3SI1gdYTegaLOorfqXQ2k1"],
+  "followings": [],
+  "photoURL": "https://firebasestorage.googleapis.com/v0/b/modsen-twitter-d3a5a.appspot.com/o/images%2F%D0%BA%D1%832.jpg?alt=media&token=8bf07d1f-4397-4c47-ad1c-e91e8f707eb3",
+  "backgroundUrl": "/src/assets/defaultBg.png",
+  "description": "",
+  "phone": "12312321312312",
+  "password": "1234567",
+  "numberOfTweets": 1,
+  "numberOfFollowers": 1,
+  "numberOfFollowings": 0
+}

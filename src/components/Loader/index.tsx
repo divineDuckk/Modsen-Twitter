@@ -1,11 +1,10 @@
 import classNames from 'classnames';
 import { FC } from 'react';
 
+import { LARGE_SIZE, MEDIUM_SIZE, SMALL_SIZE } from '@/constants';
 
 import styles from './loader.module.scss';
 import { LoaderProps } from './types';
-
-import { LARGE_SIZE, MEDIUM_SIZE, SMALL_SIZE } from '@/constants';
 
 export const Loader: FC<LoaderProps> = ({ size }) => {
   const loaderClass = classNames(styles.loader, {
@@ -14,7 +13,7 @@ export const Loader: FC<LoaderProps> = ({ size }) => {
     [styles.small]: size === SMALL_SIZE,
   });
   return (
-    <div className={styles.loaderWrap}>
+    <div data-testid="loader" className={styles.loaderWrap}>
       <div className={loaderClass} />
     </div>
   );

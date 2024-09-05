@@ -11,7 +11,7 @@ export const OptionMenu: FC<OptionMenuProps> = ({ handleDelete }) => {
         switch (option) {
           case OPTIONS.delete:
             return (
-              <li key={option} onClick={handleDelete}>
+              <li data-testid="deleteTweet" key={option} onClick={handleDelete}>
                 {option}
               </li>
             );

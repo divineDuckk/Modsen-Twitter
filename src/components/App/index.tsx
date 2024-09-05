@@ -13,9 +13,14 @@ export const App = () => {
     <ProfileLayout>
       <Routes>
         {PRIVATE_ROUTES.map(({ Page, path }) => (
-          <ErrorBoundary>
-            <Route key={path} path={path} element={<Page />} />
-          </ErrorBoundary>
+          <Route
+            path={path}
+            element={
+              <ErrorBoundary>
+                <Page />
+              </ErrorBoundary>
+            }
+          />
         ))}
         <Route
           path="*"
@@ -26,9 +31,15 @@ export const App = () => {
   ) : (
     <Routes>
       {PUBLIC_ROUTES.map(({ Page, path }) => (
-        <ErrorBoundary>
-          <Route key={path} path={path} element={<Page />} />
-        </ErrorBoundary>
+        <Route
+          key={path}
+          path={path}
+          element={
+            <ErrorBoundary>
+              <Page />
+            </ErrorBoundary>
+          }
+        />
       ))}
       <Route path="*" element={<Navigate to={SIGN_UP_ROUTE} replace />} />
     </Routes>

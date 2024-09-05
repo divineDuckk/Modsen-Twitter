@@ -76,6 +76,7 @@ export const TweetCreationContainer: FC<TweetCreationContainerProps> = ({
             setIsValidFile={setIsValidFile}
           />
           <button
+            data-testid="createTweet"
             onClick={handleTweet}
             className={styles.tweet}
             disabled={status === LOADING || !isValidFile}

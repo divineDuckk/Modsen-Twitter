@@ -16,7 +16,7 @@ export const ThemeButton = () => {
     dispatch(setTheme(!checked ? DARK : LIGHT));
   };
   return (
-    <label className={styles.themeButton}>
+    <label data-testid="theme" className={styles.themeButton}>
       <input type="checkbox" checked={checked} onChange={handleChange} />
       <span />
     </label>
