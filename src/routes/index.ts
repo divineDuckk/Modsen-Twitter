@@ -1,7 +1,12 @@
 import {
   EXPLORE_ROUTE,
+  BOOKMARS_ROUTE,
   HOME_ROUTE,
+  LISTS_ROUTE,
   LOG_IN_ROUTE,
+  MESSAGE_ROUTE,
+  MORE_ROUTE,
+  NOTIFICATIONS_ROUTE,
   PROFILE_ROUTE,
   REGISTRATION_ROUTE,
   SIGN_UP_ROUTE,
@@ -9,6 +14,7 @@ import {
 } from '@/constants';
 import { Explore } from '@/pages/explore';
 import { Home } from '@/pages/home';
+import { InProgress } from '@/pages/inProgress';
 import { LogIn } from '@/pages/logIn';
 import { Profile } from '@/pages/profile';
 import { Registration } from '@/pages/registration';
@@ -45,5 +51,25 @@ export const PRIVATE_ROUTES = [
   {
     Page: Explore,
     path: EXPLORE_ROUTE,
+  },
+  {
+    Page: InProgress,
+    path: BOOKMARS_ROUTE,
+  },
+  {
+    Page: InProgress,
+    path: LISTS_ROUTE,
+  },
+  {
+    Page: InProgress,
+    path: NOTIFICATIONS_ROUTE,
+  },
+  {
+    Page: InProgress,
+    path: MORE_ROUTE,
+  },
+  {
+    Page: InProgress,
+    path: MESSAGE_ROUTE,
   },
 ];

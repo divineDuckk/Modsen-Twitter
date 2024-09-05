@@ -11,9 +11,9 @@ import { useGetTweets } from '@/hooks/useGetTweets';
 import { getUser } from '@/store/selectors/user';
 import { useInfiniteScroll } from '@/hooks/useInfiniteSrcoll';
 import { useAppSelector } from '@/store/hooks';
-import { getCurrentTweetsSize } from '@/store/selectors/page';
 import { useLocalUser } from '@/hooks/useLocalUser';
 import { useFollow } from '@/hooks/useFollow';
+import { sortByCreatedAt } from '@/utils/functions/sortArrayByDate';
 
 import styles from './profile.module.scss';
 
@@ -35,11 +35,10 @@ export const Profile = () => {
   const { id } = useParams();
   const [tweets, isTweetsLoading, setIsTweetsLoading, fetchTweets] =
     useGetTweets(id!);
+
   const { localUser, setLocalUser, isUserLoading } = useLocalUser(id!, user);
   useInfiniteScroll(fetchTweets);
-  const pageSize = useAppSelector(getCurrentTweetsSize);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
   const {
     backgroundUrl: localBackgroundUrl,
     birthDate: localBirthDate,
@@ -54,6 +53,8 @@ export const Profile = () => {
     numberOfFollowings: localNumberOfFollowings,
   } = localUser;
   const isOwner = uid === id;
+
+  const sortedTweets = sortByCreatedAt(tweets);
 
   const { isFollowed, handleFollow } = useFollow(id!, uid, setLocalUser);
 
@@ -129,13 +130,12 @@ export const Profile = () => {
                 userId={uid}
                 type="profile"
                 setIsTweetsLoading={setIsTweetsLoading}
-                page={pageSize}
                 userName={displayName}
               />
             )}
             <div className={styles.tweets}>
               <p className={styles.tweetHeader}>Tweets</p>
-              {tweets.map(
+              {sortedTweets.map(
                 ({
                   createdAt,
                   imageUrl,

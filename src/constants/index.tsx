@@ -9,6 +9,7 @@ export const BOOKMARS_ROUTE = '/bookmarks';
 export const LISTS_ROUTE = '/lists';
 export const NOTIFICATIONS_ROUTE = '/notifications';
 export const MORE_ROUTE = '/more';
+export const MESSAGE_ROUTE = '/messages';
 
 export const DARK = 'dark';
 export const LIGHT = 'light';
@@ -45,12 +46,13 @@ export const ERRORS = {
   nameRequired: 'Name is required',
   emailRequired: 'Email is required',
   passwordRequired: 'Password is required',
+  unCorrectFileFormat: 'Invalid file format',
 
   noProblems: 'ok',
 };
 export const SCROLL_OFFSET = 10;
 export const PAGE_SIZE = 3;
-export const BIG_PAGE_SIZE = 10;
+export const BIG_PAGE_SIZE = 5;
 
 export const GOOGLE_DOMAIN_NAME = 'google.com';
 

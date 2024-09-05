@@ -7,7 +7,7 @@ import {
   PHONE_MIN_LENGTH,
   PHONE_REGEXP,
 } from '@/constants';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { updateUserInfo } from '@/api/updateUserInfo';
@@ -65,6 +65,7 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
   } = useImageState(backgroundUrl);
 
   const dispatch = useAppDispatch();
+  const [isValidFile, setIsValidFile] = useState(true);
 
   const onSubmit: SubmitHandler<ProfileFormInputs> = ({
     description,
@@ -160,6 +161,8 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
         setPhotoStatus={setPhotoStatus}
         id="profile photo"
         title="Choose new profile photo"
+        isValidFile={isValidFile}
+        setIsValidFile={setIsValidFile}
       />
       <ImageInput
         acceptFiles={ACCEPT_FILES}
@@ -168,11 +171,17 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
         setPhotoStatus={setBackgroundStatus}
         id="background photo"
         title="Choose new background photo"
+        isValidFile={isValidFile}
+        setIsValidFile={setIsValidFile}
       />
       <button
         type="submit"
         className={styles.submitButton}
-        disabled={photoStatus === LOADING || backgroundStatus === LOADING}
+        disabled={
+          photoStatus === LOADING ||
+          backgroundStatus === LOADING ||
+          !isValidFile
+        }
       >
         Save
       </button>

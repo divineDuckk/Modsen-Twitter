@@ -13,10 +13,13 @@
   cursor: pointer;
   max-width: $dropdownMaxWidth;
   font-family: 'Roboto';
+
   .dropdownHeader {
     padding: $indentM $indentL;
     border: $borderSizeS solid $darkBorderColor;
     border-radius: $borderRadiusS;
+    background-color: $white;
+    color: $black;
     font-size: $fontSizeM;
     display: flex;
     justify-content: space-between;
@@ -45,6 +48,7 @@
     .dropdownListItem {
       padding: $indentM $indentL;
       font-size: $fontSizeM;
+      color: $black;
       cursor: pointer;
       &:hover {
         background-color: $darkerWhite;

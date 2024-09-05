@@ -1,0 +1,9 @@
+@import 'src/theme/index';
+
+.inProgress {
+  width: 100%;
+  max-width: $profileMaxWidth;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

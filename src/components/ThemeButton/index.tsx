@@ -12,8 +12,8 @@ export const ThemeButton = () => {
   const dispatch = useAppDispatch();
   const [checked, setChecked] = useState(theme === DARK);
   const handleChange = () => {
-    dispatch(setTheme(checked ? DARK : LIGHT));
     setChecked((prev) => !prev);
+    dispatch(setTheme(!checked ? DARK : LIGHT));
   };
   return (
     <label data-testid="theme" className={styles.themeButton}>

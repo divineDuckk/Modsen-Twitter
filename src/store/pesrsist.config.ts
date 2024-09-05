@@ -8,7 +8,7 @@ import { rootReducer } from './slices';
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['page'],
+  blacklist: ['tweets'],
 };
 
 export const persistedReducer = persistReducer(persistConfig, rootReducer);

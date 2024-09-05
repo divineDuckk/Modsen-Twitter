@@ -30,7 +30,6 @@
     }
   }
   a {
-    color: $black;
     font-size: $fontSizeS;
     transition: $transitionS;
     &:hover {
@@ -41,7 +40,6 @@
 .signup {
   display: flex;
   gap: $indentXXXL;
-  color: $black;
   justify-content: center;
 
   .imgBg {
@@ -78,6 +76,7 @@
       max-width: $buttonSignUpMaxWidth;
     }
     button {
+      color: inherit;
       height: $buttonSignUpHeight;
       max-width: $buttonSignUpMaxWidth;
       width: 100%;

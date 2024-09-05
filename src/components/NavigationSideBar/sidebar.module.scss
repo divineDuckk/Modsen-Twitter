@@ -12,9 +12,6 @@
 $buttonsHeight: 55px;
 
 .sidebar {
-  @media (max-width: $ultraSmallBreakPoint) {
-    margin-left: $indentXXXL;
-  }
   display: flex;
   flex-direction: column;
   max-width: $navSideBarMaxWidth;
@@ -22,6 +19,7 @@ $buttonsHeight: 55px;
   height: 100%;
   width: 100%;
   justify-content: space-between;
+
   @media (max-width: $largeBreakPoint) {
     width: max-content;
     justify-content: center;
@@ -56,24 +54,16 @@ $buttonsHeight: 55px;
       }
     }
     img {
-      @media (max-width: $largeBreakPoint) {
-        margin-right: 0;
-      }
       width: calc($profilePhotoSize / 2.5);
       height: calc($profilePhotoSize / 2.5);
       border-radius: $borderRadiusXL;
-      margin-right: $indentXXL;
-    }
-    p {
+
       @media (max-width: $largeBreakPoint) {
-        display: none;
+        margin-right: 0;
       }
-      margin: 0;
-      font-family: 'Roboto';
-      font-size: $fontSizeXS;
-      font-weight: $fontWeightM;
     }
   }
+
   .logo {
     margin-top: $indentXXL;
     margin-bottom: $indentXXXL;
@@ -87,6 +77,8 @@ $buttonsHeight: 55px;
     font-family: 'Roboto';
     margin-bottom: $indentXXL;
     gap: $indentXXL;
+    color: inherit;
+
     @media (max-width: $largeBreakPoint) {
       width: min-content;
     }
@@ -96,13 +88,32 @@ $buttonsHeight: 55px;
         display: flex;
         align-items: center;
         gap: $indentL;
-        color: $black;
-        span {
-          @media (max-width: $largeBreakPoint) {
-            display: none;
+        color: inherit;
+        svg {
+          path {
+            stroke: currentColor;
+            color: $black;
+            span {
+              @media (max-width: $largeBreakPoint) {
+                display: none;
+              }
+            }
+          }
+        }
+        svg {
+          path {
+            stroke: currentColor;
           }
         }
       }
+    }
+  }
+}
+
+.active {
+  svg {
+    path {
+      stroke-width: $activeLinkStroke;
     }
   }
 }
