@@ -20,10 +20,29 @@ $buttonsHeight: 55px;
   width: 100%;
   justify-content: space-between;
 
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $indentXS;
+    width: 100%;
+    svg {
+      width: $logOutSize;
+      height: $logOutSize;
+      fill: $white;
+    }
+  }
+
   @media (max-width: $largeBreakPoint) {
     width: max-content;
     justify-content: center;
     align-items: center;
+
+    button {
+      span {
+        display: none;
+      }
+    }
   }
   button {
     max-height: $buttonsHeight;
@@ -89,15 +108,15 @@ $buttonsHeight: 55px;
         align-items: center;
         gap: $indentL;
         color: inherit;
+        span {
+          @media (max-width: $largeBreakPoint) {
+            display: none;
+          }
+        }
         svg {
           path {
             stroke: currentColor;
             color: $black;
-            span {
-              @media (max-width: $largeBreakPoint) {
-                display: none;
-              }
-            }
           }
         }
         svg {

@@ -15,7 +15,8 @@
   border-bottom: $borderSizeS solid $lightBorderColor;
 
   .userPhoto {
-    width: calc($profilePhotoSize / 2.5);
+    width: 100%;
+    max-width: calc($profilePhotoSize / 2.5);
     height: calc($profilePhotoSize / 2.5);
     border-radius: $borderRadiusXL;
   }

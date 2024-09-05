@@ -23,6 +23,7 @@ export const ImageInput: FC<ImageInputProps> = ({
   const handlePhotoChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     const isValid = await checkFileFormat(file!, acceptFiles);
+    setIsValidFile(true);
 
     if (file && isValid) {
       setPhotoStatus(LOADING);

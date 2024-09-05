@@ -67,7 +67,12 @@ export const Tweet: FC<TweetProps> = ({
 
   return (
     <div className={styles.tweet}>
-      <img className={styles.userPhoto} src={userPhotoUrl} alt="mini avatar" />
+      <img
+        className={styles.userPhoto}
+        src={userPhotoUrl}
+        alt="mini avatar"
+        referrerPolicy="no-referrer"
+      />
       <div className={styles.tweetInfo}>
         <div className={styles.userInfo}>
           <div className={styles.meta}>

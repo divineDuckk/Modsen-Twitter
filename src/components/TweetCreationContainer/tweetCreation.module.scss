@@ -17,7 +17,8 @@ $textareaMaxHeight: 140px;
   border-bottom: $borderSizeS solid $lightBorderColor;
 
   img {
-    width: calc($profilePhotoSize / 2.5);
+    width: 100%;
+    max-width: calc($profilePhotoSize / 2.5);
     height: calc($profilePhotoSize / 2.5);
     border-radius: $borderRadiusXL;
   }
