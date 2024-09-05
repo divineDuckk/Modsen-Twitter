@@ -11,4 +11,5 @@ export interface ImageInputProps {
   isValidFile: boolean;
   id: string;
   title: string;
+  photoUrl: string;
 }

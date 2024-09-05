@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, useState } from 'react';
 
-import { ACCEPT_FILES, LOADING, NOT_LOADED } from '@/constants';
+import { ACCEPT_FILES, LOADING, NOT_LOADED, TWEET_MAX_SIZE } from '@/constants';
 import { addTweetToDb } from '@/api/addTweetToDb';
 import { useImageState } from '@/hooks/useImageState';
 import { useAppDispatch } from '@/store/hooks';
@@ -63,6 +63,7 @@ export const TweetCreationContainer: FC<TweetCreationContainerProps> = ({
           placeholder={TEXTAREA_PLACEHOLDER}
           name="tweet data"
           value={tweetText}
+          maxLength={TWEET_MAX_SIZE}
         />
         <div className={styles.buttons}>
           <ImageInput
@@ -74,6 +75,7 @@ export const TweetCreationContainer: FC<TweetCreationContainerProps> = ({
             title=""
             isValidFile={isValidFile}
             setIsValidFile={setIsValidFile}
+            photoUrl={imageUrl}
           />
           <button
             data-testid="createTweet"

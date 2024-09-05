@@ -2,8 +2,14 @@
 @import 'src/theme/indents';
 @import 'src/theme/fontSizes';
 @import 'src/theme/fontWeights';
+@import 'src/theme/borders';
+@import 'src/theme/positions';
+@import 'src/theme/zIndexes';
+@import 'src/theme/transitions';
 
 .imageInput {
+  display: flex;
+  gap: $indentM;
   input[type='file'] {
     display: none;
   }
@@ -21,9 +27,27 @@
     img:first-child {
       height: $getImageSizes;
     }
-    img:last-child {
-      width: $getImageSizes;
-      height: $getImageSizes;
+  }
+  .miniImage {
+    position: relative;
+    img {
+      border-radius: $borderRadiusS;
+      width: 50%;
+      filter: brightness(50%);
+      transition: $transitionXS;
+      &:hover {
+        filter: brightness(100%);
+      }
+    }
+    button {
+      z-index: $zIndexM;
+      position: absolute;
+      top: $posXS;
+      right: $posM;
+      cursor: pointer;
+      background-color: transparent;
+      border: 0;
+      border-radius: $borderRadiusXS;
     }
   }
 }

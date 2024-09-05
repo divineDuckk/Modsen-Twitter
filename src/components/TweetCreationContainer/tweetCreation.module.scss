@@ -16,7 +16,7 @@ $textareaMaxHeight: 140px;
   gap: $indentL;
   border-bottom: $borderSizeS solid $lightBorderColor;
 
-  img {
+  img[alt='mini avatar'] {
     width: 100%;
     max-width: calc($profilePhotoSize / 2.5);
     height: calc($profilePhotoSize / 2.5);
