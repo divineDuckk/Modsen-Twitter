@@ -5,6 +5,7 @@ import { ProfileLayout } from '@/components/ProfileLayout';
 import { PROFILE_ROUTE, SIGN_UP_ROUTE } from '@/constants';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '@/routes';
 import { getUser } from '@/store/selectors/user';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 
 export const App = () => {
   const { uid } = useSelector(getUser);
@@ -12,7 +13,9 @@ export const App = () => {
     <ProfileLayout>
       <Routes>
         {PRIVATE_ROUTES.map(({ Page, path }) => (
-          <Route key={path} path={path} element={<Page />} />
+          <ErrorBoundary>
+            <Route key={path} path={path} element={<Page />} />
+          </ErrorBoundary>
         ))}
         <Route
           path="*"
@@ -23,7 +26,9 @@ export const App = () => {
   ) : (
     <Routes>
       {PUBLIC_ROUTES.map(({ Page, path }) => (
-        <Route key={path} path={path} element={<Page />} />
+        <ErrorBoundary>
+          <Route key={path} path={path} element={<Page />} />
+        </ErrorBoundary>
       ))}
       <Route path="*" element={<Navigate to={SIGN_UP_ROUTE} replace />} />
     </Routes>
