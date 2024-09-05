@@ -1,6 +1,6 @@
 import { ChangeEvent, FC } from 'react';
 
-import { LOADED, LOADING, SMALL_SIZE } from '@/constants';
+import { ERRORS, LOADED, LOADING, SMALL_SIZE } from '@/constants';
 import { Loader } from '@/components/Loader';
 import { checkFileFormat } from '@/utils/functions/checkFileFormat';
 import { addImageToStorage } from '@/api/addImageToStorage';
@@ -17,15 +17,22 @@ export const ImageInput: FC<ImageInputProps> = ({
   setPhotoStatus,
   id,
   title,
+  setIsValidFile,
+  isValidFile,
 }) => {
   const handlePhotoChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file && checkFileFormat(file.name, acceptFiles)) {
+    const isValid = await checkFileFormat(file!, acceptFiles);
+
+    if (file && isValid) {
       setPhotoStatus(LOADING);
       const downloadUrl = await addImageToStorage(file);
       setPhoto(downloadUrl);
       setPhotoStatus(LOADED);
+      setIsValidFile(true);
+      return;
     }
+    setIsValidFile(false);
   };
 
   return (
@@ -34,7 +41,10 @@ export const ImageInput: FC<ImageInputProps> = ({
         {title}
         <img src={image} alt="choose image" />
         {imageStatus === LOADING && <Loader size={SMALL_SIZE} />}
-        {imageStatus === LOADED && <img src={successLoad} alt="success" />}
+        {imageStatus === LOADED && isValidFile && (
+          <img src={successLoad} alt="success" />
+        )}
+        {!isValidFile && <p>{ERRORS.unCorrectFileFormat}</p>}
       </label>
       <input
         onChange={handlePhotoChange}
