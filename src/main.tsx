@@ -6,10 +6,9 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import { App } from '@/components/App';
 
-import { persistor, store } from './store';
-import './firebase';
 import { getTheme } from './store/selectors/theme';
 import { useAppSelector } from './store/hooks';
+import { persistor, store } from './store';
 
 import './theme.scss';
 

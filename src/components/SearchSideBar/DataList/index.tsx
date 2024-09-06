@@ -21,11 +21,10 @@ export const DataList: FC<DataListProps> = ({ query, clearInput }) => {
   );
 
   const isTweetInfoArray = (
-    whichData: TweetInfo[] | User[],
-  ): whichData is TweetInfo[] => {
+    _data: TweetInfo[] | User[],
+  ): _data is TweetInfo[] => {
     return isProfile;
   };
-
   const [data, setData] = useState<TweetInfo[] | User[]>([]);
   const { uid } = useAppSelector(getUser);
 

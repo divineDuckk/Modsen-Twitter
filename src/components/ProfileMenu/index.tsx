@@ -163,6 +163,7 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
         title="Choose new profile photo"
         isValidFile={isValidFile}
         setIsValidFile={setIsValidFile}
+        photoUrl={photo}
       />
       <ImageInput
         acceptFiles={ACCEPT_FILES}
@@ -173,6 +174,7 @@ export const ProfileMenu: FC<ProfileMenuProps> = ({
         title="Choose new background photo"
         isValidFile={isValidFile}
         setIsValidFile={setIsValidFile}
+        photoUrl={background}
       />
       <button
         type="submit"
