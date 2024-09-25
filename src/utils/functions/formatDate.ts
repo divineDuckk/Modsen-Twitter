@@ -22,6 +22,5 @@ export const formatDate = (inputDate: Date): string => {
   if (diffInSeconds > 1) {
     return `${diffInSeconds} second${diffInSeconds > 1 ? 's' : ''} ago`;
   }
-
   return `Just now`;
 };
