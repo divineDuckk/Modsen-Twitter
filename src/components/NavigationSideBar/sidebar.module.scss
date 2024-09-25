@@ -8,6 +8,7 @@
 @import 'src/theme/reuseClasses';
 @import 'src/theme/transitions';
 @import 'src/theme/breakPoints';
+@import 'src/theme/transitions';
 
 $buttonsHeight: 55px;
 
@@ -15,7 +16,6 @@ $buttonsHeight: 55px;
   display: flex;
   flex-direction: column;
   max-width: $navSideBarMaxWidth;
-  max-height: $navSideBarMaxHeight;
   height: 100%;
   width: 100%;
   justify-content: space-between;
@@ -62,6 +62,7 @@ $buttonsHeight: 55px;
       border-radius: $borderRadiusXL;
       width: calc($profilePhotoSize / 2.5);
       height: calc($profilePhotoSize / 2.5);
+      object-fit: cover;
     }
     @media (max-width: $largeBreakPoint) {
       width: min-content;
@@ -102,6 +103,12 @@ $buttonsHeight: 55px;
       width: min-content;
     }
     li {
+      padding: $indentS;
+      &:hover {
+        background-color: lighten($lightBlue, 0.2);
+      }
+      border-radius: $borderRadiusS;
+      transition: $transitionS;
       list-style: none;
       a {
         display: flex;
@@ -116,12 +123,7 @@ $buttonsHeight: 55px;
         svg {
           path {
             stroke: currentColor;
-            color: $black;
-          }
-        }
-        svg {
-          path {
-            stroke: currentColor;
+            color: inherit;
           }
         }
       }

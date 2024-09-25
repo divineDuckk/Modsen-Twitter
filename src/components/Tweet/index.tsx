@@ -44,6 +44,10 @@ export const Tweet: FC<TweetProps> = ({
     deleteTweetFromDb(id, userNameId);
   };
 
+  const handleSettingsClose = () => {
+    setIsSettingsOpen(false);
+  };
+
   const handleLike = async () => {
     setIsLike((prev) => !prev);
     const updatedLikes = !isLike ? likes + 1 : likes - 1;
@@ -85,7 +89,12 @@ export const Tweet: FC<TweetProps> = ({
           {isOwner && !isInHome && (
             <button onClick={handleSettingsClick}>
               <img src={settings} alt="settings" />
-              {isSettingsOpen && <OptionMenu handleDelete={handleDelete} />}
+              {isSettingsOpen && (
+                <OptionMenu
+                  handleDelete={handleDelete}
+                  handleClose={handleSettingsClose}
+                />
+              )}
             </button>
           )}
         </div>

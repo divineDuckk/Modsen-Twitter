@@ -10,7 +10,9 @@
 
 .imageInput {
   display: flex;
+  flex-direction: column;
   gap: $indentM;
+  height: 100%;
   input[type='file'] {
     display: none;
   }
@@ -18,7 +20,9 @@
     flex-direction: column;
     align-items: center;
   }
-
+  .preload {
+    min-height: 200px;
+  }
   label {
     max-width: fit-content;
     display: flex;
@@ -28,6 +32,9 @@
     font-family: 'Roboto';
     font-size: $fontSizeL;
     font-weight: $fontWeightXS;
+    span {
+      text-wrap: nowrap;
+    }
 
     img:first-child {
       height: $getImageSizes;
@@ -37,12 +44,12 @@
     position: relative;
     display: flex;
     width: 100%;
-    max-width: 300px;
+    max-width: 350px;
 
     img[alt='success'] {
       border-radius: $borderRadiusS;
       width: 100%;
-      min-width: 100px;
+      min-width: 320px;
       filter: brightness(50%);
       transition: $transitionXS;
       &:hover {

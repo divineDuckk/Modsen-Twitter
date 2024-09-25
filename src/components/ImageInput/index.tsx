@@ -46,12 +46,18 @@ export const ImageInput: FC<ImageInputProps> = ({
   return (
     <div className={styles.imageInput}>
       <label htmlFor={id}>
-        {title}
+        <span>{title}</span>
         <img src={image} alt="choose image" />
         {imageStatus === LOADING && <Loader size={SMALL_SIZE} />}
 
         {!isValidFile && <p>{ERRORS.unCorrectFileFormat}</p>}
       </label>
+      {imageStatus === LOADING && (
+        <div className={styles.miniImage}>
+          <div className={styles.preload} />
+        </div>
+      )}
+
       {imageStatus === LOADED && isValidFile && (
         <div className={styles.miniImage}>
           <button onClick={handleCancelFile}>

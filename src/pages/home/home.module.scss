@@ -10,6 +10,8 @@
   width: 100%;
   max-width: $profileMaxWidth;
   padding: $indentL;
+  border-left: $borderSizeS solid $lightBorderColor;
+  border-right: $borderSizeS solid $lightBorderColor;
   div {
     padding-left: 0;
     padding-right: 0;

@@ -12,7 +12,7 @@ const tweetSlice = createSlice({
       state.tweets = payload;
     },
     addTweet(state, { payload }) {
-      state.tweets = [...state.tweets, payload];
+      state.tweets = [payload, ...state.tweets];
     },
     updateTweet(state, { payload }) {
       state.tweets = state.tweets.map((tweet) => {

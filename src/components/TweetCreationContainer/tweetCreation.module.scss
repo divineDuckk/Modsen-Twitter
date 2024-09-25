@@ -22,6 +22,7 @@ $textareaMaxHeight: 140px;
     max-width: calc($profilePhotoSize / 2.5);
     height: calc($profilePhotoSize / 2.5);
     border-radius: $borderRadiusXL;
+    object-fit: cover;
   }
   .dataBlock {
     width: 100%;
@@ -36,6 +37,8 @@ $textareaMaxHeight: 140px;
       max-height: $textareaMaxHeight;
       border: 0;
       resize: none;
+      background-color: inherit;
+      color: inherit;
       &:active,
       &:focus {
         outline: none;
@@ -50,12 +53,8 @@ $textareaMaxHeight: 140px;
       width: 100%;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
 
-      @media (max-width: $smallBreakPoint) {
-        flex-direction: column;
-        gap: $indentM;
-      }
       input {
         display: none;
       }
@@ -69,6 +68,8 @@ $textareaMaxHeight: 140px;
         border-radius: $borderRadiusL;
         font-size: $fontSizeM;
         font-weight: $fontWeightM;
+        transform: translateY(-25%);
+
         &:hover {
           opacity: $baseOpacity;
         }

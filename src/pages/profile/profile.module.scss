@@ -94,9 +94,12 @@
       justify-content: space-between;
       height: $profileAvatarBlockHeight;
       img {
+        object-fit: cover;
         @media (max-width: $smallBreakPoint) {
-          max-width: $profilePhotoSize;
-          max-height: $profilePhotoSize;
+          max-width: calc($profilePhotoSize/1.5);
+          max-height: calc($profilePhotoSize/1.5);
+          transform: translateY(-10%);
+
           width: 100%;
         }
         border-radius: $borderRadiusXL;

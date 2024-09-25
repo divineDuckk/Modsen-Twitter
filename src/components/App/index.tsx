@@ -14,6 +14,7 @@ export const App = () => {
       <Routes>
         {PRIVATE_ROUTES.map(({ Page, path }) => (
           <Route
+            key={path}
             path={path}
             element={
               <ErrorBoundary>
