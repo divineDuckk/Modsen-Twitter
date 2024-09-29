@@ -1,0 +1,140 @@
+@import 'src/theme/borders';
+@import 'src/theme/index';
+@import 'src/theme/fontWeights';
+@import 'src/theme/fontSizes';
+@import 'src/theme/lineHeights';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+@import 'src/theme/reuseClasses';
+@import 'src/theme/transitions';
+@import 'src/theme/breakPoints';
+@import 'src/theme/transitions';
+
+$buttonsHeight: 55px;
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  max-width: $navSideBarMaxWidth;
+  height: 100%;
+  width: 100%;
+  justify-content: space-between;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $indentXS;
+    width: 100%;
+    svg {
+      width: $logOutSize;
+      height: $logOutSize;
+      fill: $white;
+    }
+  }
+
+  @media (max-width: $largeBreakPoint) {
+    width: max-content;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      span {
+        display: none;
+      }
+    }
+  }
+  button {
+    max-height: $buttonsHeight;
+    transition: $transitionS;
+    &:hover {
+      background-color: $lightGray;
+    }
+  }
+  .userContainer {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-bottom: $indentXXL;
+
+    img {
+      margin-right: $indentXXL;
+      border-radius: $borderRadiusXL;
+      width: calc($profilePhotoSize / 2.5);
+      height: calc($profilePhotoSize / 2.5);
+      object-fit: cover;
+    }
+    @media (max-width: $largeBreakPoint) {
+      width: min-content;
+      margin-right: 0;
+    }
+    p {
+      @media (max-width: $largeBreakPoint) {
+        display: none;
+      }
+    }
+    img {
+      width: calc($profilePhotoSize / 2.5);
+      height: calc($profilePhotoSize / 2.5);
+      border-radius: $borderRadiusXL;
+
+      @media (max-width: $largeBreakPoint) {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .logo {
+    margin-top: $indentXXL;
+    margin-bottom: $indentXXXL;
+    width: $twiiterLogoWidth;
+    height: $twiiterLogoHeight;
+  }
+  .nav {
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto';
+    margin-bottom: $indentXXL;
+    gap: $indentXXL;
+    color: inherit;
+
+    @media (max-width: $largeBreakPoint) {
+      width: min-content;
+    }
+    li {
+      padding: $indentS;
+      &:hover {
+        background-color: lighten($lightBlue, 0.2);
+      }
+      border-radius: $borderRadiusS;
+      transition: $transitionS;
+      list-style: none;
+      a {
+        display: flex;
+        align-items: center;
+        gap: $indentL;
+        color: inherit;
+        span {
+          @media (max-width: $largeBreakPoint) {
+            display: none;
+          }
+        }
+        svg {
+          path {
+            stroke: currentColor;
+            color: inherit;
+          }
+        }
+      }
+    }
+  }
+}
+
+.active {
+  svg {
+    path {
+      stroke-width: $activeLinkStroke;
+    }
+  }
+}

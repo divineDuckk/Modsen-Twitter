@@ -1,0 +1,41 @@
+@import 'src/theme/borders';
+@import 'src/theme/index';
+@import 'src/theme/fontWeights';
+@import 'src/theme/fontSizes';
+@import 'src/theme/lineHeights';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+@import 'src/theme/reuseClasses';
+@import 'src/theme/breakPoints';
+
+.searchBar {
+  margin-top: $indentXL;
+  width: 100%;
+
+  .inputWrapper {
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin-bottom: $indentM;
+
+    input {
+      background-color: $lightIceBlue;
+      border-radius: $borderRadiusM;
+      padding: $indentL $indentXL;
+      border: 0;
+      padding-left: $indentXXXL + $indentXS;
+      font-size: $fontSizeM;
+      line-height: $lineHeightS;
+      width: 100%;
+
+      &:active,
+      &:focus {
+        outline-color: $lightGray;
+      }
+    }
+    img {
+      position: absolute;
+      left: $indentL;
+    }
+  }
+}

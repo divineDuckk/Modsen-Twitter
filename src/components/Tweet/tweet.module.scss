@@ -1,0 +1,106 @@
+@import 'src/theme/borders';
+@import 'src/theme/index';
+@import 'src/theme/fontWeights';
+@import 'src/theme/fontSizes';
+@import 'src/theme/lineHeights';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+@import 'src/theme/transitions';
+@import 'src/theme/breakPoints';
+
+.tweet {
+  display: flex;
+  gap: $indentXS;
+  padding: $indentXXL;
+  border-bottom: $borderSizeS solid $lightBorderColor;
+
+  .userPhoto {
+    width: 100%;
+    max-width: calc($profilePhotoSize / 2.5);
+    height: calc($profilePhotoSize / 2.5);
+    border-radius: $borderRadiusXL;
+    object-fit: cover;
+  }
+  .imgWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .image {
+      max-width: 100%;
+      max-height: $tweetImageMaxHeight;
+      object-fit: cover;
+      margin-bottom: $indentL;
+      border-radius: $borderRadiusXS;
+    }
+  }
+
+  .tweetInfo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    p {
+      font-size: $fontSizeM;
+      margin-top: 0;
+      margin-bottom: $indentL;
+    }
+    .likesInfo {
+      display: flex;
+      align-items: center;
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        border: 0;
+        cursor: pointer;
+      }
+    }
+    .userInfo {
+      display: flex;
+      margin-bottom: $indentXS;
+      .meta {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        @media (max-width: $largeBreakPoint) {
+          flex-wrap: wrap;
+        }
+
+        a {
+          color: inherit;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+        }
+        h3 {
+          margin: 0;
+          font-size: $fontSizeL;
+          line-height: $lineHeightXS;
+          font-weight: $fontSizeM;
+          margin-right: $indentXS;
+        }
+        span {
+          @media (max-width: $mediumBreakPoint) {
+            display: none;
+          }
+          text-wrap: nowrap;
+          font-size: $fontSizeM;
+          opacity: $baseOpacity;
+          margin-right: $indentXS;
+        }
+      }
+      button {
+        background-color: transparent;
+        border: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+      }
+    }
+  }
+}

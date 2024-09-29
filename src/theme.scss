@@ -1,0 +1,27 @@
+@import './theme/fontWeights';
+@import './theme/colors';
+
+#root {
+  font-family: 'Roboto';
+  height: 100vh;
+}
+
+:root[data-theme='dark'] {
+  color: $white;
+  background-color: #010812;
+}
+:root[data-theme='light'] {
+  color: $black;
+  background-color: $white;
+}
+
+body {
+  margin: 0px auto;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  a {
+    text-decoration: none;
+  }
+}

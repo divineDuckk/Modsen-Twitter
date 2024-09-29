@@ -1,0 +1,36 @@
+@import 'src/theme/borders';
+@import 'src/theme/index';
+@import 'src/theme/fontWeights';
+@import 'src/theme/fontSizes';
+@import 'src/theme/lineHeights';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+@import 'src/theme/transitions';
+
+.submitButton {
+  font-size: $fontSizeM;
+  font-weight: $fontWeightM;
+  line-height: $lineHeightS;
+  background-color: $lightBlue;
+  color: white;
+  cursor: pointer;
+  height: $loginButtonHeight;
+  border-radius: $borderRadiusL;
+  border: 0;
+  margin-bottom: $indentXXXL;
+}
+.follow {
+  background-color: $black;
+  color: $white;
+  padding: $indentXS $indentL;
+  font-weight: $fontWeightM;
+  font-size: $fontSizeM;
+  border-radius: $borderRadiusL;
+  cursor: pointer;
+  transition: $transitionS;
+  max-width: $followButtonMinWidth;
+  width: 100%;
+  &:hover {
+    background-color: $blue;
+  }
+}

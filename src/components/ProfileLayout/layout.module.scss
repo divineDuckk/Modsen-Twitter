@@ -1,0 +1,28 @@
+@import 'src/theme/indents';
+@import 'src/theme/breakPoints';
+@import 'src/theme/index';
+
+.profileLayout {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: $indentXXXL;
+  padding: 0 $indentM;
+  @media (max-width: $largeBreakPoint) {
+    gap: $indentXS;
+  }
+  @media (max-width: $smallBreakPoint) {
+    gap: $indentS;
+    padding: 0 $indentXXXL;
+  }
+  .searchWrapper {
+    max-width: $searchMaxWidth;
+
+    @media (max-width: $mediumBreakPoint) {
+      display: none;
+    }
+  }
+}
+.unvisible {
+  display: none;
+}

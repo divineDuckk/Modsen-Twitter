@@ -1,0 +1,36 @@
+@import 'src/theme/index';
+@import 'src/theme/fontWeights';
+@import 'src/theme/fontSizes';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+@import 'src/theme/borders';
+
+.miniTweet {
+  display: flex;
+  flex-direction: column;
+  color: $black;
+  padding: $indentXS $indentM;
+  background-color: $darkerWhite;
+  border-radius: $borderRadiusXS;
+  box-shadow: $indentS $indentM $lightBlur $dark;
+  margin-bottom: $indentXL;
+  cursor: pointer;
+  p {
+    display: -webkit-box;
+    max-height: $miniTweetMaxHeight;
+    overflow: hidden;
+    -webkit-line-clamp: $miniTweetLineClamp;
+    line-clamp: $miniTweetLineClamp;
+    -webkit-box-orient: vertical;
+    margin: 0;
+  }
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $indentL;
+    h3 {
+      margin: 0;
+    }
+  }
+}

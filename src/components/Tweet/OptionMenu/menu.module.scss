@@ -1,0 +1,34 @@
+@import 'src/theme/borders';
+@import 'src/theme/index';
+@import 'src/theme/fontWeights';
+@import 'src/theme/fontSizes';
+@import 'src/theme/indents';
+@import 'src/theme/colors';
+@import 'src/theme/transitions';
+@import 'src/theme/zIndexes';
+@import 'src/theme/positions';
+
+.optionMenu {
+  list-style: none;
+  position: absolute;
+  z-index: $zIndexM;
+  top: $posM;
+  padding: 0;
+  width: $tweetOptionsWidth;
+  max-height: $tweetOptionsMaxHeight;
+  background-color: $white;
+  border: $borderSizeS solid $blue;
+  border-radius: $borderRadiusS;
+  padding: $indentM 0;
+
+  li {
+    font-size: $fontSizeL;
+    padding: $indentXS 0;
+    font-weight: $fontWeightM;
+    transition: $transitionS;
+
+    &:hover {
+      background-color: $lightBlue;
+    }
+  }
+}

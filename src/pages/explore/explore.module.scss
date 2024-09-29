@@ -1,0 +1,7 @@
+@import 'src/theme/index';
+@import 'src/theme/breakPoints';
+
+.explore {
+  max-width: $profileMaxWidth;
+  width: 100%;
+}

@@ -1,0 +1,78 @@
+@import 'src/theme/index';
+@import 'src/theme/indents';
+@import 'src/theme/fontSizes';
+@import 'src/theme/fontWeights';
+@import 'src/theme/borders';
+@import 'src/theme/positions';
+@import 'src/theme/zIndexes';
+@import 'src/theme/transitions';
+@import 'src/theme/breakPoints';
+
+.imageInput {
+  display: flex;
+  flex-direction: column;
+  gap: $indentM;
+  height: 100%;
+  input[type='file'] {
+    display: none;
+  }
+  @media (max-width: $smallBreakPoint) {
+    flex-direction: column;
+    align-items: center;
+  }
+  .preload {
+    min-height: 200px;
+  }
+  label {
+    max-width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: $indentM;
+    cursor: pointer;
+    font-family: 'Roboto';
+    font-size: $fontSizeL;
+    font-weight: $fontWeightXS;
+    span {
+      text-wrap: nowrap;
+    }
+
+    img:first-child {
+      height: $getImageSizes;
+    }
+  }
+  .miniImage {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 350px;
+
+    img[alt='success'] {
+      border-radius: $borderRadiusS;
+      width: 100%;
+      min-width: 320px;
+      filter: brightness(50%);
+      transition: $transitionXS;
+      &:hover {
+        filter: brightness(100%);
+      }
+    }
+    button {
+      img {
+        border-radius: $borderRadiusS;
+        filter: brightness(50%);
+        transition: $transitionXS;
+        &:hover {
+          filter: brightness(100%);
+        }
+      }
+      z-index: $zIndexM;
+      position: absolute;
+      top: $posXS;
+      right: $posXS;
+      cursor: pointer;
+      background-color: transparent;
+      border: 0;
+      border-radius: $borderRadiusXS;
+    }
+  }
+}
