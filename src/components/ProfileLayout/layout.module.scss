@@ -7,7 +7,6 @@
   display: flex;
   justify-content: center;
   gap: $indentXXXL;
-  padding: 0 $indentM;
   @media (max-width: $largeBreakPoint) {
     gap: $indentXS;
   }
